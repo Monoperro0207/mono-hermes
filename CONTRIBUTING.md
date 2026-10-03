@@ -44,7 +44,8 @@ CI runs typecheck, unit tests, the web build and `assembleDebug` on every push a
    versionName/versionCode derive from it) and update `docs/release-notes/<version>.md` if you have notes.
 3. Tag `v<version>` and push the tag. The `Release` workflow builds the signed APK, checksums it and
    publishes the GitHub Release. It needs the repository secrets `ANDROID_KEYSTORE_BASE64`,
-   `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS` and `ANDROID_KEY_PASSWORD` (maintainers only).
+   `ANDROID_KEYSTORE_PASSWORD` and `ANDROID_KEY_PASSWORD` (maintainers only), plus the optional
+   repository variable `ANDROID_KEY_ALIAS` (defaults to `mono-hermes`).
 
 A weekly `Upstream watch` workflow opens/updates a single `upstream-watch` issue when Hermes `main`
 moves away from the pinned commit or breaks the bridge.

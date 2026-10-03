@@ -87,7 +87,9 @@ jobs:
         working-directory: mobile/android
         env:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          # The alias is not a credential: a repository variable keeps it from masking
+          # "mono-hermes" in every log line, as a secret would.
+          ANDROID_KEY_ALIAS: ${{ vars.ANDROID_KEY_ALIAS || 'mono-hermes' }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
           chmod +x gradlew
@@ -116,7 +118,10 @@ jobs:
           VERSION: ${{ steps.apk.outputs.version }}
           REPOSITORY: ${{ github.repository }}
         run: |
+          # export so the node renderer below sees the pin values
+          set -a
           eval "$(node scripts/upstream-pin.mjs print --env)"
+          set +a
           sha256="$(cut -d' ' -f1 "dist-apk/$APK_NAME.sha256")"
           # Optional human-written notes live in docs/release-notes/<version>.md
           notes="See the commit history for details."
