@@ -314,7 +314,10 @@ export async function pageChecks(opts) {
 
     // (5) text visibly cut by a hard-clipping ancestor (not by a scroll container)
     const rr = el.getBoundingClientRect()
-    if (vis.clippedBy && vis.clippedBy.hard) {
+    // The live tool ticker is a one-line window over a reel that slides by design: a row caught mid-slide is
+    // partly clipped on purpose (row height is guarded by the dedicated live-ticker scenario).
+    const inTickerWindow = !!(vis.clippedBy && vis.clippedBy.el && vis.clippedBy.el.closest && vis.clippedBy.el.closest('.tool-ticker'))
+    if (vis.clippedBy && vis.clippedBy.hard && !inTickerWindow) {
       const area = rr.width * rr.height
       const visArea = vis.width * vis.height
       if (area > 0 && visArea < area * 0.9 && vis.width > 0 && vis.height > 0) {
@@ -432,7 +435,12 @@ export async function pageChecks(opts) {
     const effH = Math.max(r.height, ext.h)
     // links / buttons inside running prose are exempt (WCAG 2.5.8 inline exception)
     const inlineLink = (el.tagName === 'A' && getComputedStyle(el).display === 'inline') || el.matches('a.ref, button.ref')
-    if (!inlineLink && (effW < 44 || effH < 44) && !(bare && effH >= 32)) {
+    // a control within ~14px of its scroll container's edge has its hit area cut by that edge: the shortfall is the
+    // scroll position, not the control (the next scroll position or neighbouring rows are measured in full)
+    const scEdge = scrollAncestor(el)
+    const scr = scEdge ? scEdge.getBoundingClientRect() : null
+    const atScrollEdge = !!scr && (r.bottom + 14 > scr.bottom || r.top - 14 < scr.top)
+    if (!inlineLink && !atScrollEdge && (effW < 44 || effH < 44) && !(bare && effH >= 32)) {
       const m = Math.min(effW, effH)
       // WCAG 2.5.8 minimum target is 24px; Material/Apple recommend 44-48px
       const sev = m < 24 ? 'medium' : 'low'

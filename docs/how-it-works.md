@@ -59,6 +59,7 @@ allowed there and enforced in the app instead. `https://` works anywhere.
 - The server only ever sees bearer tokens/tickets; the password is sent once, at login.
 - `dashboard.basic_auth` passwords are rate limited by the gateway (10 attempts/minute/IP).
 - Keep the firewall rule limited to the Tailscale range.
+- The user-facing summary (threat model, permissions, release verification) is in the README's [Security section](../README.md#security); reporting policy in [SECURITY.md](../SECURITY.md).
 
 ## UI audit
 

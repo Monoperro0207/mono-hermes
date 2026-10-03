@@ -64,7 +64,7 @@ export function compatMessage(verdict: CompatVerdict, serverVersion: string, pin
   }
 
   if (verdict === 'server-older') {
-    return `Your Hermes server (v${shown}) is older than this app was built for (v${pinnedVersion}). If something misbehaves, update Hermes on your PC.`
+    return `Your Hermes server (v${shown}) is older than this app was built for (v${pinnedVersion}). It may still work fine; if something misbehaves, update Hermes on your PC or install an older Mono Hermes release.`
   }
 
   return null

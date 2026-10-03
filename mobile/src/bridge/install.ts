@@ -33,6 +33,7 @@ import {
   requestMicrophoneAccess,
   saveImageBuffer,
   saveImageFromUrl,
+  setActiveWork,
   setKeepAwake,
   writeClipboard
 } from './platform'
@@ -369,7 +370,8 @@ export function buildBridge(options: BridgeOptions): BridgeRuntime {
     saveImageFromUrl,
     savePastedText: async text => registerFile(new Blob([text], { type: 'text/plain' }), `pasted-${Date.now()}.txt`),
     selectPaths: options => pickFiles(options),
-    setKeepAwake: on => void setKeepAwake(on),
+    setActiveWork: work => setActiveWork(work.count),
+    setKeepAwake: mode => setKeepAwake(mode),
     testConnectionConfig: async payload => {
       const result = await probe(payload.remoteUrl ?? (await store.getConnection())?.baseUrl ?? '')
 

@@ -60,6 +60,7 @@ export type ImplementedKeys =
   | 'saveImageFromUrl'
   | 'savePastedText'
   | 'selectPaths'
+  | 'setActiveWork'
   | 'setKeepAwake'
   | 'writeClipboard'
 

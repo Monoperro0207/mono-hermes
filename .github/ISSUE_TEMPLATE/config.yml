@@ -3,3 +3,6 @@ contact_links:
   - name: Problem with Hermes itself (not the mobile app)
     url: https://github.com/NousResearch/hermes-agent/issues
     about: Mono Hermes is unofficial. Agent, model and server bugs belong to the Hermes project.
+  - name: Report a security vulnerability (private)
+    url: https://github.com/Monoperro0207/mono-hermes/security/advisories/new
+    about: Please do not open a public issue for vulnerabilities. See SECURITY.md.

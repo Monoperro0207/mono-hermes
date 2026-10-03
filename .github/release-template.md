@@ -23,7 +23,15 @@ SHA-256 of `@APK_NAME@`:
 @SHA256@
 ```
 
-The APK is signed with the project release key; `@APK_NAME@.sha256` is attached as well.
+The APK is signed with the project release key; `@APK_NAME@.sha256` is attached as well. To check the
+signer and the build provenance (this APK was built by the release workflow from this repository):
+
+```
+apksigner verify --print-certs @APK_NAME@     # SHA-256 digest must be 86de4550a5fc023f2cb55ce0bae2f5d315525207b80335c560cf661ec8c845ce
+gh attestation verify @APK_NAME@ -R @REPOSITORY@
+```
+
+Details: [Security section of the README](https://github.com/@REPOSITORY@#verify-a-release).
 
 ## Changes
 

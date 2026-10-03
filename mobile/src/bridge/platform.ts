@@ -99,7 +99,44 @@ export async function requestMicrophoneAccess(): Promise<boolean> {
   }
 }
 
-export async function setKeepAwake(on: boolean): Promise<void> {
+export type KeepAwakeMode = 'always' | 'off' | 'while-working'
+
+/** Whether the screen should be held on for the chosen mode and the number of turns in flight. */
+export function wantsKeepAwake(mode: KeepAwakeMode, activeTurns: number): boolean {
+  return mode === 'always' || (mode === 'while-working' && activeTurns > 0)
+}
+
+/**
+ * Keep-awake follows the user's mode: the renderer reports the mode (`setKeepAwake`) and, for
+ * 'while-working', how many turns are in flight (`setActiveWork`). Only transitions touch the plugin.
+ */
+export function createKeepAwakeController(apply: (on: boolean) => Promise<void> = applyKeepAwake) {
+  let mode: KeepAwakeMode = 'off'
+  let activeTurns = 0
+  let held = false
+
+  const sync = () => {
+    const next = wantsKeepAwake(mode, activeTurns)
+
+    if (next !== held) {
+      held = next
+      void apply(next)
+    }
+  }
+
+  return {
+    setActiveWork(count: number) {
+      activeTurns = Math.max(0, Math.trunc(count) || 0)
+      sync()
+    },
+    setMode(next: KeepAwakeMode) {
+      mode = next === 'always' || next === 'while-working' ? next : 'off'
+      sync()
+    }
+  }
+}
+
+async function applyKeepAwake(on: boolean): Promise<void> {
   try {
     const { KeepAwake } = await import('@capacitor-community/keep-awake')
 
@@ -112,6 +149,11 @@ export async function setKeepAwake(on: boolean): Promise<void> {
     console.warn('[hermes-mobile] keep-awake unavailable:', errorMessage(error))
   }
 }
+
+const keepAwake = createKeepAwakeController()
+
+export const setKeepAwake = keepAwake.setMode
+export const setActiveWork = keepAwake.setActiveWork
 
 export interface NotificationEvents {
   focusSession: Emitter<string>

@@ -8,9 +8,12 @@ the public internet.
 
 ## 1. Prerequisites
 
-1. Install Hermes (see the [Hermes README](https://github.com/NousResearch/hermes-agent#readme)).
-2. Check it works: `hermes --version`.
-3. Compatibility: this app is tested with Hermes **0.21.5**. Newer versions usually work; if your server is
+1. A PC (Windows, macOS or Linux) and an Android 7.0+ phone with a recent WebView (Chrome 111+).
+2. Install Hermes with its official installer ([docs](https://github.com/NousResearch/hermes-agent#readme)):
+   `curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash` (macOS/Linux) or
+   `iex (irm https://hermes-agent.nousresearch.com/install.ps1)` (Windows PowerShell).
+3. Check it works: `hermes --version`.
+4. Compatibility: this app is tested with Hermes **0.21.5**. Newer versions usually work; if your server is
    newer or older by a minor version, the app shows a dismissible notice. Update the app if it keeps happening.
 
 ## 2. Tailscale
@@ -26,9 +29,14 @@ Run this yourself in a normal terminal window:
 hermes serve --host 0.0.0.0 --port 9119
 ```
 
-When Hermes asks how to authenticate, choose **[1] Username & password** and pick a strong password. It is
-stored hashed in Hermes' `config.yaml`. Hermes only asks in an interactive terminal, and any non-loopback bind
-requires auth. Once it says it is running, stop it with Ctrl+C (autostart below takes over) or keep it.
+When Hermes asks how to authenticate, choose **[1] Username & password** and pick a strong password. It stores
+a scrypt hash and a stable signing secret in `config.yaml`, so later non-interactive starts (and phone sessions)
+survive restarts. Hermes only asks in an interactive terminal, and any non-loopback bind always engages the login
+gate, so the port is never open without credentials. Once it says it is running, stop it with Ctrl+C (autostart
+below takes over) or keep it.
+
+`--host 0.0.0.0` matters: the app's WebView origin is `http://localhost`, and the gateway only accepts that origin
+on its WebSocket when bound to all interfaces. The firewall step below is what keeps it Tailscale-only.
 
 ## 4. Firewall: Tailscale only
 
@@ -135,9 +143,15 @@ Unload: `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.example.herme
 
 ## 7. Phone
 
-1. Download the APK from [GitHub Releases](../../../releases) and open it (allow "install unknown apps" once).
+1. Download `mono-hermes-<version>-release.apk` from [GitHub Releases](../../../releases), verify it
+   ([how](../README.md#security)) and open it (allow "install unknown apps" once). From a computer you can also run
+   `adb install -r mono-hermes-<version>-release.apk`.
 2. Turn Tailscale on.
-3. Open Mono Hermes, enter `http://<tailscale-ip>:9119`, your username and password, tap **Connect**.
+3. Open Mono Hermes, enter `http://<tailscale-ip>:9119` (or the MagicDNS name `my-pc.<tailnet>.ts.net`), your
+   username and password, tap **Connect**.
+
+To change server or sign out: **Settings -> Gateway** in the app. If the session is lost (password changed, 30
+days idle) the connect screen reappears by itself.
 
 ## 8. Share sessions with the desktop app
 

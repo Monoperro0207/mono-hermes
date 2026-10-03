@@ -394,6 +394,13 @@ webview {
     position: absolute;
   }
 
+  /* Capabilities list strip sort control ("↓ Most used", ListStripButton, 0.68rem text): 16px tall */
+  button[class*='text-[0.68rem]'][class~='cursor-pointer'] {
+    align-items: center;
+    display: inline-flex;
+    min-height: 32px;
+  }
+
   /* breadcrumb / path buttons inside dialogs (folder picker) */
   [data-slot='dialog-content'] button:not([data-slot='button'], [data-slot='dialog-close-button']) {
     min-height: 32px;
