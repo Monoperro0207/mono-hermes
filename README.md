@@ -20,6 +20,13 @@ server, so sessions, streaming turns and history are shared live.
                                                  └──────────────────────────┘
 ```
 
+## Demo
+
+<p align="center">
+  <a href="docs/media/mono-hermes-demo.mp4"><img src="docs/media/mono-hermes-demo-preview.gif" alt="Mono Hermes demo (6x speed preview)" width="320"></a><br>
+  <sub>6x preview. <a href="docs/media/mono-hermes-demo.mp4">Watch the full 1:36 demo</a> (screen-recorded on a Samsung Galaxy Tab S8 Ultra with the display at 2K resolution, which is why the full desktop layout shows; private content blurred).</sub>
+</p>
+
 ## Quick setup
 
 - **Step by step guide** (Windows, macOS, Linux; Tailscale, firewall, autostart, troubleshooting): [docs/SETUP.md](docs/SETUP.md)
