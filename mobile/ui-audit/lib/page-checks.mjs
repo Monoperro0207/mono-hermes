@@ -6,7 +6,8 @@
  * Rules (see REPORT.md for the human description):
  *   text-clipped, text-nowrap-clipped, text-collapsed, text-char-per-line,
  *   clipped-by-ancestor, offscreen, page-overflow-x, overlap, obscured,
- *   touch-target, hover-only, dialog-too-tall, dialog-offscreen, tiny-text
+ *   touch-target, hover-only, dialog-too-tall, dialog-offscreen, tiny-text,
+ *   disclosure-collapsed, disclosure-clipped, disclosure-overlap (expanded tool groups / rows / thinking)
  */
 export async function pageChecks(opts) {
   const findings = []
@@ -146,6 +147,46 @@ export async function pageChecks(opts) {
 
   const all = Array.from(document.querySelectorAll('body *')).filter(el => !['SCRIPT', 'STYLE', 'LINK', 'META', 'NOSCRIPT', 'TEMPLATE'].includes(el.tagName))
   const visible = all.filter(el => isVisible(el) && !inert(el))
+
+
+  // --- expanded disclosures: content must have real height and must not overlap its siblings ------
+  // (tool-run groups / tool rows are overflow-hidden boxes whose height is animated by JS; a stuck
+  // animation leaves them a few px tall with their content clipped or painted over the text above)
+  for (const g of document.querySelectorAll('[data-tool-group]')) {
+    if (g.getAttribute('aria-hidden') === 'true' || !isVisible(g)) continue
+    const rows = Array.from(g.querySelectorAll(':scope [data-tool-row]')).filter(r => r.getBoundingClientRect().height > 0 || r.scrollHeight > 0)
+    const gr = g.getBoundingClientRect()
+    if (rows.length && gr.height < 24) add('disclosure-collapsed', 'high', g, `expanded tool group is ${Math.round(gr.height)}px tall but holds ${rows.length} rows`)
+    else if (g.scrollHeight > g.clientHeight + 8) add('disclosure-clipped', 'high', g, `tool group content ${g.scrollHeight}px is clipped to ${g.clientHeight}px`)
+  }
+  const rowEls = Array.from(document.querySelectorAll('[data-tool-row]')).filter(r => isVisible(r) && !inert(r))
+  for (const r of rowEls) {
+    const rr = r.getBoundingClientRect()
+    if (r.hasAttribute('data-tool-open') && rr.height < 40) add('disclosure-collapsed', 'high', r, `expanded tool row is only ${Math.round(rr.height)}px tall`)
+    else if (r.scrollHeight > r.clientHeight + 10) add('disclosure-clipped', 'medium', r, `tool row content ${r.scrollHeight}px is clipped to ${r.clientHeight}px`)
+    if (rr.height > 0 && rr.height < 14) add('disclosure-collapsed', 'high', r, `tool row squeezed to ${Math.round(rr.height)}px`)
+  }
+  for (let i = 0; i < rowEls.length; i++) {
+    for (let j = i + 1; j < Math.min(rowEls.length, i + 6); j++) {
+      if (rowEls[i].contains(rowEls[j]) || rowEls[j].contains(rowEls[i])) continue
+      const a = rowEls[i].getBoundingClientRect()
+      const b = rowEls[j].getBoundingClientRect()
+      const ox = Math.min(a.right, b.right) - Math.max(a.left, b.left)
+      const oy = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)
+      if (ox > 8 && oy > 4 && a.height > 0 && b.height > 0) add('disclosure-overlap', 'high', rowEls[j], `overlaps the previous tool row by ${Math.round(oy)}px`)
+    }
+  }
+  // thinking / reasoning disclosure: an open one must show its text, and the text must not run under the next sibling
+  for (const btn of document.querySelectorAll('[data-slot=aui_assistant-message-root] button[aria-expanded=true]')) {
+    if (!isVisible(btn) || btn.closest('[data-tool-row]')) continue
+    const host = btn.closest('[data-slot=aui_reasoning], [data-slot*=reasoning], [data-slot=aui_assistant-message-content] > *') || btn.parentElement?.parentElement
+    const next = host && host.nextElementSibling
+    if (host && next && isVisible(next)) {
+      const a = host.getBoundingClientRect()
+      const b = next.getBoundingClientRect()
+      if (b.height > 0 && a.bottom - b.top > 6 && a.height > 0) add('disclosure-overlap', 'high', next, `overlaps the expanded disclosure above by ${Math.round(a.bottom - b.top)}px`)
+    }
+  }
 
   // --- text fit with pretext -------------------------------------------------------------
   let pt = null

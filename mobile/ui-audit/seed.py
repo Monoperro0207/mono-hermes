@@ -286,6 +286,22 @@ for c in tc:
 msgs.append(asst("All tools finished. Summary: the **terminal** listing succeeded, `read_file` returned 40 lines, the patch applied, and one command failed intentionally."))
 session("aud-tools", "Tool cards: terminal, files, web, todo, delegate, unknown MCP", msgs, age=1800, cwd="C:\\Users\\demo\\code\\hermes-mobile", branch="feat/ui-audit")
 
+# 3b. Realistic agent turns: thinking + several tool groups (commands, TTS, file tools), settled
+act = [user("Read me the changelog out loud and save the summary.")]
+act.append(asst("", tool_calls=[call("a1", "terminal", {"command": "git log --oneline -n 5"}), call("a2", "terminal", {"command": "cat CHANGELOG.md | head -40"}), call("a3", "text_to_speech", {"text": "Changelog summary: three fixes and one feature.", "output_path": "/home/user/project/changelog.mp3"})], finish_reason="tool_calls", reasoning=REASONING, reasoning_content=REASONING))
+act.append(tool("a1", "terminal", {"output": TERMINAL_OUT, "exit_code": 0, "error": None}))
+act.append(tool("a2", "terminal", {"output": TERMINAL_OUT, "exit_code": 0, "error": None}))
+act.append(tool("a3", "text_to_speech", {"success": True, "file_path": "/home/user/project/changelog.mp3", "media_tag": "MEDIA:/home/user/project/changelog.mp3"}))
+act.append(asst("Done. I read the changelog and saved the audio.", reasoning="Short second thought about whether to also write the file.", reasoning_content="Short second thought about whether to also write the file."))
+act.append(user("Now patch the README and read two files."))
+act.append(asst("Working on it.", tool_calls=[call("b1", "read_file", {"path": "/home/user/project/README.md"}), call("b2", "read_file", {"path": "/home/user/project/src/app.ts"}), call("b3", "patch", {"path": "/home/user/project/README.md", "old_string": "a", "new_string": "b"}), call("b4", "terminal", {"command": "npm test"})], finish_reason="tool_calls", reasoning=REASONING, reasoning_content=REASONING))
+act.append(tool("b1", "read_file", {"content": "     1|# Title\n     2|text", "total_lines": 2, "file_size": 20}))
+act.append(tool("b2", "read_file", {"content": "     1|const a = 1", "total_lines": 1, "file_size": 12}))
+act.append(tool("b3", "patch", {"success": True, "diff": "--- a/README.md\n+++ b/README.md\n@@ -1 +1 @@\n-a\n+b\n"}))
+act.append(tool("b4", "terminal", {"output": "ok\n", "exit_code": 0, "error": None}))
+act.append(asst("Patched the README; tests pass."))
+session("aud-activity", "Activity groups: thinking, commands, TTS, files", act, age=1500, cwd=str(__import__("pathlib").Path(__file__).resolve().parents[2]), branch="main")
+
 # 4. Reasoning
 session("aud-think", "Thinking blocks and reasoning", [
     user("Compare a local WebView against a remote renderer."),

@@ -150,6 +150,19 @@ async function expandToolCards(page) {
   }
 }
 
+
+/** Tap every collapsed disclosure (thinking, tool groups, tool rows) top-down until none are left. */
+async function expandAllDisclosures(page) {
+  for (let round = 0; round < 6; round++) {
+    const closed = page.locator('[data-slot=aui_assistant-message-root] button[aria-expanded=false]')
+    if (!(await closed.count())) break
+    await closed.first().scrollIntoViewIfNeeded({ timeout: 800 }).catch(() => {})
+    await closed.first().click({ timeout: 800 }).catch(() => {})
+    await page.waitForTimeout(250)
+  }
+  await page.waitForTimeout(300)
+}
+
 async function scrollThread(page, where) {
   await page.evaluate(w => {
     const sc = Array.from(document.querySelectorAll('*')).filter(e => e.scrollHeight > e.clientHeight + 40 && /(auto|scroll)/.test(getComputedStyle(e).overflowY) && e.clientHeight > 200)
@@ -322,6 +335,77 @@ S('live-approval', 'chat', 'Approval prompt (dangerous command)', async ({ page,
   await snap('always-allow-menu')
   await reset(page)
   await click(page, 'Reject').catch(() => {})
+}, { criticalIfFails: false })
+
+
+S('live-activity', 'chat', 'Live turn: thinking + parallel commands + TTS tool, groups expanded', async ({ page, snap }) => {
+  await liveTurn(page, '@@activity', 9000)
+  await snap('running-collapsed')
+  await expandAllDisclosures(page)
+  await snap('running-expanded', { settle: 700 })
+  await page.waitForTimeout(1500)
+  await expandAllDisclosures(page)
+  await snap('running-expanded-again', { settle: 500 })
+}, { criticalIfFails: false })
+
+
+S('session-activity', 'chat', 'Settled turns with thinking + tool groups: every disclosure expanded step by step', async ({ page, snap }) => {
+  await reset(page)
+  await ensureSidebar(page, false)
+  await openSession(page, 'aud-activity', 3500)
+  await scrollThread(page, 'top')
+  await snap('collapsed-top')
+  await scrollThread(page, 'mid')
+  await snap('collapsed-mid')
+  // one tap at a time, like a finger: thinking, then each group, then each nested tool row
+  for (let step = 1; step <= 6; step++) {
+    const closed = page.locator('[data-slot=aui_assistant-message-root] button[aria-expanded=false]')
+    if (!(await closed.count())) break
+    await closed.first().scrollIntoViewIfNeeded({ timeout: 800 }).catch(() => {})
+    await closed.first().click({ timeout: 800 }).catch(() => {})
+    await page.waitForTimeout(350)
+    if (step === 1 || step === 3) await snap(`step-${step}`, { settle: 500 })
+  }
+  await expandAllDisclosures(page)
+  await scrollThread(page, 'top')
+  await snap('expanded-top', { settle: 700 })
+  await scrollThread(page, 'mid')
+  await snap('expanded-mid')
+  await scrollThread(page, 'bottom')
+  await snap('expanded-bottom')
+}, { criticalIfFails: false })
+
+S('git-rail', 'shell', 'Review (git) right rail: scope tabs, no terminal pane', async ({ page, snap }) => {
+  await reset(page)
+  await ensureSidebar(page, false)
+  await openSession(page, 'aud-activity', 3000)
+  await page.keyboard.press('Control+g')
+  await page.waitForTimeout(1800)
+  await snap('uncommitted', { settle: 700 })
+  for (const name of ['Branch', 'Last turn']) {
+    await page.getByRole('button', { name, exact: true }).first().click({ timeout: T }).catch(() => {})
+    await page.waitForTimeout(900)
+    await snap(name.toLowerCase().replace(/\s+/g, '-'))
+  }
+  const terminal = await page.locator('[data-tree-tab=terminal]').first().isVisible().catch(() => false)
+  if (terminal) throw new Error('terminal pane is visible on mobile')
+  await page.keyboard.press('Control+g')
+}, { criticalIfFails: false })
+
+S('cwd-chip-menu', 'shell', 'Status-bar workspace chip menu closes on outside tap', async ({ page, snap }) => {
+  await reset(page)
+  await ensureSidebar(page, false)
+  await openSession(page, 'aud-activity', 3000)
+  await page.locator('[data-slot=statusbar] button').filter({ hasText: /hermes|mobile|movil/i }).first().click({ timeout: T })
+  await page.waitForTimeout(500)
+  await snap('open')
+  const items = await page.locator('[role=menuitem]').allInnerTexts()
+  if (items.some(t => /Open containing folder|Reveal in (Finder|File Explorer)/i.test(t))) throw new Error(`desktop-only reveal item offered: ${items.join(' | ')}`)
+  await page.mouse.click(Math.round(page.viewportSize().width / 2), Math.round(page.viewportSize().height / 2))
+  await page.waitForTimeout(500)
+  const still = await page.locator('[role=menu]').first().isVisible().catch(() => false)
+  if (still) throw new Error('menu stayed open after an outside tap')
+  await snap('closed')
 }, { criticalIfFails: false })
 
 S('live-clarify', 'chat', 'Clarify prompt with choices', async ({ page, snap }) => {

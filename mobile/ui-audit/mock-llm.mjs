@@ -10,6 +10,7 @@
  *   @@slow      a long answer trickled very slowly (stays "running" for ~60 s)
  *   @@approval  tool call `terminal` with a dangerous command -> approval prompt (never approved)
  *   @@clarify   tool call `clarify` with choices -> clarify prompt
+ *   @@activity  reasoning + parallel tool calls (2 terminal commands - one long-running - and text_to_speech), then an answer
  *   @@error     HTTP 500 -> error banner
  *   (none)      short markdown answer
  *
@@ -103,6 +104,17 @@ export function startMockLlm(port = 47831) {
         }),
         delay: 10
       }
+    } else if (!hasToolResult(messages) && marker.includes('@@activity')) {
+      plan = {
+        reasoning: 'Let me plan the steps: list the changelog, run a slow check, then read the summary aloud with the text to speech tool. '.repeat(2),
+        text: 'Running the commands and the speech tool now.',
+        tools: [
+          toolCall('terminal', { command: 'echo changelog' }),
+          toolCall('terminal', { command: 'python -c "import time; time.sleep(40)"', timeout: 60 }),
+          toolCall('text_to_speech', { text: 'Changelog summary: three fixes and one feature.' })
+        ],
+        delay: 20
+      }
     } else if (marker.includes('@@think')) {
       plan = { reasoning: 'Let me think about this carefully. First I consider the constraints of a narrow viewport, then the trade offs between wrapping and truncating text, and finally how tool output cards should behave. '.repeat(2), text: LONG_MD, delay: 120 }
     } else if (marker.includes('@@slow')) {
@@ -114,8 +126,9 @@ export function startMockLlm(port = 47831) {
     if (!stream) {
       res.setHeader('content-type', 'application/json')
       const message = { role: 'assistant', content: plan.text ?? null }
-      if (plan.tool) message.tool_calls = [{ id: plan.tool.id, type: 'function', function: plan.tool.function }]
-      return void res.end(JSON.stringify({ id, object: 'chat.completion', created: Math.floor(Date.now() / 1000), model: 'audit-model', choices: [{ index: 0, message, finish_reason: plan.tool ? 'tool_calls' : 'stop' }], usage: { prompt_tokens: 1200, completion_tokens: 80, total_tokens: 1280 } }))
+      const allTools = plan.tools || (plan.tool ? [plan.tool] : [])
+      if (allTools.length) message.tool_calls = allTools.map(t => ({ id: t.id, type: 'function', function: t.function }))
+      return void res.end(JSON.stringify({ id, object: 'chat.completion', created: Math.floor(Date.now() / 1000), model: 'audit-model', choices: [{ index: 0, message, finish_reason: (plan.tools || plan.tool) ? 'tool_calls' : 'stop' }], usage: { prompt_tokens: 1200, completion_tokens: 80, total_tokens: 1280 } }))
     }
 
     res.setHeader('content-type', 'text/event-stream')
@@ -136,8 +149,9 @@ export function startMockLlm(port = 47831) {
         await sleep(plan.delay)
       }
     }
-    if (plan.tool) sse(base({ tool_calls: [plan.tool] }))
-    sse(finish(plan.tool ? 'tool_calls' : 'stop'))
+    const streamTools = plan.tools || (plan.tool ? [plan.tool] : [])
+    if (streamTools.length) sse(base({ tool_calls: streamTools.map((t, i) => ({ ...t, index: i })) }))
+    sse(finish(streamTools.length ? 'tool_calls' : 'stop'))
     res.write('data: [DONE]\n\n')
     res.end()
   })

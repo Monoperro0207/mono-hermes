@@ -622,3 +622,85 @@ select {
     display: none !important;
   }
 }
+
+/* ------------------------------------------------------------------------------------------
+ * Tool-run groups ("Ran 2 commands, using 1 tool"): the group wrapper is a framer-motion div with
+ * `overflow-hidden` whose inline `height` is animated 0 -> auto when an approval card hands the run
+ * back (fallback.tsx ToolRun). If that JS animation is interrupted (the WebView throttles rAF while
+ * the approval sheet / keyboard re-layouts the page) the inline height stays at a few px and the
+ * expanded rows are clipped and drawn over the text above. Only a group that is deliberately
+ * collapsed (aria-hidden + inert, represented by the approval card) may be 0px tall; every other
+ * group always takes its natural height.
+ * ---------------------------------------------------------------------------------------- */
+[data-tool-group]:not([aria-hidden='true']) {
+  height: auto !important;
+  min-height: 0;
+}
+
+/* A tool row is `overflow-hidden`; make sure it can never be squeezed below its own header line. */
+[data-slot='tool-block'][data-tool-row] {
+  flex-shrink: 0;
+  min-height: min-content;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Review (git) right rail: the header packs [label][Uncommitted|Branch|Last turn][4 icon buttons]
+ * into one fixed 28px row. In a ~240px rail the segmented control (w-fit, grid) overflows into the
+ * buttons and the three segments paint over each other. Let the header wrap: the segmented control
+ * gets its own full-width row (equal thirds), the action buttons sit on the next row.
+ * ---------------------------------------------------------------------------------------- */
+[class~='group/project-header']:has(> [class*='grid-flow-col']) {
+  flex-wrap: wrap;
+  height: auto !important;
+  min-height: 1.75rem;
+  padding-block: 0.25rem;
+  row-gap: 0.25rem;
+}
+
+[class~='group/project-header']:has(> [class*='grid-flow-col']) > div:not([class*='grid-flow-col']):first-child {
+  display: none;
+}
+
+[class~='group/project-header'] > [class*='grid-flow-col'] {
+  flex: 1 1 100%;
+  margin-right: 0 !important;
+  min-width: 0;
+  width: 100%;
+}
+
+[class~='group/project-header'] > [class*='grid-flow-col'] > button {
+  min-width: 0;
+  overflow: hidden;
+  padding-inline: 0.25rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[class~='group/project-header']:has(> [class*='grid-flow-col']) > button:first-of-type {
+  margin-left: auto;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Terminal pane: it needs a node-pty PTY on the machine running the renderer; on the phone there is
+ * none, so the pane would only show an empty strip. Hide it (and its status-bar toggle).
+ * ---------------------------------------------------------------------------------------- */
+[data-tree-group='grp-terminal'],
+[data-tree-tab='terminal'] {
+  display: none !important;
+}
+
+/* Review rail buttons sit 20px apart; the generic coarse-pointer ::after hit-area (-10px) of each one
+   overlaps its neighbours, so the touch targets fight over the same pixels. Give these buttons a real
+   32px box instead of the overlay. */
+@media (pointer: coarse) {
+  aside[aria-label] [class~='group/project-header'] > button::after,
+  aside[aria-label] > div.shrink-0 button::after {
+    display: none !important;
+  }
+
+  aside[aria-label] [class~='group/project-header'] > button,
+  aside[aria-label] > div.shrink-0 button {
+    min-height: 32px;
+    min-width: 32px;
+  }
+}

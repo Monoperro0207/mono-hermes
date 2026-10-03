@@ -10,7 +10,8 @@ export const VIEWPORTS = {
   'fold-inner-portrait': { width: 690, height: 829, dpr: 2.625, label: 'Galaxy Z Fold4 inner portrait (1812x2176 px)' },
   'fold-inner-landscape': { width: 829, height: 690, dpr: 2.625, label: 'Galaxy Z Fold4 inner landscape (2176x1812 px)' },
   phone: { width: 412, height: 915, dpr: 2.625, label: 'Generic 412x915 phone' },
-  tablet: { width: 768, height: 1024, dpr: 2, label: 'Generic 768x1024 tablet' }
+  tablet: { width: 768, height: 1024, dpr: 2, label: 'Generic 768x1024 tablet' },
+  'tablet-landscape': { width: 1000, height: 700, dpr: 2, label: 'Galaxy Tab S8 Ultra / Fold landscape (~1000x700 CSS px)' }
 }
 
 export function chromePath() {
