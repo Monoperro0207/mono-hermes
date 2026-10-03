@@ -644,6 +644,48 @@ select {
 }
 
 /* ------------------------------------------------------------------------------------------
+ * Live tool-run ticker (run-ticker.tsx + styles.css `.tool-ticker`): while a turn streams, a run of
+ * 2+ tool calls is shown as a one-line window over a reel of rows. Every `.tool-ticker__row` is
+ * exactly `--conversation-line-height` (~18-20px) tall, `overflow:hidden`, `align-items:center`, and
+ * the reel is offset by `index * line-height`. The coarse-pointer touch targets above
+ * (`[class*='disclosure-row'] { min-height: 36px }`, its 32px Dismiss button, the 7px padding trick
+ * on the row button) plus `[data-tool-row] { min-height: min-content }` made each tool row 36px+
+ * tall, so inside its 20px slot it was centred and clipped top and bottom: the "squashed, faded,
+ * overlapping row with a tiny timer below" seen only during a live turn on touch devices. The
+ * ticker is a read-only preview (the run header above it is the tap target), so its rows go back to
+ * the desktop line box, drop the per-row Dismiss control and stop taking taps.
+ * ---------------------------------------------------------------------------------------- */
+[data-tool-ticker] [data-tool-row],
+[data-tool-ticker] [class*='disclosure-row'] {
+  min-height: 0 !important;
+}
+
+[data-tool-ticker] [class*='disclosure-row'] > button {
+  margin-block: 0 !important;
+  min-height: 0 !important;
+  padding-block: 0 !important;
+}
+
+[data-tool-ticker] [class*='disclosure-row'] button[data-slot='button'] {
+  display: none !important;
+}
+
+/* A 20px row cannot be a touch target, and opening one tool's details inside a one-line window shows
+   nothing. Taps go to the run header instead (it expands the full list). */
+[data-tool-ticker] [class*='disclosure-row'] > button {
+  pointer-events: none;
+}
+
+/* Composer status-stack section headers ("1 Queued" -> Resume / clear) carry 16px text buttons; only
+   reachable now that the audit's live turns really send and leave a queued prompt behind. */
+@media (pointer: coarse) {
+  [data-slot='status-section'] > .status-section-header button {
+    min-height: 32px;
+    min-width: 32px;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
  * Review (git) right rail: the header packs [label][Uncommitted|Branch|Last turn][4 icon buttons]
  * into one fixed 28px row. In a ~240px rail the segmented control (w-fit, grid) overflows into the
  * buttons and the three segments paint over each other. Let the header wrap: the segmented control

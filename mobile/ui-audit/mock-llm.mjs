@@ -11,6 +11,8 @@
  *   @@approval  tool call `terminal` with a dangerous command -> approval prompt (never approved)
  *   @@clarify   tool call `clarify` with choices -> clarify prompt
  *   @@activity  reasoning + parallel tool calls (2 terminal commands - one long-running - and text_to_speech), then an answer
+ *   @@ticker    a live multi-step run: six sequential rounds of one slow tool call each (read_file /
+ *               web_search, each held ~2.5 s before it streams; no approvals), so the live tool-run ticker is on screen for ~30 s
  *   @@error     HTTP 500 -> error banner
  *   (none)      short markdown answer
  *
@@ -44,6 +46,12 @@ function lastUserText(messages) {
     }
   }
   return ''
+}
+
+function toolRoundsSinceUser(messages) {
+  let n = 0
+  for (let i = messages.length - 1; i >= 0 && messages[i].role !== 'user'; i--) if (messages[i].role === 'assistant' && messages[i].tool_calls?.length) n++
+  return n
 }
 
 function hasToolResult(messages) {
@@ -104,6 +112,14 @@ export function startMockLlm(port = 47831) {
         }),
         delay: 10
       }
+    } else if (marker.includes('@@ticker') && toolRoundsSinceUser(messages) < 6) {
+      const round = toolRoundsSinceUser(messages)
+      const steps = [
+        tools.includes('web_search') ? toolCall('web_search', { query: 'hermes ticker audit ' + round }) : toolCall('read_file', { path: 'NOTES-' + round + '.md' }),
+        toolCall('read_file', { path: 'README-' + round + '.md' }),
+        toolCall('read_file', { path: 'CHANGELOG-' + round + '.md' })
+      ]
+      plan = { text: round === 0 ? 'Working through the steps.' : '', tool: steps[round % steps.length], delay: 30, pause: 2500 }
     } else if (!hasToolResult(messages) && marker.includes('@@activity')) {
       plan = {
         reasoning: 'Let me plan the steps: list the changelog, run a slow check, then read the summary aloud with the text to speech tool. '.repeat(2),
@@ -149,6 +165,7 @@ export function startMockLlm(port = 47831) {
         await sleep(plan.delay)
       }
     }
+    if (plan.pause) await sleep(plan.pause)
     const streamTools = plan.tools || (plan.tool ? [plan.tool] : [])
     if (streamTools.length) sse(base({ tool_calls: streamTools.map((t, i) => ({ ...t, index: i })) }))
     sse(finish(streamTools.length ? 'tool_calls' : 'stop'))

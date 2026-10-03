@@ -364,7 +364,8 @@ export async function pageChecks(opts) {
   // --- interactive elements: obscured / touch target / overlap / hover-only -------------
   const INTERACTIVE = 'button, a[href], input:not([type=hidden]), select, textarea, [role=button], [role=menuitem], [role=menuitemcheckbox], [role=menuitemradio], [role=tab], [role=switch], [role=checkbox], [role=radio], [role=option], [role=combobox], [role=slider], summary'
   const modal = Array.from(document.querySelectorAll('[role=dialog][data-state=open], [role=alertdialog], [aria-modal=true]')).filter(isVisible).pop()
-  const interactive = visible.filter(el => el.matches(INTERACTIVE) && !el.disabled && el.getAttribute('aria-disabled') !== 'true')
+  // `pointer-events: none` controls (e.g. the rows of the live one-line tool ticker) cannot be tapped: not touch targets
+  const interactive = visible.filter(el => el.matches(INTERACTIVE) && !el.disabled && el.getAttribute('aria-disabled') !== 'true' && getComputedStyle(el).pointerEvents !== 'none')
   const scope = modal ? interactive.filter(el => modal.contains(el)) : interactive
 
   const hitExtent = el => {

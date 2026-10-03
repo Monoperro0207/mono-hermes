@@ -323,8 +323,9 @@ async function liveTurn(page, marker, wait) {
   await ensureSidebar(page, false)
   await newChat(page)
   await typeInComposer(page, `${marker} audit run`)
-  // plain Enter inserts a newline on touch devices (src/composer-touch.ts); Ctrl+Enter sends
-  await page.keyboard.press('Control+Enter')
+  // plain Enter inserts a newline on touch devices (src/composer-touch.ts) and Ctrl+Enter is not
+  // reliable there either (the turn was never sent): tap Send like a finger would.
+  await page.locator('[data-slot=composer-root] button[aria-label=Send]').first().click({ timeout: T })
   await page.waitForTimeout(wait)
 }
 
@@ -348,6 +349,37 @@ S('live-activity', 'chat', 'Live turn: thinking + parallel commands + TTS tool, 
   await snap('running-expanded-again', { settle: 500 })
 }, { criticalIfFails: false })
 
+
+// Regression (v0.1.1, Galaxy Tab S8 Ultra): during a live multi-step run the one-line tool ticker
+// (`[data-tool-ticker]`, rows exactly one line tall) clipped coarse-pointer 36px tool rows into a
+// squashed, overlapping sliver. Sample the ticker while the turn streams; any row taller than its slot is high.
+S('live-ticker', 'chat', 'Live multi-step tool run: one-line ticker rows are not clipped', async ({ page, snap }) => {
+  await liveTurn(page, '@@ticker', 4500)
+  const sample = () =>
+    page.evaluate(() =>
+      Array.from(document.querySelectorAll('[data-tool-ticker] .tool-ticker__row')).map(row => {
+        const block = row.querySelector('[data-tool-row]')
+        return { slot: row.getBoundingClientRect().height, row: block ? block.getBoundingClientRect().height : 0, text: (block?.textContent || '').trim().slice(0, 60) }
+      })
+    )
+  let seen = 0
+  const bad = []
+  for (let i = 0; i < 8; i++) {
+    const rows = await sample()
+    seen += rows.length
+    bad.push(...rows.filter(r => r.row > r.slot + 1))
+    await page.waitForTimeout(1000)
+  }
+  // the reel slides for 240ms whenever a row lands: that intended partial visibility is not a finding
+  await page.waitForFunction(() => !document.querySelector('.tool-ticker__reel') || !document.querySelector('.tool-ticker__reel').getAnimations().length, null, { timeout: 3000 }).catch(() => {})
+  const res = await snap('running', { settle: 0 })
+  if (bad.length) {
+    res.findings.push({ rule: 'live-ticker-row-clipped', severity: 'high', selector: '[data-tool-ticker]', text: bad[0].text, rect: [0, 0, 0, 0], detail: `tool row ${bad[0].row}px tall inside a ${bad[0].slot}px ticker slot (${bad.length} samples)` })
+  }
+  if (!seen) {
+    res.findings.push({ rule: 'live-ticker-not-observed', severity: 'info', selector: '[data-tool-ticker]', text: '', rect: [0, 0, 0, 0], detail: 'no live ticker appeared during the @@ticker turn' })
+  }
+}, { criticalIfFails: false })
 
 S('session-activity', 'chat', 'Settled turns with thinking + tool groups: every disclosure expanded step by step', async ({ page, snap }) => {
   await reset(page)

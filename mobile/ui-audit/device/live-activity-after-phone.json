@@ -1,0 +1,2909 @@
+{
+  "viewport": "412x842@2.625",
+  "samples": [
+    {
+      "t": 6,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -19.8)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            },
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 180,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 180,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "⠀⠂⠌⡑⢕⢝⣫⣟⣿⣟⣫⢝⢕⡑⠌⠂⠀Reading README-1.md0s",
+              "buttons": [
+                {
+                  "label": "⠀⠂⠌⡑⢕⢝⣫⣟⣿⣟⣫⢝⢕⡑⠌⠂⠀Reading READM",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 163,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 7,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -19.8)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            },
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 180,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 180,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "⠀⠂⠌⡑⢕⢝⣫⣟⣿⣟⣫⢝⢕⡑⠌⠂⠀Reading README-1.md1s",
+              "buttons": [
+                {
+                  "label": "⠀⠂⠌⡑⢕⢝⣫⣟⣿⣟⣫⢝⢕⡑⠌⠂⠀Reading READM",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 163,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 8,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -19.8)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 9,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -19.8)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 10,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -39.6)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            },
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 159,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 159,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 159,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 159,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 204,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 204,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "⠀⠂⠌⡑⢕⢝⣫⣟⣿⣟⣫⢝⢕⡑⠌⠂⠀Reading CHANGELOG-2.md0s",
+              "buttons": [
+                {
+                  "label": "⠀⠂⠌⡑⢕⢝⣫⣟⣿⣟⣫⢝⢕⡑⠌⠂⠀Reading CHANG",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 186,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 11,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -39.6)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 159,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 159,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 159,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 159,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 207,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 207,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read CHANGELOG-2.md1.0s",
+              "buttons": [
+                {
+                  "label": "Read CHANGELOG-2.md1.0s",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 195,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 12,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -39.6)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 159,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 159,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 159,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 159,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 207,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 207,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read CHANGELOG-2.md1.0s",
+              "buttons": [
+                {
+                  "label": "Read CHANGELOG-2.md1.0s",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 195,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 13,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -53.29)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSTransition",
+              "name": "transform",
+              "target": "tool-ticker__reel"
+            },
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            },
+            {
+              "type": "Animation",
+              "name": "",
+              "target": "group/tool-block min-w-0 max-w-full overflow-hidden text-[le"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 146,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 146,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 146,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 146,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 165,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 165,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 165,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 165,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 185,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 185,
+                "h": 19.8,
+                "w": 207,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 185,
+                "h": 19.8,
+                "w": 207,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read CHANGELOG-2.md1.0s",
+              "buttons": [
+                {
+                  "label": "Read CHANGELOG-2.md1.0s",
+                  "top": 185,
+                  "h": 19.8,
+                  "w": 195,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 205,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 206,
+                "h": 19.8,
+                "w": 300,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "matrix(1, 0, 0, 1, 0, 0.859576)"
+              },
+              "header": {
+                "top": 206,
+                "h": 19.8,
+                "w": 300,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 3”5 results33ms",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 206,
+                  "h": 19.8,
+                  "w": 288,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 14,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -59.4)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 140,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 140,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 140,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 140,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 159,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 159,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 159,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 159,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 207,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 207,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read CHANGELOG-2.md1.0s",
+              "buttons": [
+                {
+                  "label": "Read CHANGELOG-2.md1.0s",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 195,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 300,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 300,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 3”5 results33ms",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 288,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 15,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -59.4)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            },
+            {
+              "type": "Animation",
+              "name": "",
+              "target": "dither inline-block size-3 rounded-[2px] text-midground/80"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 140,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 140,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 140,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 140,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 159,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 159,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 159,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 159,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 207,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 207,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read CHANGELOG-2.md1.0s",
+              "buttons": [
+                {
+                  "label": "Read CHANGELOG-2.md1.0s",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 195,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 300,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 300,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 3”5 results33ms",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 288,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 16,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -79.2)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            },
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 120,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 120,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 120,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 120,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 140,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 140,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 140,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 140,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 159,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 159,
+                "h": 19.8,
+                "w": 207,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 159,
+                "h": 19.8,
+                "w": 207,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read CHANGELOG-2.md1.0s",
+              "buttons": [
+                {
+                  "label": "Read CHANGELOG-2.md1.0s",
+                  "top": 159,
+                  "h": 19.8,
+                  "w": 195,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 300,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 300,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 3”5 results33ms",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 288,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 180,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 180,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "⠀⠂⠌⡑⢕⢝⣫⣟⣿⣟⣫⢝⢕⡑⠌⠂⠀Reading README-4.md0s",
+              "buttons": [
+                {
+                  "label": "⠀⠂⠌⡑⢕⢝⣫⣟⣿⣟⣫⢝⢕⡑⠌⠂⠀Reading READM",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 163,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 17,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -79.2)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 120,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 120,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 120,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 120,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 140,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 140,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 140,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 140,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 159,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 159,
+                "h": 19.8,
+                "w": 207,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 159,
+                "h": 19.8,
+                "w": 207,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read CHANGELOG-2.md1.0s",
+              "buttons": [
+                {
+                  "label": "Read CHANGELOG-2.md1.0s",
+                  "top": 159,
+                  "h": 19.8,
+                  "w": 195,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 300,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 300,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 3”5 results33ms",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 288,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-4.md1.2s",
+              "buttons": [
+                {
+                  "label": "Read README-4.md1.2s",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 18,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -79.2)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 120,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 120,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 120,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 120,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 140,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 140,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 140,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 140,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 159,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 159,
+                "h": 19.8,
+                "w": 207,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 159,
+                "h": 19.8,
+                "w": 207,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read CHANGELOG-2.md1.0s",
+              "buttons": [
+                {
+                  "label": "Read CHANGELOG-2.md1.0s",
+                  "top": 159,
+                  "h": 19.8,
+                  "w": 195,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 300,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 300,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 3”5 results33ms",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 288,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-4.md1.2s",
+              "buttons": [
+                {
+                  "label": "Read README-4.md1.2s",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "t": 19,
+      "tickers": [
+        {
+          "ticker": {
+            "top": 199,
+            "h": 19.8,
+            "w": 352,
+            "height": "19.7976px",
+            "overflow": "clip"
+          },
+          "reel": {
+            "transform": "matrix(1, 0, 0, 1, 0, -99)",
+            "transition": "transform 0.24s cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "group": {
+            "top": 157,
+            "h": 61.8,
+            "w": 352,
+            "inlineStyle": "height: auto;",
+            "height": "61.7976px",
+            "overflow": "hidden"
+          },
+          "lineHeight": "calc(1.125rem * 1.1)",
+          "animations": [
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            },
+            {
+              "type": "CSSAnimation",
+              "name": "glyph-spinner-advance",
+              "target": "glyph-spinner__strip"
+            }
+          ],
+          "rows": [
+            {
+              "row": {
+                "top": 100,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 100,
+                "h": 19.8,
+                "w": 294,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 100,
+                "h": 19.8,
+                "w": 294,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 0”5 results1.2s",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 100,
+                  "h": 19.8,
+                  "w": 282,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 120,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 120,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 120,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-1.md2.1s",
+              "buttons": [
+                {
+                  "label": "Read README-1.md2.1s",
+                  "top": 120,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 140,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 140,
+                "h": 19.8,
+                "w": 207,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 140,
+                "h": 19.8,
+                "w": 207,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read CHANGELOG-2.md1.0s",
+              "buttons": [
+                {
+                  "label": "Read CHANGELOG-2.md1.0s",
+                  "top": 140,
+                  "h": 19.8,
+                  "w": 195,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 159,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 159,
+                "h": 19.8,
+                "w": 300,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 159,
+                "h": 19.8,
+                "w": 300,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Searched “hermes ticker audit 3”5 results33ms",
+              "buttons": [
+                {
+                  "label": "Searched “hermes ticker audit ",
+                  "top": 159,
+                  "h": 19.8,
+                  "w": 288,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 179,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 179,
+                "h": 19.8,
+                "w": 184,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 179,
+                "h": 19.8,
+                "w": 184,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "Read README-4.md1.2s",
+              "buttons": [
+                {
+                  "label": "Read README-4.md1.2s",
+                  "top": 179,
+                  "h": 19.8,
+                  "w": 172,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                },
+                {
+                  "label": "Dismiss",
+                  "top": 0,
+                  "h": 0,
+                  "w": 0,
+                  "minHeight": "0px",
+                  "height": "20px"
+                }
+              ]
+            },
+            {
+              "row": {
+                "top": 199,
+                "h": 19.8,
+                "w": 352,
+                "height": "19.7976px",
+                "overflow": "hidden",
+                "alignItems": "center"
+              },
+              "block": {
+                "top": 199,
+                "h": 19.8,
+                "w": 204,
+                "scrollH": 20,
+                "minHeight": "0px",
+                "height": "19.7976px",
+                "flexShrink": "0",
+                "overflow": "hidden",
+                "opacity": "0.67",
+                "transform": "none"
+              },
+              "header": {
+                "top": 199,
+                "h": 19.8,
+                "w": 204,
+                "minHeight": "0px",
+                "height": "19.7976px"
+              },
+              "text": "⠀⠂⠌⡑⢕⢝⣫⣟⣿⣟⣫⢝⢕⡑⠌⠂⠀Reading CHANGELOG-5.md0s",
+              "buttons": [
+                {
+                  "label": "⠀⠂⠌⡑⢕⢝⣫⣟⣿⣟⣫⢝⢕⡑⠌⠂⠀Reading CHANG",
+                  "top": 199,
+                  "h": 19.8,
+                  "w": 186,
+                  "minHeight": "0px",
+                  "height": "19.7976px"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
