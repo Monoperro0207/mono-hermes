@@ -11,7 +11,7 @@
 //   typecheck.log       tail of the bridge typecheck against the latest upstream
 //   e2e.log             tail of the e2e run against the latest backend
 //
-// Writes <dir>/body.md and <dir>/result.json { breaking, changed, title }.
+// Writes <dir>/body.md and <dir>/result.json { breaking, appBroken, changed, title }.
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -38,7 +38,11 @@ const contract = read('contract-diff.txt')
 const failed = [status.typecheck === 'fail' && 'bridge typecheck', status.e2e === 'fail' && 'e2e suite'].filter(Boolean)
 const contractChanged = contract.length > 0
 const uiChanged = desktop.length > 0 || shared.length > 0
-const breaking = failed.length > 0
+// Two different severities: the shipped app failing against the newest backend affects users now;
+// a bridge typecheck failure only means adopting the newer UI needs maintainer work.
+const appBroken = status.e2e === 'fail'
+const uiUpdateBlocked = status.typecheck === 'fail'
+const breaking = appBroken || uiUpdateBlocked
 
 const fence = (text, lang = '') => '```' + lang + '\n' + text.slice(-6000) + '\n```'
 const icon = value => (value === 'pass' ? 'pass' : value === 'fail' ? '**FAIL**' : 'not run')
@@ -47,9 +51,11 @@ const short = sha => String(sha ?? '').slice(0, 7)
 const lines = []
 
 lines.push(
-  breaking
-    ? `**BREAKING:** ${failed.join(' and ')} failed against the latest upstream. The bridge needs attention before this UI can be updated.`
-    : uiChanged || contractChanged
+  appBroken
+    ? `**App affected:** the current Mono Hermes release fails the e2e suite against the latest Hermes backend (${failed.join(' and ')} failed). Users on the newest Hermes may hit problems until a fix ships.`
+    : uiUpdateBlocked
+      ? '**No impact on users:** the current app still works with the latest Hermes backend (e2e passes). Adopting the newer upstream UI needs bridge changes first (typecheck fails against the new `window.hermesDesktop` contract).'
+      : uiChanged || contractChanged
       ? 'Upstream changed since the pinned release, but the bridge still typechecks and the e2e suite passes. Review the diff below and decide whether a new Mono Hermes release is worth it.'
       : 'No relevant upstream change since the pinned release.',
   '',
@@ -83,10 +89,11 @@ lines.push(
   'Updated automatically by the `upstream-watch` workflow. To adopt the new upstream: `scripts/update-upstream.ps1` (or `.sh`), run `npm run ui:audit` and the e2e suite in `mobile/`, then bump `mobile/package.json` and tag a release.'
 )
 
-const title = `${breaking ? '[BREAKING] ' : ''}Upstream watch: Hermes main ${short(status.latest)} vs pinned ${status.pinnedVersion ?? '?'}`
+const severity = appBroken ? '[APP BROKEN] ' : uiUpdateBlocked ? '[UI update needs bridge work] ' : ''
+const title = `${severity}Upstream watch: Hermes main ${short(status.latest)} vs pinned ${status.pinnedVersion ?? '?'}`
 
 fs.writeFileSync(path.join(dir, 'body.md'), lines.join('\n') + '\n')
 fs.writeFileSync(
   path.join(dir, 'result.json'),
-  JSON.stringify({ breaking, changed: uiChanged || contractChanged || breaking, title })
+  JSON.stringify({ breaking, appBroken, changed: uiChanged || contractChanged || breaking, title })
 )
