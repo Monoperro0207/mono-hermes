@@ -118,7 +118,10 @@ jobs:
 
       # Signed statement that this exact APK was built by this workflow from this commit.
       # Verify with: gh attestation verify <apk> -R <owner>/<repo>
+      # GitHub only stores attestations for public repositories (or org-owned private ones), so a
+      # private pre-launch repo skips this step instead of failing the release.
       - name: Attest build provenance
+        if: ${{ !github.event.repository.private }}
         uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
         with:
           subject-path: dist-apk/${{ steps.apk.outputs.name }}
