@@ -1,0 +1,12 @@
+[
+  {
+    "rule": "touch-target",
+    "severity": "low",
+    "reason": "Hit area between 24 and 43 CSS px (WCAG 2.5.8 AA minimum is 24px). Every primary control was grown in mobile.css (titlebar, status bar, composer, menu / command / select rows at 44px, tabs, sidebar rows, chips 28-36px); what is left are dense secondary controls (adjacent icon clusters, pills, tool-card rows, table chips) where a 44px box would change the desktop layout or overlap its neighbours."
+  },
+  {
+    "rule": "tiny-text",
+    "severity": "low",
+    "reason": "Metadata badges and counters (version pills, '51' counts, 'exit 0', section micro-labels) at 8.6-9.9px: decorative, non-interactive and redundant with the surrounding text; kept identical to the desktop design."
+  }
+]

@@ -1,0 +1,134 @@
+name: Upstream watch
+
+# Weekly look at NousResearch/hermes-agent main: does the bridge still fit the latest backend/UI,
+# and what changed in the desktop UI since the commit this app is pinned on? Results go to ONE
+# issue labeled `upstream-watch` (created/updated, never duplicated).
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: upstream-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: true
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+
+      - name: Compare the pinned commit with latest main
+        id: compare
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          eval "$(node scripts/upstream-pin.mjs print --env)"
+          mkdir -p watch
+          git -C upstream fetch --depth 1 origin main
+          latest="$(git -C upstream rev-parse FETCH_HEAD)"
+          echo "$latest" > watch/latest
+          echo "latest=$latest" >> "$GITHUB_OUTPUT"
+
+          # Trees are compared directly, so shallow histories are fine.
+          git -C upstream diff --stat "$HERMES_PINNED_COMMIT" "$latest" -- apps/desktop > watch/stat-desktop.txt || true
+          git -C upstream diff --stat "$HERMES_PINNED_COMMIT" "$latest" -- apps/shared > watch/stat-shared.txt || true
+          git -C upstream diff "$HERMES_PINNED_COMMIT" "$latest" -- \
+            apps/desktop/src/global.d.ts \
+            apps/shared/src/gateway-contract.openrpc.json \
+            hermes_cli/dashboard_auth > watch/contract-diff.txt || true
+
+          # Best effort: the newest published release, for context in the report.
+          gh release view --repo NousResearch/hermes-agent --json tagName --jq .tagName > watch/latest-release 2>/dev/null || true
+
+      - name: Bridge typecheck against the latest upstream types
+        id: typecheck
+        if: steps.compare.outputs.latest != ''
+        run: |
+          set +e
+          git -C upstream checkout --detach "$(cat watch/latest)"
+          node scripts/sync-upstream-deps.mjs
+          (cd mobile && npm install --no-audit --no-fund && node ../scripts/link-upstream-modules.mjs)
+          (cd mobile && npx tsc --noEmit -p .) > watch/typecheck-full.log 2>&1
+          if [ $? -eq 0 ]; then echo pass > watch/typecheck; else echo fail > watch/typecheck; fi
+          tail -n 80 watch/typecheck-full.log > watch/typecheck.log
+          exit 0
+
+      - name: Install the latest Hermes backend
+        id: backend
+        run: |
+          set +e
+          bash upstream/scripts/install.sh --commit "$(cat watch/latest)" --non-interactive \
+            --skip-browser --skip-computer-use --hermes-home "$HOME/.hermes" > watch/install.log 2>&1
+          if [ $? -eq 0 ] && [ -x "$HOME/.local/bin/hermes" ]; then
+            echo "HERMES_BIN=$HOME/.local/bin/hermes" >> "$GITHUB_ENV"
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            tail -n 40 watch/install.log
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          fi
+          exit 0
+
+      - name: E2E suite against the latest backend
+        if: steps.backend.outputs.ok == 'true'
+        run: |
+          set +e
+          (cd mobile && npx vitest run --config vitest.e2e.config.ts) > watch/e2e-full.log 2>&1
+          if [ $? -eq 0 ]; then echo pass > watch/e2e; else echo fail > watch/e2e; fi
+          tail -n 80 watch/e2e-full.log > watch/e2e.log
+          exit 0
+
+      - name: Compose the report
+        run: |
+          set -euo pipefail
+          eval "$(node scripts/upstream-pin.mjs print --env)"
+          [ -f watch/typecheck ] || echo skipped > watch/typecheck
+          [ -f watch/e2e ] || echo skipped > watch/e2e
+          PINNED="$HERMES_PINNED_COMMIT" PINNED_VERSION="$HERMES_PINNED_VERSION" node -e '
+            const fs = require("fs")
+            const read = f => { try { return fs.readFileSync("watch/" + f, "utf8").trim() } catch { return "" } }
+            fs.writeFileSync("watch/status.json", JSON.stringify({
+              pinned: process.env.PINNED,
+              pinnedVersion: process.env.PINNED_VERSION,
+              latest: read("latest"),
+              latestRelease: read("latest-release"),
+              typecheck: read("typecheck"),
+              e2e: read("e2e")
+            }))
+          '
+          node scripts/upstream-watch-report.mjs watch
+          cat watch/body.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Create or update the upstream-watch issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          changed="$(node -p "require('./watch/result.json').changed")"
+          title="$(node -p "require('./watch/result.json').title")"
+          gh label create upstream-watch --color 5319e7 \
+            --description "Automated report: upstream Hermes changes vs the pinned version" 2>/dev/null || true
+          existing="$(gh issue list --label upstream-watch --state open --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" --title "$title" --body-file watch/body.md
+            echo "Updated issue #$existing"
+          elif [ "$changed" = "true" ]; then
+            gh issue create --title "$title" --body-file watch/body.md --label upstream-watch
+          else
+            echo "Nothing to report and no open issue."
+          fi

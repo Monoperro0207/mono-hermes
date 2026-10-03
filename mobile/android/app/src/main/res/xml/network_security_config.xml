@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The app talks to ONE server the user picks: their own `hermes serve` on a Tailscale
+  address (100.64.0.0/10 or *.ts.net MagicDNS), usually over plain http because the
+  tailnet already encrypts the traffic (WireGuard).
+
+  Android's network security config can only match DOMAIN names, not CIDR ranges, so
+  100.x.y.z addresses cannot be listed individually. Cleartext is therefore permitted
+  at this layer and the real restriction is enforced in the app itself:
+  src/bridge/util.ts (assertTransportAllowed) refuses http:// for anything that is not
+  a Tailscale, LAN or loopback host. User-installed CAs are NOT trusted.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

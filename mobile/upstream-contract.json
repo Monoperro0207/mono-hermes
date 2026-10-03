@@ -1,0 +1,8 @@
+{
+  "files": {
+    "upstream/apps/desktop/vite.config.ts": "322b85dd9e9afb64",
+    "upstream/apps/desktop/index.html": "541fd30f267ce760",
+    "upstream/apps/desktop/src/global.d.ts": "720e9eeee9a9f847"
+  },
+  "note": "Hashes of upstream files that mobile/ mirrors by hand. Run scripts/sync-upstream-deps.mjs --check to detect drift."
+}

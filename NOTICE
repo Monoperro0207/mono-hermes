@@ -1,0 +1,32 @@
+Mono Hermes - unofficial community Android client for Hermes
+============================================================
+
+UNOFFICIAL
+  Mono Hermes is an independent, community-made project. It is NOT affiliated with,
+  authorized, maintained, sponsored or endorsed by Nous Research. "Hermes", "Hermes Agent",
+  "Nous Research" and the original Hermes artwork and logos are trademarks and/or property of
+  Nous Research. They are referred to here only to describe compatibility. "Mono Hermes" is
+  the name of this client only; it does not imply any official status.
+
+UPSTREAM CODE
+  The app bundles the Hermes desktop renderer, compiled unmodified from the git submodule
+  `upstream/` (https://github.com/NousResearch/hermes-agent, MIT License,
+  Copyright (c) 2025 Nous Research). The exact commit is recorded in mobile/upstream-pin.json
+  and shown in release notes. The upstream license text is kept at upstream/LICENSE and applies
+  to that code. Third-party npm packages bundled in the app are under their own licenses
+  (see mobile/package-lock.json for the full list).
+
+ICON
+  The launcher icon (assets/icon/) is a derivative work of artwork by Nous Research (the Hermes
+  illustration), adapted by the Mono Hermes contributors. It is not covered by this project's MIT
+  license grant beyond what Nous Research permits for its artwork, and must not be used to suggest
+  endorsement by Nous Research. If you fork this project for any purpose beyond personal use,
+  replace the icon with your own artwork.
+
+THIS PROJECT
+  The code in mobile/, scripts/ and .github/ (the Android shell, the window.hermesDesktop bridge,
+  build and test tooling) is Copyright (c) 2026 Mono Hermes contributors, MIT License (see LICENSE).
+
+NO WARRANTY
+  The software is provided "as is". You are responsible for securing your own Hermes server
+  (keep it behind Tailscale or another private network and require a login).

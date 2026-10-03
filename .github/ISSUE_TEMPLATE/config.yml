@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Problem with Hermes itself (not the mobile app)
+    url: https://github.com/NousResearch/hermes-agent/issues
+    about: Mono Hermes is unofficial. Agent, model and server bugs belong to the Hermes project.

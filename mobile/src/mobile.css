@@ -1,0 +1,624 @@
+/*
+ * Phone adaptations layered on top of the unmodified desktop stylesheet.
+ *
+ * Loaded AFTER the renderer's own CSS (entry.ts imports it once `@/main` is in), so equal
+ * specificity rules here win. Nothing is redesigned: the desktop tokens, spacing and
+ * typography stay; this file fixes what a 344-829px touch screen breaks (clipped chrome,
+ * desktop-sized hit targets, hover-only controls, overlays that waste a third of the width).
+ *
+ * Selectors rely on stable hooks only (data-* attributes, codicon classes, structural
+ * tailwind utility tokens), never on translated labels or hashed class names. Each block says
+ * which upstream behaviour it compensates for, so it can be re-checked after an upstream bump
+ * (`npm run ui:audit` re-runs the whole phone audit).
+ */
+
+:root {
+  /* Capacitor's SystemBars plugin injects --safe-area-inset-* on older WebViews;
+     newer ones expose env(). Take whichever is larger. */
+  --hm-safe-top: max(env(safe-area-inset-top, 0px), var(--safe-area-inset-top, 0px));
+  --hm-safe-right: max(env(safe-area-inset-right, 0px), var(--safe-area-inset-right, 0px));
+  --hm-safe-bottom: max(env(safe-area-inset-bottom, 0px), var(--safe-area-inset-bottom, 0px));
+  --hm-safe-left: max(env(safe-area-inset-left, 0px), var(--safe-area-inset-left, 0px));
+  /* Titlebar row height the renderer hard-codes (app/shell/titlebar.ts TITLEBAR_HEIGHT). */
+  --hm-titlebar-h: 34px;
+  /* Tallest a menu / popover may be: leaves the status bar + titlebar rows (and the composer) free. */
+  --hm-popup-max-h: calc(100dvh - var(--hm-safe-top) - var(--hm-safe-bottom) - 9rem);
+}
+
+html,
+body {
+  height: 100%;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* The shell sizes itself with h-screen/w-screen; keep it inside the safe area instead. */
+#root {
+  box-sizing: border-box;
+  height: 100dvh;
+  padding: var(--hm-safe-top) var(--hm-safe-right) var(--hm-safe-bottom) var(--hm-safe-left);
+}
+
+#root [data-contrib-shell] {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* The shell root is `h-screen w-screen` (100vh x 100vw). Inside the safe-area padded #root that is
+   taller/wider than the content box, which pushed the 20px status bar off the bottom edge on a
+   real device (insets > 0). Size those nodes to the padded #root instead. */
+#root .h-screen {
+  height: 100%;
+}
+
+#root .w-screen {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Titlebar clusters
+ * ---------------------------------------------------------------------------------------- */
+
+/* Fixed title-bar clusters are positioned against the viewport: push them below the status bar. */
+[data-titlebar-cluster] {
+  margin-top: var(--hm-safe-top);
+}
+
+[data-titlebar-cluster='left'] {
+  margin-left: var(--hm-safe-left);
+}
+
+[data-titlebar-cluster='right'] {
+  margin-right: var(--hm-safe-right);
+}
+
+/* Desktop-only title-bar actions: HUD floating window, swap sidebar sides, layout editor. */
+[data-titlebar-cluster] button:has(> .codicon-comment-discussion),
+[data-titlebar-cluster] button:has(> .codicon-arrow-swap),
+[data-titlebar-cluster] button[aria-label='Layout editor'] {
+  display: none !important;
+}
+
+/* The in-app Browser pane is an Electron <webview>; Android WebView has no such element. */
+webview {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Narrow mode (< 640px): sessions / files / review become edge slide-overs
+ * ---------------------------------------------------------------------------------------- */
+
+/* The slide-over's own tab strip starts at the very top, exactly where the fixed titlebar
+   toggle sits. Reserve the titlebar row so the toggle stays tappable and the tabs are not
+   hidden under it. */
+[data-narrow-overlay] {
+  padding-top: var(--hm-titlebar-h) !important;
+}
+
+/* Hover-intent edge strips are mouse-only (onMouseEnter); on touch they only steal edge swipes
+   (Android back gesture lives there). */
+@media (hover: none) {
+  #root [class~='w-1.5'][class~='inset-y-0'][class~='absolute'][class*='z-30'] {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Pane / title tabs: long session titles must ellipsize instead of being cut mid-glyph.
+ * ---------------------------------------------------------------------------------------- */
+[data-slot='pane-tab'] .pane-tab-content span.block.min-w-0,
+.pane-tab-content span.block.min-w-0 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Overlays (Settings, Command Center, Agents, Cron, Webhooks, Profiles, Star map, Import)
+ *
+ * Upstream pads every side with titlebar-height + 10px (44px), so the card is 256px wide on a
+ * 344px screen. On a phone the overlay becomes a full-screen sheet; on larger touch screens it
+ * keeps the card but with a small inset and the safe areas.
+ * ---------------------------------------------------------------------------------------- */
+[data-overlay-surface] {
+  padding: calc(var(--hm-safe-top) + 0.5rem) calc(var(--hm-safe-right) + 0.5rem) calc(var(--hm-safe-bottom) + 0.5rem)
+    calc(var(--hm-safe-left) + 0.5rem) !important;
+}
+
+@media (max-width: 639.98px) {
+  [data-overlay-surface] {
+    padding: var(--hm-safe-top) var(--hm-safe-right) var(--hm-safe-bottom) var(--hm-safe-left) !important;
+    backdrop-filter: none;
+  }
+
+  [data-overlay-surface] [data-glass-raised] {
+    border-radius: 0 !important;
+    border-width: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Search pill (the only touch route to the command palette) straddles the card's top border on
+   desktop. In the full-screen sheet it would sit under the system status bar, so reserve a band
+   for it above the card instead. */
+@media (max-width: 639.98px) {
+  [data-overlay-surface] {
+    padding-top: calc(var(--hm-safe-top) + 2.5rem) !important;
+  }
+
+  [data-overlay-surface] > div > div.absolute.z-20 {
+    top: calc(-1.25rem) !important;
+  }
+}
+
+@media (min-width: 640px) {
+  [data-overlay-surface] {
+    padding-top: calc(var(--hm-safe-top) + 1.5rem) !important;
+  }
+}
+
+/* Settings > Gateways: Local / Hermes Cloud / SSH connection modes start a desktop backend or an
+   SSH tunnel; the phone only ever talks to one remote gateway (server URL + sign-in live on the
+   connect screen), so the mode chooser is pure noise here. */
+[id^='setting-field-gateway'][id$='connection-mode'] {
+  display: none !important;
+}
+
+/* Overlay pages are CSS grids / flex rows whose implicit track or item is `auto` / min-content:
+   one long unbreakable line (a log, a path) widened the whole page past the card and the right
+   edge (action buttons, search box) was cut off. Let tracks and items shrink to the card. */
+[data-overlay-surface] main :is(.grid):not([class*='grid-cols']):not([class*='auto-cols']):not([class*='grid-flow']) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+[data-overlay-surface] main > *,
+[data-overlay-surface] main :is(.grid, .flex) > * {
+  min-width: 0;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Status bar (20px tall, 6 items: command, gateway, cwd, approval, client + backend version)
+ * ---------------------------------------------------------------------------------------- */
+[data-slot='statusbar'] {
+  min-height: 24px;
+}
+
+/* The client / backend version labels ("# client v0.1.0", "# backend v0.21.5 (+13)") are not
+   hideable through the bar's own preference and do not fit a phone-width bar (cut mid-word at
+   344px). The same versions are in Settings > About. */
+@media (max-width: 639.98px) {
+  [data-slot='statusbar'] button:has(> .tabler-icon-hash) {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Chat transcript
+ * ---------------------------------------------------------------------------------------- */
+
+/* Tool blocks are single-column grids whose implicit track is `auto`: one long URL / path in a
+   result made the track 1800px wide and the response group clipped it. Pin the track to the
+   container and let long tokens break. */
+[data-slot='aui_assistant-message-content'] .grid:not([class*='grid-cols']):not([class*='auto-cols']):not([class*='grid-flow']) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+[data-slot='aui_assistant-message-content'] [data-slot='tool-block'] {
+  overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * First-run onboarding: `fixed inset-0 flex items-center justify-center` with no overflow rule.
+ * When the provider list is expanded the card is taller than the screen and plain centering
+ * overflows equally above and below - the top half (heading) becomes unreachable. `safe center`
+ * falls back to start alignment on overflow and the wrapper scrolls.
+ * ---------------------------------------------------------------------------------------- */
+[class*='z-(--z-onboarding)'] {
+  align-items: safe center;
+  overflow-y: auto;
+  padding: calc(var(--hm-safe-top) + 1rem) calc(var(--hm-safe-right) + 1rem) calc(var(--hm-safe-bottom) + 1rem)
+    calc(var(--hm-safe-left) + 1rem) !important;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Empty-chat wordmark: `.fit-text` shrinks the lettering to the column but never below
+ * --fit-min (2.75rem inline), which is wider than a 344px screen for "HERMES AGENT".
+ * ---------------------------------------------------------------------------------------- */
+.wordmark.fit-text {
+  --fit-min: 1.25rem !important;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Hover-only controls. Touch has no hover: upstream reveals copy buttons, session actions,
+ * message actions, tab close buttons ... with `group-hover:opacity-100`. Show them (quietly)
+ * on coarse pointers. Decorative reveals (sash hairlines, column resize guides) stay hidden.
+ * ---------------------------------------------------------------------------------------- */
+@media (hover: none) {
+  [class*='hover:opacity-100']:not([class*='sash']):not([class*='w-px']):not([class*='left-1/2']) {
+    opacity: 1 !important;
+  }
+
+  [class*='hover:pointer-events-auto'] {
+    pointer-events: auto !important;
+  }
+
+  /* session row kebab: transparent until hover */
+  [data-slot='sidebar'] button:has(> .codicon-kebab-vertical),
+  [data-narrow-overlay] button:has(> .codicon-kebab-vertical) {
+    color: var(--ui-text-tertiary, currentColor) !important;
+  }
+}
+
+/* The per-message timeline rail (jump between your messages) is a column of 7px ticks pinned to
+   the right edge: not operable with a finger and it floats over the text. */
+@media (pointer: coarse) {
+  [data-slot='thread-timeline'] {
+    display: none !important;
+  }
+}
+
+@media (pointer: coarse) {
+  /* message action icons (copy / branch / read aloud / retry) sit 6px apart: space them so the
+     enlarged hit areas do not overlap */
+  [data-slot='aui_msg-actions'] {
+    gap: 0.25rem;
+  }
+
+  /* the action row sits at the clipped bottom edge of the message, so an ::after would be cut off:
+     give the buttons real boxes instead */
+  [data-slot='aui_msg-actions'] button,
+  [data-slot='aui_changed-files'] button {
+    min-height: 32px;
+    min-width: 32px;
+  }
+
+  /* Full-width disclosure rows (tool-call summaries "Explored ...", "Ran ...", "Thought"), list
+     rows and link-like chips are 16-20px tall. Grow the box with padding and hand the same
+     amount back as negative margin: bigger hit area, identical layout, and (unlike an ::after
+     overlay) the text underneath keeps receiving its own events. */
+  [class*='disclosure-row'] > button,
+  [data-slot='sidebar-group-content'] [data-slot='row-button'] {
+    margin-block: -7px;
+    padding-block: 7px;
+  }
+
+  /* list rows inside overlays (cron jobs, profiles ...) are plain 19px lines with no gap between
+     them: a negative-margin trick would overlap neighbours, so these rows just get taller. */
+  [data-overlay-surface] [data-slot='row-button']:not([class~='grid']) {
+    padding-block: 8px;
+  }
+
+  /* text chips / small text buttons (tags, "Dismiss", "Details", "View all logs") */
+  :is(button[data-slot='button'], .status-row-actions button, a.ref):not(
+      [data-size^='icon'],
+      [class~='absolute'],
+      [class~='fixed'],
+      [class~='sticky'],
+      [class~='size-3.5'],
+      [class~='size-4'],
+      [class~='size-5'],
+      [class~='size-6']
+    ) {
+    position: relative;
+  }
+
+  :is(button[data-slot='button'], .status-row-actions button):not(
+      [data-size^='icon'],
+      [class~='absolute'],
+      [class~='fixed'],
+      [class~='sticky']
+    )::after {
+    content: '';
+    inset: -9px -4px;
+    position: absolute;
+  }
+
+  [class*='section-label'] {
+    min-height: 32px;
+  }
+
+  /* tab close button: 24px wide by default and abutting the "+" new-tab button */
+  [data-slot='pane-tab'][data-closeable] {
+    --pane-tab-close-width: 2rem;
+  }
+
+  /* sortable drag handle in sidebar rows is a 14px glyph */
+  [data-reorder-handle] {
+    height: 28px;
+    margin: -7px;
+    width: 28px;
+  }
+
+  [data-slot='profile-rail'] button,
+  [data-slot='composer-root'] button:not([data-slot='status-drawer-toggle']),
+  [data-overlay-surface] button[data-slot='dropdown-menu-trigger'] {
+    min-height: 36px;
+    min-width: 28px;
+  }
+
+  /* status / telemetry banner rows are 24px tall; their chips sit inside */
+  [data-slot='status-row'] {
+    min-height: 36px;
+  }
+
+  /* tool-call disclosure rows hold a 20px "Dismiss" icon; their parents clip overflow, so the row
+     itself must be tall enough. Absolutely positioned 20px icon buttons (copy output / copy file)
+     simply get a bigger box. */
+  [class*='disclosure-row'] {
+    align-items: center;
+    min-height: 36px;
+  }
+
+  /* telemetry / status banner chips ("Send to Nous", "Local only", "No thanks", "Details") are 16px
+     tall and their rows clip overflow */
+  .status-row-actions button {
+    min-height: 28px;
+  }
+
+  /* session-row kebab (20px), tab close buttons (shrunk to 11px inside their clipped slot), and the
+     favourite star inside model menu rows */
+  button[aria-haspopup='menu']:has(> .codicon-kebab-vertical),
+  [data-slot='dropdown-menu-sub-trigger'] button,
+  [data-slot='pane-tab'] button[class*='pane-tab-close-width'],
+  [role='tablist'] button[aria-label][class*='pane-tab-close-width'] {
+    flex-shrink: 0;
+    min-height: 32px;
+    min-width: 32px;
+  }
+
+  [class*='disclosure-row'] button[data-slot='button'] {
+    min-height: 32px;
+    min-width: 32px;
+  }
+
+  button[class~='absolute'][class~='h-5'] {
+    min-height: 32px;
+    min-width: 32px;
+  }
+
+  /* status-stack drawer handle: a 16px grabber straddling the composer's top edge */
+  [data-slot='status-drawer-toggle'] {
+    min-height: 24px;
+    min-width: 64px;
+  }
+
+  /* switches are 28x16; position:relative is required for the ::after hit area to stay local */
+  button[data-slot='switch'] {
+    position: relative;
+  }
+
+  button[data-slot='switch']::after {
+    content: '';
+    inset: -10px -6px;
+    position: absolute;
+  }
+
+  /* breadcrumb / path buttons inside dialogs (folder picker) */
+  [data-slot='dialog-content'] button:not([data-slot='button'], [data-slot='dialog-close-button']) {
+    min-height: 32px;
+    min-width: 28px;
+  }
+
+  /* text fields: desktop heights (17-28px) */
+  input:not([type='checkbox'], [type='radio'], [type='range'], [type='hidden'], [type='file'], [type='color']) {
+    min-height: 36px;
+  }
+
+}
+
+/* Markdown tables: cells use `overflow-wrap:anywhere`, which lets the table algorithm shrink every
+   column to one character as soon as one cell holds a long token ("close|d", "gam|ma"). Give
+   columns a readable floor and let the table scroll horizontally (its wrapper already does). */
+.aui-md-table table {
+  min-width: 100%;
+  width: max-content;
+}
+
+.aui-md-table :is(td, th) {
+  max-width: 22rem;
+  min-width: 5.5rem;
+  overflow-wrap: anywhere;
+}
+
+/* The status-stack drawer handle straddles the top edge of the composer and sat on top of the
+   last status row ("Previous tasks", "Queued"); leave room for it. */
+[data-slot='status-stack-content'] {
+  padding-bottom: 9px;
+}
+
+/* Dialog footers that hold a (long) label plus 2-3 buttons ("Choose remote folder": path, New
+   folder, Cancel, Select) squeezed the label to ~2 characters; let the row wrap. */
+@media (max-width: 639.98px) {
+  [data-slot='dialog-content'] div.border-t.justify-between {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+
+  [data-slot='dialog-content'] div.border-t.justify-between > .truncate {
+    flex: 1 1 100%;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Menus, popovers, dialogs: never wider than the screen
+ * ---------------------------------------------------------------------------------------- */
+[data-slot='dropdown-menu-content'],
+[data-slot='dropdown-menu-sub-content'],
+[data-slot='context-menu-content'],
+[data-slot='context-menu-sub-content'],
+[data-slot='popover-content'],
+[data-slot='select-content'] {
+  max-width: calc(100vw - 1rem - var(--hm-safe-left) - var(--hm-safe-right)) !important;
+}
+
+/* Radix publishes the room left above/below the anchor; upstream menus do not use it, so a long
+   menu (session actions, sidebar filters) ran under the status bar / off the bottom edge. */
+[data-slot='dropdown-menu-content'] {
+  max-height: min(var(--radix-dropdown-menu-content-available-height, 100dvh), var(--hm-popup-max-h)) !important;
+  overflow-y: auto;
+}
+
+[data-slot='context-menu-content'] {
+  max-height: min(var(--radix-context-menu-content-available-height, 100dvh), var(--hm-popup-max-h)) !important;
+  overflow-y: auto;
+}
+
+[data-slot='popover-content'] {
+  max-height: min(var(--radix-popover-content-available-height, 100dvh), var(--hm-popup-max-h)) !important;
+  overflow-y: auto;
+}
+
+/* Centered dialogs: leave a gutter instead of touching both screen edges, and stay inside the
+   safe area when the content is taller than the screen. */
+[data-slot='dialog-content'] {
+  max-height: calc(100dvh - var(--hm-safe-top) - var(--hm-safe-bottom) - 1.5rem) !important;
+  max-width: calc(100vw - 1.5rem) !important;
+  overflow-y: auto;
+}
+
+[data-slot='dropdown-menu-item'],
+[data-slot='dropdown-menu-radio-item'],
+[data-slot='dropdown-menu-checkbox-item'],
+[data-slot='dropdown-menu-sub-trigger'],
+[data-slot='context-menu-item'],
+[data-slot='context-menu-radio-item'],
+[data-slot='context-menu-checkbox-item'],
+[data-slot='context-menu-sub-trigger'] {
+  overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Fingers, not cursors
+ *
+ * Upstream sizes controls for a mouse: 20-24px icon buttons, 24px menu rows, a 20px status bar.
+ * Two techniques, both without touching layout:
+ *  - small icon-like controls get an invisible ::after that grows the hit area by 10px per side
+ *    (24px -> 44px);
+ *  - full-width rows (menu items, command items, list rows) get a 44px minimum height.
+ * ---------------------------------------------------------------------------------------- */
+
+/* Titlebar + status bar controls (always small, never absolutely positioned). */
+[data-size='icon-titlebar'],
+[data-slot='statusbar'] button {
+  position: relative;
+}
+
+[data-size='icon-titlebar']::after,
+[data-slot='statusbar'] button::after {
+  content: '';
+  inset: -10px;
+  position: absolute;
+}
+
+@media (pointer: coarse) {
+  /* Small icon controls anywhere else: composer, tabs, message actions, status rows, dialogs. */
+  :is(
+      button[data-size^='icon'],
+      button[data-slot='tooltip-trigger'],
+      button[data-slot='dialog-close-button'],
+      button.size-3\.5,
+      button.size-4,
+      button.size-5,
+      button.size-6,
+      button.h-5,
+      button.h-6,
+      .status-row-actions button,
+      [data-slot='aui_msg-actions'] button
+    ):not([class~='absolute'], [class~='fixed'], [class~='sticky']) {
+    position: relative;
+  }
+
+  :is(
+      button[data-size^='icon'],
+      button[data-slot='tooltip-trigger'],
+      button[data-slot='dialog-close-button'],
+      button.size-3\.5,
+      button.size-4,
+      button.size-5,
+      button.size-6,
+      button.h-5,
+      button.h-6,
+      .status-row-actions button,
+      [data-slot='aui_msg-actions'] button
+    )::after {
+    content: '';
+    inset: -10px;
+    position: absolute;
+  }
+
+  /* the "+" new-tab button sits right after the last tab's close button: do not grow over it */
+  [role='tablist'] > span > button::after {
+    inset: -10px -10px -10px 0;
+  }
+
+  /* Rows: menus, command palette, selects, sidebar navigation. */
+  :is(
+    [data-slot='dropdown-menu-item'],
+    [data-slot='dropdown-menu-checkbox-item'],
+    [data-slot='dropdown-menu-radio-item'],
+    [data-slot='dropdown-menu-sub-trigger'],
+    [data-slot='context-menu-item'],
+    [data-slot='context-menu-checkbox-item'],
+    [data-slot='context-menu-radio-item'],
+    [data-slot='context-menu-sub-trigger'],
+    [data-slot='select-item'],
+    [data-slot='command-item'],
+    [data-slot='sidebar-menu-item'] > button
+  ) {
+    min-height: 44px;
+  }
+
+  [data-slot='dialog-footer'] button[data-slot='button'],
+  [data-slot='alert-description'] button[data-slot='button'] {
+    min-height: 40px;
+  }
+
+  /* Settings / overlay navigation rows and breadcrumb-free list rows. */
+  [data-tour='overlay-nav'] button {
+    min-height: 40px;
+  }
+}
+
+/* No hover on touch: keep tooltips from sticking after a tap. */
+@media (hover: none) {
+  [data-slot='tooltip-content'] {
+    display: none !important;
+  }
+}
+
+/* Text inputs stay at 16px so the soft keyboard never triggers viewport zoom heuristics. */
+input,
+textarea,
+select {
+  font-size: max(16px, 1em);
+}
+
+/* Session rows: on desktop the kebab is absolutely positioned over the age/chip tail and the tail
+   fades out on row hover (session-row.tsx TAIL_HIDES). Touch has no hover and the kebab is forced
+   visible above, so both painted in the same spot. Put the kebab back in flow beside the tail. */
+@media (hover: none) {
+  [data-row-actions] > button[class~='absolute'] {
+    position: static !important;
+  }
+
+  [data-row-actions] .session-row-tail {
+    opacity: 1 !important;
+  }
+}
+
+/* Keyboard-shortcut hints (size="sm" Kbd, e.g. "Ctrl N" on New session, "Ctrl K" on the settings
+   search pill, palette rows, tip bubbles) have nothing to press on touch. Keybind settings use the
+   default size and the composer hotkey help lists sit outside buttons, so both stay visible. */
+@media (hover: none) and (pointer: coarse) {
+  button [data-slot='kbd'][class*='text-[0.625rem]'],
+  [role='option'] [data-slot='kbd'][class*='text-[0.625rem]'],
+  [data-slot='kbd-group'][class~='mt-2'] {
+    display: none !important;
+  }
+
+  button [data-slot='kbd-group']:not(:has([data-slot='kbd']:not([class*='text-[0.625rem]']))),
+  [role='option'] [data-slot='kbd-group']:not(:has([data-slot='kbd']:not([class*='text-[0.625rem]']))) {
+    display: none !important;
+  }
+}

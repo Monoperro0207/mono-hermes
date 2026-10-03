@@ -1,0 +1,4009 @@
+{
+ "generatedAt": "2026-10-02T16:58:39.467Z",
+ "issues": [
+  {
+   "key": "offscreen|footer[data-slot=statusbar] > div.flex.min-w-# > button[data-slot=tool|backend v#.#.# (+#)",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=tooltip-trigger] > span.truncate",
+   "text": "backend v0.21.5 (+122)"
+  },
+  {
+   "key": "clipped-by-ancestor|footer[data-slot=statusbar] > div.flex.min-w-# > button[data-slot=tool|backend v#.#.# (+#)",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=tooltip-trigger] > span.truncate",
+   "text": "backend v0.21.5 (+122)"
+  },
+  {
+   "key": "clipped-by-ancestor|footer[data-slot=statusbar] > div.flex.min-w-# > button[data-slot=drop|ready",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=dropdown-menu-trigger] > span.truncate.text-muted-foreground/80",
+   "text": "ready"
+  },
+  {
+   "key": "text-nowrap-clipped|div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span|MARKDOWN SHOWCASE: TABLES, CODE, MATH, MERMAID, IMAGES",
+   "rule": "text-nowrap-clipped",
+   "severity": "high",
+   "selector": "div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "MARKDOWN SHOWCASE: TABLES, CODE, MATH, MERMAID, IMAGES"
+  },
+  {
+   "key": "offscreen|div.max-w-full.text-xs > ol.m-#.grid > li.grid.min-w-# > a.ref.wrap-br|Result #: A very long result title about Capacitor and Android foldabl",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.max-w-full.text-xs > ol.m-0.grid > li.grid.min-w-0 > a.ref.wrap-break-word",
+   "text": "Result 1: A very long result title about Capacitor and Android foldable layouts"
+  },
+  {
+   "key": "offscreen|div.max-w-full.text-xs > ol.m-#.grid > li.grid.min-w-# > p.leading-(--|Description text that goes on for a while to check wrapping inside car",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.max-w-full.text-xs > ol.m-0.grid > li.grid.min-w-0 > p.leading-(--conversation-caption-line-height).text-(--ui-text-tertiary)",
+   "text": "Description text that goes on for a while to check wrapping inside cards."
+  },
+  {
+   "key": "obscured|div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-# > b|",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": ""
+  },
+  {
+   "key": "overlap|div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-# > button|Show sidebar",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-70 > button[data-slot=tooltip-trigger]",
+   "text": "Show sidebar"
+  },
+  {
+   "key": "overlap|div.aui-md.prose > div.space-y-#.whitespace-normal > div.group/zoomabl|Open diagram",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.aui-md.prose > div.space-y-4.whitespace-normal > div.group/zoomable.relative > button.block.w-full",
+   "text": "Open diagram"
+  },
+  {
+   "key": "clipped-by-ancestor|div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span|MARKDOWN SHOWCASE: TABLES, CODE, MATH, MERMAID, IMAGES",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "MARKDOWN SHOWCASE: TABLES, CODE, MATH, MERMAID, IMAGES"
+  },
+  {
+   "key": "clipped-by-ancestor|div[data-slot=pane-tab] > div.pane-tab-content.flex > span.flex.h-full|NEW SESSION",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div[data-slot=pane-tab] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "NEW SESSION"
+  },
+  {
+   "key": "text-nowrap-clipped|div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span|TOOL CARDS: TERMINAL, FILES, WEB, TODO, DELEGATE, UNKNOWN MCP",
+   "rule": "text-nowrap-clipped",
+   "severity": "high",
+   "selector": "div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "TOOL CARDS: TERMINAL, FILES, WEB, TODO, DELEGATE, UNKNOWN MCP"
+  },
+  {
+   "key": "offscreen|button.flex.min-w-# > span.flex.min-w-# > span.flex.min-w-# > span.blo|Explored project, searched “capacitor android webview safe area insets",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "button.flex.min-w-0 > span.flex.min-w-0 > span.flex.min-w-0 > span.block.min-w-0",
+   "text": "Explored project, searched “capacitor android webview safe area insets sams…”, r"
+  },
+  {
+   "key": "overlap|div[data-slot=status-stack-section] > div[data-slot=status-section] > |Previous tasks #/#",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=status-stack-section] > div[data-slot=status-section] > div.status-section-header.flex > button.status-section-trigger.flex",
+   "text": "Previous tasks 1/3"
+  },
+  {
+   "key": "clipped-by-ancestor|div.max-w-full.text-xs > ol.m-#.grid > li.grid.min-w-# > a.ref.wrap-br|Result #: A very long result title about Capacitor and Android foldabl",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.max-w-full.text-xs > ol.m-0.grid > li.grid.min-w-0 > a.ref.wrap-break-word",
+   "text": "Result 1: A very long result title about Capacitor and Android foldable layouts"
+  },
+  {
+   "key": "clipped-by-ancestor|div.max-w-full.text-xs > ol.m-#.grid > li.grid.min-w-# > p.leading-(--|Description text that goes on for a while to check wrapping inside car",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.max-w-full.text-xs > ol.m-0.grid > li.grid.min-w-0 > p.leading-(--conversation-caption-line-height).text-(--ui-text-tertiary)",
+   "text": "Description text that goes on for a while to check wrapping inside cards."
+  },
+  {
+   "key": "overlap|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Question number #: tell me something about topic #, with enough words ",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Question number 2: tell me something about topic 2, with enough words to make th"
+  },
+  {
+   "key": "text-collapsed|main.mx-auto.flex > div.mb-#.flex > nav.flex.min-w-# > span.truncate.t|Sessions",
+   "rule": "text-collapsed",
+   "severity": "high",
+   "selector": "main.mx-auto.flex > div.mb-3.flex > nav.flex.min-w-0 > span.truncate.text-foreground",
+   "text": "Sessions"
+  },
+  {
+   "key": "offscreen|div[data-slot=tool-block] > div.relative.grid > div.max-w-full.text-xs|SEARCH RESULTS",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.relative.grid > div.max-w-full.text-xs > p.mb-1.font-medium",
+   "text": "SEARCH RESULTS"
+  },
+  {
+   "key": "text-nowrap-clipped|div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span|VERY LONG CONVERSATION (# MESSAGES)",
+   "rule": "text-nowrap-clipped",
+   "severity": "high",
+   "selector": "div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "VERY LONG CONVERSATION (120 MESSAGES)"
+  },
+  {
+   "key": "clipped-by-ancestor|button.flex.min-w-# > span.flex.min-w-# > span.flex.min-w-# > span.blo|Explored project, searched “capacitor android webview safe area insets",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "button.flex.min-w-0 > span.flex.min-w-0 > span.flex.min-w-0 > span.block.min-w-0",
+   "text": "Explored project, searched “capacitor android webview safe area insets sams…”, r"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Show me every markdown feature you support, including a very wide tabl",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Show me every markdown feature you support, including a very wide table and a di"
+  },
+  {
+   "key": "obscured|div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tab|SESSIONS",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tablist] > div[data-slot=pane-tab]",
+   "text": "SESSIONS"
+  },
+  {
+   "key": "clipped-by-ancestor|button.flex.min-w-# > span.flex.min-w-# > span.flex.min-w-# > span.blo|Loaded skill: systematic-debugging, opened example.com/very-long-path-",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "button.flex.min-w-0 > span.flex.min-w-0 > span.flex.min-w-0 > span.block.min-w-0",
+   "text": "Loaded skill: systematic-debugging, opened example.com/very-long-path-segment-wi"
+  },
+  {
+   "key": "clipped-by-ancestor|div[data-slot=pane-tab] > div.pane-tab-content.flex > span.flex.h-full|SESSIONS",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div[data-slot=pane-tab] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "SESSIONS"
+  },
+  {
+   "key": "clipped-by-ancestor|div[data-slot=pane-tab] > div.pane-tab-content.flex > span.flex.h-full|BOTS",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div[data-slot=pane-tab] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "BOTS"
+  },
+  {
+   "key": "text-nowrap-clipped|div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span|TEXTO INTERNACIONAL 日本語 中文 العربية 🚀 EMOJI",
+   "rule": "text-nowrap-clipped",
+   "severity": "high",
+   "selector": "div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "TEXTO INTERNACIONAL 日本語 中文 العربية 🚀 EMOJI"
+  },
+  {
+   "key": "offscreen|button.flex.min-w-# > span.flex.min-w-# > span.flex.min-w-# > span.blo|Loaded skill: systematic-debugging, opened example.com/very-long-path-",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "button.flex.min-w-0 > span.flex.min-w-0 > span.flex.min-w-0 > span.block.min-w-0",
+   "text": "Loaded skill: systematic-debugging, opened example.com/very-long-path-segment-wi"
+  },
+  {
+   "key": "text-nowrap-clipped|div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span|THINKING BLOCKS AND REASONING",
+   "rule": "text-nowrap-clipped",
+   "severity": "high",
+   "selector": "div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "THINKING BLOCKS AND REASONING"
+  },
+  {
+   "key": "clipped-by-ancestor|footer[data-slot=statusbar] > div.flex.min-w-# > button[data-slot=tool|Users",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=tooltip-trigger] > span.truncate",
+   "text": "Users"
+  },
+  {
+   "key": "text-nowrap-clipped|div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span|HERE IS A **STREAMING** ANSWER WITH `INLINE CODE` ##",
+   "rule": "text-nowrap-clipped",
+   "severity": "high",
+   "selector": "div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "HERE IS A **STREAMING** ANSWER WITH `INLINE CODE` #2"
+  },
+  {
+   "key": "overlap|div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li|Capabilities",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li[data-slot=sidebar-menu-item] > button[data-slot=context-menu-trigger]",
+   "text": "Capabilities"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Run a bunch of tools so I can see how each tool card looks.",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Run a bunch of tools so I can see how each tool card looks."
+  },
+  {
+   "key": "dialog-too-tall|div > div[data-slot=select-content]|Featured Name",
+   "rule": "dialog-too-tall",
+   "severity": "high",
+   "selector": "div > div[data-slot=select-content]",
+   "text": "Featured Name"
+  },
+  {
+   "key": "offscreen|button.flex.min-w-# > span.flex.min-w-# > span.flex.min-w-# > span.shr|# results",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "button.flex.min-w-0 > span.flex.min-w-0 > span.flex.min-w-0 > span.shrink-0.tabular-nums",
+   "text": "5 results"
+  },
+  {
+   "key": "overlap|div[data-slot=tool-block] > div > div.group/disclosure-row.relative > |Explored project, searched “capacitor android webview safe area insets",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Explored project, searched “capacitor android webview safe area insets sams…”, r"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Thanks! Now a short reply please.",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Thanks! Now a short reply please."
+  },
+  {
+   "key": "clipped-by-ancestor|div[data-slot=tool-block] > div.relative.grid > div.max-w-full.text-xs|DETAILS",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.relative.grid > div.max-w-full.text-xs > p.mb-1.font-medium",
+   "text": "DETAILS"
+  },
+  {
+   "key": "overlap|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Searched “capacitor android webview safe area insets sams…” # results",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Searched “capacitor android webview safe area insets sams…” 5 results"
+  },
+  {
+   "key": "text-nowrap-clipped|div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span|EXTREMELY LONG SESSION TITLE THAT KEEPS GOING AND GOING AND GOING WITH",
+   "rule": "text-nowrap-clipped",
+   "severity": "high",
+   "selector": "div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "EXTREMELY LONG SESSION TITLE THAT KEEPS GOING AND GOING AND GOING WITHOUT END TO"
+  },
+  {
+   "key": "overlap|div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-# > button|Show right sidebar",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-70 > button[data-slot=tooltip-trigger]",
+   "text": "Show right sidebar"
+  },
+  {
+   "key": "overlap|div.max-w-full.text-xs > ol.m-#.grid > li.grid.min-w-# > a.ref.wrap-br|Result #: A very long result title about Capacitor and Android foldabl",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.max-w-full.text-xs > ol.m-0.grid > li.grid.min-w-0 > a.ref.wrap-break-word",
+   "text": "Result 2: A very long result title about Capacitor and Android foldable layouts"
+  },
+  {
+   "key": "overlap|div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-# > button|Open settings",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-70 > button[data-slot=tooltip-trigger]",
+   "text": "Open settings"
+  },
+  {
+   "key": "clipped-by-ancestor|div[data-slot=tool-block] > div.relative.grid > div.max-w-full.text-xs|SEARCH RESULTS",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.relative.grid > div.max-w-full.text-xs > p.mb-1.font-medium",
+   "text": "SEARCH RESULTS"
+  },
+  {
+   "key": "overlap|div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-# > button|#",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-70 > button[data-slot=tooltip-trigger]",
+   "text": "2"
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|File \"C:\\IA\\Proyectos\\hermes movil\\.cache\\hm\\installs\\#bf#ffca#b#d\\env",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "File \"C:\\IA\\Proyectos\\hermes movil\\.cache\\hm\\installs\\752bf7ffca72b91d\\environme"
+  },
+  {
+   "key": "clipped-by-ancestor|footer[data-slot=statusbar] > div.flex.min-w-# > button[data-slot=tool|mobile",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=tooltip-trigger] > span.truncate",
+   "text": "mobile"
+  },
+  {
+   "key": "overlap|div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-# > button|Hide sidebar",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-70 > button[data-slot=tooltip-trigger]",
+   "text": "Hide sidebar"
+  },
+  {
+   "key": "obscured|div.aui-md.prose > div.space-y-#.whitespace-normal > p.wrap-anywhere.l|https://example.com/very-long-path-segment-with-no-break-opportunity/v",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div.aui-md.prose > div.space-y-4.whitespace-normal > p.wrap-anywhere.leading-(--dt-line-height) > a.ref.wrap-anywhere",
+   "text": "https://example.com/very-long-path-segment-with-no-break-opportunity/very-long-p"
+  },
+  {
+   "key": "overlap|div.aui-md.prose > div.space-y-#.whitespace-normal > p.wrap-anywhere.l|https://example.com/very-long-path-segment-with-no-break-opportunity/v",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.aui-md.prose > div.space-y-4.whitespace-normal > p.wrap-anywhere.leading-(--dt-line-height) > a.ref.wrap-anywhere",
+   "text": "https://example.com/very-long-path-segment-with-no-break-opportunity/very-long-p"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|¿Puedes escribir texto en varios idiomas? 日本語、中文、العربية y emoji 🚀",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "¿Puedes escribir texto en varios idiomas? 日本語、中文、العربية y emoji 🚀"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|שלום, מה שלומך? SuperCalifragilisticoEspialidosoSuperCalifragilisticoE",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "שלום, מה שלומך? SuperCalifragilisticoEspialidosoSuperCalifragilisticoEspialidoso"
+  },
+  {
+   "key": "offscreen|button.flex.min-w-# > span.flex.min-w-# > span.flex.min-w-# > span.blo|Searched files",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "button.flex.min-w-0 > span.flex.min-w-0 > span.flex.min-w-0 > span.block.min-w-0",
+   "text": "Searched files"
+  },
+  {
+   "key": "offscreen|div.relative.grid > div.max-w-full.text-xs > p.mb-#.flex > span.shrink|Search",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.relative.grid > div.max-w-full.text-xs > p.mb-1.flex > span.shrink-0.font-medium",
+   "text": "Search"
+  },
+  {
+   "key": "obscured|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Question number #: tell me something about topic #, with enough words ",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Question number 4: tell me something about topic 4, with enough words to make th"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Multi line user message with blank lines indented code-looking line",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Multi line user message with blank lines indented code-looking line"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Line five",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Line five"
+  },
+  {
+   "key": "offscreen|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|File \"C:\\IA\\Proyectos\\hermes movil\\.cache\\hm\\installs\\#bf#ffca#b#d\\env",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "File \"C:\\IA\\Proyectos\\hermes movil\\.cache\\hm\\installs\\752bf7ffca72b91d\\environme"
+  },
+  {
+   "key": "obscured|div[data-slot=aui_assistant-message-content] > div[data-slot=tool-bloc|Copy file",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=aui_assistant-message-content] > div[data-slot=tool-block] > div.relative.grid > button[data-slot=tooltip-trigger]",
+   "text": "Copy file"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_assistant-message-content] > div[data-slot=tool-bloc|Copy file",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_assistant-message-content] > div[data-slot=tool-block] > div.relative.grid > button[data-slot=tooltip-trigger]",
+   "text": "Copy file"
+  },
+  {
+   "key": "obscured|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Analyzed image",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Analyzed image"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_assistant-message-root] > div[data-slot=aui_changed-|Review",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_assistant-message-root] > div[data-slot=aui_changed-files] > div.flex.items-center > button.shrink-0.cursor-pointer",
+   "text": "Review"
+  },
+  {
+   "key": "obscured|div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.|Dismiss",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > span.ml-auto.flex > button[data-slot=button]",
+   "text": "Dismiss"
+  },
+  {
+   "key": "clipped-by-ancestor|div.text-xs.leading-relaxed > div.space-y-#.whitespace-normal > ul.mb-|Web: # items (# fields)",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.text-xs.leading-relaxed > div.space-y-4.whitespace-normal > ul.mb-2.list-disc > li",
+   "text": "Web: 5 items (3 fields)"
+  },
+  {
+   "key": "clipped-by-ancestor|button.flex.min-w-# > span.flex.min-w-# > span.flex.min-w-# > span.blo|Read example.com/very-long-path-segment-with-no-break-opportunity/very",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "button.flex.min-w-0 > span.flex.min-w-0 > span.flex.min-w-0 > span.block.min-w-0",
+   "text": "Read example.com/very-long-path-segment-with-no-break-opportunity/very-long-path"
+  },
+  {
+   "key": "clipped-by-ancestor|div.text-xs.leading-relaxed > div.space-y-#.whitespace-normal > ul.mb-|Name: systematic-debugging",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.text-xs.leading-relaxed > div.space-y-4.whitespace-normal > ul.mb-2.list-disc > li",
+   "text": "Name: systematic-debugging"
+  },
+  {
+   "key": "clipped-by-ancestor|div.text-xs.leading-relaxed > div.space-y-#.whitespace-normal > ul.mb-|Description: Debugging methodology",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.text-xs.leading-relaxed > div.space-y-4.whitespace-normal > ul.mb-2.list-disc > li",
+   "text": "Description: Debugging methodology"
+  },
+  {
+   "key": "overlap|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Loaded skill: systematic-debugging",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Loaded skill: systematic-debugging"
+  },
+  {
+   "key": "obscured|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Searched “capacitor android webview safe area insets sams…” # results",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Searched “capacitor android webview safe area insets sams…” 5 results"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|a queued follow-up message that is long enough to wrap onto a second l",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "a queued follow-up message that is long enough to wrap onto a second line in the"
+  },
+  {
+   "key": "offscreen|div.grid.gap-# > div.flex.items-start > div.flex.shrink-# > button[dat|Restart gateway",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.grid.gap-2 > div.flex.items-start > div.flex.shrink-0 > button[data-slot=button]",
+   "text": "Restart gateway"
+  },
+  {
+   "key": "offscreen|div.grid.gap-# > div.flex.items-start > div.flex.shrink-# > button[dat|Update Hermes",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.grid.gap-2 > div.flex.items-start > div.flex.shrink-0 > button[data-slot=button]",
+   "text": "Update Hermes"
+  },
+  {
+   "key": "offscreen|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Projects & discovery",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Projects & discovery"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Browser profile",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Browser profile"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Desktop alerts",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Desktop alerts"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Archive & retention",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Archive & retention"
+  },
+  {
+   "key": "clipped-by-ancestor|div.text-xs.leading-relaxed > div.space-y-#.whitespace-normal > ul.mb-|Title: Example",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.text-xs.leading-relaxed > div.space-y-4.whitespace-normal > ul.mb-2.list-disc > li",
+   "text": "Title: Example"
+  },
+  {
+   "key": "clipped-by-ancestor|div.text-xs.leading-relaxed > div.space-y-#.whitespace-normal > ul.mb-|Url: https://example.com/very-long-path-segment-with-no-break-opportun",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.text-xs.leading-relaxed > div.space-y-4.whitespace-normal > ul.mb-2.list-disc > li",
+   "text": "Url: https://example.com/very-long-path-segment-with-no-break-opportunity/very-l"
+  },
+  {
+   "key": "clipped-by-ancestor|div.fixed.inset-# > div.relative.w-full > div.bg-(--ui-chat-bubble-bac|Let's get you setup with Hermes Agent",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.fixed.inset-0 > div.relative.w-full > div.bg-(--ui-chat-bubble-background).px-5 > h2.font-semibold.tracking-tight",
+   "text": "Let's get you setup with Hermes Agent"
+  },
+  {
+   "key": "clipped-by-ancestor|div.grid.gap-# > div.grid.gap-# > div.flex.items-center > button[data-|I'll choose a provider later",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.grid.gap-3 > div.grid.gap-2 > div.flex.items-center > button[data-slot=button]",
+   "text": "I'll choose a provider later"
+  },
+  {
+   "key": "clipped-by-ancestor|div.grid.gap-# > div.grid.gap-# > div.flex.items-center > button[data-|I have an API key",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.grid.gap-3 > div.grid.gap-2 > div.flex.items-center > button[data-slot=button]",
+   "text": "I have an API key"
+  },
+  {
+   "key": "overlap|div[data-slot=code-card-body] > div.relative > div.pointer-events-none|Expand",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=code-card-body] > div.relative > div.pointer-events-none.absolute > button.pointer-events-auto.flex",
+   "text": "Expand"
+  },
+  {
+   "key": "obscured|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|שלום, מה שלומך? SuperCalifragilisticoEspialidosoSuperCalifragilisticoE",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "שלום, מה שלומך? SuperCalifragilisticoEspialidosoSuperCalifragilisticoEspialidoso"
+  },
+  {
+   "key": "obscured|div.relative.grid > div.max-w-#.overflow-hidden > span[data-slot=aui_m|Open image",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div.relative.grid > div.max-w-72.overflow-hidden > span[data-slot=aui_markdown-image] > button.ref.font-medium",
+   "text": "Open image"
+  },
+  {
+   "key": "obscured|div[data-slot=aui_assistant-message-root] > div[data-slot=aui_changed-|Review",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=aui_assistant-message-root] > div[data-slot=aui_changed-files] > div.flex.items-center > button.shrink-0.cursor-pointer",
+   "text": "Review"
+  },
+  {
+   "key": "obscured|div[data-slot=aui_assistant-message-root] > div[data-slot=aui_changed-|app.ts +# −#",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=aui_assistant-message-root] > div[data-slot=aui_changed-files] > div.overflow-y-auto.overscroll-contain > button[data-slot=tooltip-trigger]",
+   "text": "app.ts +1 −1"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_assistant-message-root] > div[data-slot=aui_changed-|app.ts +# −#",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_assistant-message-root] > div[data-slot=aui_changed-files] > div.overflow-y-auto.overscroll-contain > button[data-slot=tooltip-trigger]",
+   "text": "app.ts +1 −1"
+  },
+  {
+   "key": "obscured|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|app.ts +# −#",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "app.ts +1 −1"
+  },
+  {
+   "key": "overlap|div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.|Dismiss",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > span.ml-auto.flex > button[data-slot=button]",
+   "text": "Dismiss"
+  },
+  {
+   "key": "obscured|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Loaded skill: systematic-debugging",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Loaded skill: systematic-debugging"
+  },
+  {
+   "key": "overlap|div[data-slot=tool-block] > div > div.group/disclosure-row.relative > |Loaded skill: systematic-debugging, opened example.com/very-long-path-",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Loaded skill: systematic-debugging, opened example.com/very-long-path-segment-wi"
+  },
+  {
+   "key": "obscured|div[data-slot=tool-block] > div > div.group/disclosure-row.relative > |Ran # command, used # tools, # tool call failed",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Ran 1 command, used 3 tools, 1 tool call failed"
+  },
+  {
+   "key": "obscured|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Ran false",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Ran false"
+  },
+  {
+   "key": "text-nowrap-clipped|div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span|HERE IS A **STREAMING** ANSWER WITH `INLINE CODE`",
+   "rule": "text-nowrap-clipped",
+   "severity": "high",
+   "selector": "div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "HERE IS A **STREAMING** ANSWER WITH `INLINE CODE`"
+  },
+  {
+   "key": "clipped-by-ancestor|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Voice chat engine",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-label]",
+   "text": "Voice chat engine"
+  },
+  {
+   "key": "offscreen|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Voice chat engine",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-label]",
+   "text": "Voice chat engine"
+  },
+  {
+   "key": "clipped-by-ancestor|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Speech-to-text + Hermes voice",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-radio-group] > div[data-slot=dropdown-menu-radio-item]",
+   "text": "Speech-to-text + Hermes voice"
+  },
+  {
+   "key": "offscreen|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Speech-to-text + Hermes voice",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-radio-group] > div[data-slot=dropdown-menu-radio-item]",
+   "text": "Speech-to-text + Hermes voice"
+  },
+  {
+   "key": "offscreen|div[data-slot=dropdown-menu-radio-group] > div[data-slot=dropdown-menu|GPT-Live (full-duplex, delegates to Hermes)",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div[data-slot=dropdown-menu-radio-group] > div[data-slot=dropdown-menu-radio-item] > span.flex.min-w-0 > span",
+   "text": "GPT-Live (full-duplex, delegates to Hermes)"
+  },
+  {
+   "key": "offscreen|div[data-slot=dropdown-menu-radio-group] > div[data-slot=dropdown-menu|no OpenAI API key (set OPENAI_API_KEY or voice.gpt_live.api_key)",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div[data-slot=dropdown-menu-radio-group] > div[data-slot=dropdown-menu-radio-item] > span.flex.min-w-0 > span.text-muted-foreground.truncate",
+   "text": "no OpenAI API key (set OPENAI_API_KEY or voice.gpt_live.api_key)"
+  },
+  {
+   "key": "dialog-offscreen|div > div[data-slot=dropdown-menu-content]|Voice chat engine Speech-to-text + Hermes voice GPT-Live (full-duplex,",
+   "rule": "dialog-offscreen",
+   "severity": "high",
+   "selector": "div > div[data-slot=dropdown-menu-content]",
+   "text": "Voice chat engine Speech-to-text + Hermes voice GPT-Live (full-duplex, delegates"
+  },
+  {
+   "key": "obscured|div.aui-md.prose > div.space-y-#.whitespace-normal > div.group/zoomabl|Open diagram",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div.aui-md.prose > div.space-y-4.whitespace-normal > div.group/zoomable.relative > button.block.w-full",
+   "text": "Open diagram"
+  },
+  {
+   "key": "obscured|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Thanks! Now a short reply please.",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Thanks! Now a short reply please."
+  },
+  {
+   "key": "clipped-by-ancestor|div.flex.flex-wrap > div.hidden.min-w-# > button.group/text-tab.inline|error",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.flex.flex-wrap > div.hidden.min-w-0 > button.group/text-tab.inline-flex > span.underline-offset-4.decoration-current/25",
+   "text": "error"
+  },
+  {
+   "key": "offscreen|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|return self._open_chat_stream({**next_api_kwargs, \"stream\": True, \"tim",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "return self._open_chat_stream({**next_api_kwargs, \"stream\": True, \"timeout\": tim"
+  },
+  {
+   "key": "offscreen|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  },
+  {
+   "key": "offscreen|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|File \"<HERMES_HOME>\\hermes-agent\\agent\\chat_completion_hel",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "File \"<HERMES_HOME>\\hermes-agent\\agent\\chat_completion_hel"
+  },
+  {
+   "key": "offscreen|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|return request_client.chat.completions.create(**stream_kwargs)",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "return request_client.chat.completions.create(**stream_kwargs)"
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|return cast(ResponseT, self.request(cast_to, opts, stream=stream, stre",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=str"
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|raise self._make_status_error_from_response(err.response) from None",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "raise self._make_status_error_from_response(err.response) from None"
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|openai.InternalServerError: Error code: # - {'error': {'message': 'Aud",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "openai.InternalServerError: Error code: 500 - {'error': {'message': 'Audit mock:"
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|#-#-# #:#:#,# INFO run_agent: OpenAI client closed (stream_error_clean",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "2026-10-02 12:46:50,317 INFO run_agent: OpenAI client closed (stream_error_clean"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Fallback models",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Fallback models"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Auxiliary models",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Auxiliary models"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Local & private URLs",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Local & private URLs"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Password managers",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Password managers"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Speech to text",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Speech to text"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Text to speech",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Text to speech"
+  },
+  {
+   "key": "text-char-per-line|div.grid.gap-# > fieldset.grid.min-w-# > div.inline-grid.auto-cols-fr |Auto-detect",
+   "rule": "text-char-per-line",
+   "severity": "high",
+   "selector": "div.grid.gap-3 > fieldset.grid.min-w-0 > div.inline-grid.auto-cols-fr > button.flex.items-center",
+   "text": "Auto-detect"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Remote updates",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Remote updates"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Screen capture",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Screen capture"
+  },
+  {
+   "key": "overlap|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Default project folder",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Default project folder"
+  },
+  {
+   "key": "obscured|div.@container/catalog.flex > div.flex.min-h-# > aside.flex.min-h-# > |AI Agents #k",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div.@container/catalog.flex > div.flex.min-h-0 > aside.flex.min-h-0 > button.row-hover.flex",
+   "text": "AI Agents 2k"
+  },
+  {
+   "key": "obscured|tbody > tr.group/artifact > td.align-middle.p-# > a.ref.flex|example.com",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "tbody > tr.group/artifact > td.align-middle.p-0 > a.ref.flex",
+   "text": "example.com"
+  },
+  {
+   "key": "obscured|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Opened example.com/very-long-path-segment-with-no-break-opportunity/ve",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Opened example.com/very-long-path-segment-with-no-break-opportunity/very-long-pa"
+  },
+  {
+   "key": "obscured|div.space-y-#.whitespace-normal > ul.mb-#.list-disc > li > a.ref|https://example.com/very-long-path-segment-with-no-break-opportunity/v",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div.space-y-4.whitespace-normal > ul.mb-2.list-disc > li > a.ref",
+   "text": "https://example.com/very-long-path-segment-with-no-break-opportunity/very-long-p"
+  },
+  {
+   "key": "overlap|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Opened example.com/very-long-path-segment-with-no-break-opportunity/ve",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Opened example.com/very-long-path-segment-with-no-break-opportunity/very-long-pa"
+  },
+  {
+   "key": "overlap|div.space-y-#.whitespace-normal > ul.mb-#.list-disc > li > a.ref|https://example.com/very-long-path-segment-with-no-break-opportunity/v",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div.space-y-4.whitespace-normal > ul.mb-2.list-disc > li > a.ref",
+   "text": "https://example.com/very-long-path-segment-with-no-break-opportunity/very-long-p"
+  },
+  {
+   "key": "clipped-by-ancestor|div.text-xs.leading-relaxed > div.space-y-#.whitespace-normal > ul.mb-|Content: # Systematic debugging Step #...",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.text-xs.leading-relaxed > div.space-y-4.whitespace-normal > ul.mb-2.list-disc > li",
+   "text": "Content: # Systematic debugging Step 1..."
+  },
+  {
+   "key": "clipped-by-ancestor|button.flex.min-w-# > span.flex.min-w-# > span.flex.min-w-# > span.blo|Opened example.com/very-long-path-segment-with-no-break-opportunity/ve",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "button.flex.min-w-0 > span.flex.min-w-0 > span.flex.min-w-0 > span.block.min-w-0",
+   "text": "Opened example.com/very-long-path-segment-with-no-break-opportunity/very-long-pa"
+  },
+  {
+   "key": "obscured|div.aui-md.prose > div.space-y-#.whitespace-normal > p.wrap-anywhere.l|link",
+   "rule": "obscured",
+   "severity": "high",
+   "selector": "div.aui-md.prose > div.space-y-4.whitespace-normal > p.wrap-anywhere.leading-(--dt-line-height) > a.ref.wrap-anywhere",
+   "text": "link"
+  },
+  {
+   "key": "overlap|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Line six",
+   "rule": "overlap",
+   "severity": "high",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Line six"
+  },
+  {
+   "key": "clipped-by-ancestor|div.flex.flex-wrap > div.hidden.min-w-# > button.group/text-tab.inline|warning",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.flex.flex-wrap > div.hidden.min-w-0 > button.group/text-tab.inline-flex > span.underline-offset-4.decoration-current/25",
+   "text": "warning"
+  },
+  {
+   "key": "offscreen|div.flex.flex-wrap > div.hidden.min-w-# > button.group/text-tab.inline|error",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.flex.flex-wrap > div.hidden.min-w-0 > button.group/text-tab.inline-flex > span.underline-offset-4.decoration-current/25",
+   "text": "error"
+  },
+  {
+   "key": "offscreen|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|return func(*args, **kwargs)",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "return func(*args, **kwargs)"
+  },
+  {
+   "key": "offscreen|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|return self._post(",
+   "rule": "offscreen",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "return self._post("
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^"
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|return func(*args, **kwargs)",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "return func(*args, **kwargs)"
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|return self._post(",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "return self._post("
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|~~~~~~~~~~^",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "~~~~~~~~~~^"
+  },
+  {
+   "key": "clipped-by-ancestor|div.h-full.min-h-# > div[data-slot=code-card-body] > pre.whitespace-pr|\"/chat/completions\",",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div.h-full.min-h-0 > div[data-slot=code-card-body] > pre.whitespace-pre-wrap.break-words > span.block",
+   "text": "\"/chat/completions\","
+  },
+  {
+   "key": "clipped-by-ancestor|div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span|UNTITLED SESSION",
+   "rule": "clipped-by-ancestor",
+   "severity": "high",
+   "selector": "div[data-slot=context-menu-trigger] > div.pane-tab-content.flex > span.flex.h-full > span.block.min-w-0",
+   "text": "UNTITLED SESSION"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.flex.sh|New session tab",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.flex.shrink-0 > button[data-slot=tooltip-trigger]",
+   "text": "New session tab"
+  },
+  {
+   "key": "text-collapsed|div[data-slot=pane-tab] > div.pane-tab-content.h-full > span.flex.h-fu|SESSIONS",
+   "rule": "text-collapsed",
+   "severity": "medium",
+   "selector": "div[data-slot=pane-tab] > div.pane-tab-content.h-full > span.flex.h-full > span.block.min-w-0",
+   "text": "SESSIONS"
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-# > button|Open settings",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-70 > button[data-slot=tooltip-trigger]",
+   "text": "Open settings"
+  },
+  {
+   "key": "touch-target|div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-# > b|",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": ""
+  },
+  {
+   "key": "touch-target|div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-# > b|Gateway ready",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Gateway ready"
+  },
+  {
+   "key": "touch-target|div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-# > b|Smart",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "Smart"
+  },
+  {
+   "key": "touch-target|div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-# > b|client v#.#.#",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "client v0.1.0"
+  },
+  {
+   "key": "touch-target|div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-# > b|backend v#.#.# (+#)",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "backend v0.21.5 (+122)"
+  },
+  {
+   "key": "touch-target|div[data-slot=status-stack-section] > div[data-slot=status-row] > div.|Send to Nous",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=status-stack-section] > div[data-slot=status-row] > div.status-row-actions.flex > button[data-slot=button]",
+   "text": "Send to Nous"
+  },
+  {
+   "key": "touch-target|div[data-slot=status-stack-section] > div[data-slot=status-row] > div.|Local only",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=status-stack-section] > div[data-slot=status-row] > div.status-row-actions.flex > button[data-slot=button]",
+   "text": "Local only"
+  },
+  {
+   "key": "touch-target|div[data-slot=status-stack-section] > div[data-slot=status-row] > div.|No thanks",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=status-stack-section] > div[data-slot=status-row] > div.status-row-actions.flex > button[data-slot=button]",
+   "text": "No thanks"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div.relative > button[data-slot|Expand: Model",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div.relative > button[data-slot=button]",
+   "text": "Expand: Model"
+  },
+  {
+   "key": "touch-target|div[data-slot=status-stack-section] > div[data-slot=status-row] > div.|Details",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=status-stack-section] > div[data-slot=status-row] > div.status-row-actions.flex > button[data-slot=button]",
+   "text": "Details"
+  },
+  {
+   "key": "touch-target|div.flex.h-full > div.flex.items-center > div.flex.items-center > butt|",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.h-full > div.flex.items-center > div.flex.items-center > button[data-slot=tooltip-trigger]",
+   "text": ""
+  },
+  {
+   "key": "touch-target|div.flex.h-full > div.flex.items-center > div.flex.items-center > butt|New bot or group chat",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.h-full > div.flex.items-center > div.flex.items-center > button[data-slot=tooltip-trigger]",
+   "text": "New bot or group chat"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Question number #: tell me something about topic #, with enough words ",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Question number 2: tell me something about topic 2, with enough words to make th"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-fade] > div.grid.w-full > div.flex.items-start |Add context",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=composer-fade] > div.grid.w-full > div.flex.items-start > button[data-slot=tooltip-trigger]",
+   "text": "Add context"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div.rel|Hide status stack",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div.relative.w-full > button[data-slot=status-drawer-toggle]",
+   "text": "Hide status stack"
+  },
+  {
+   "key": "touch-target|div.grid.w-full > div.flex.min-w-# > div.flex.min-w-# > button[data-sl|Model · custom: audit-model",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.grid.w-full > div.flex.min-w-0 > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "Model · custom: audit-model"
+  },
+  {
+   "key": "touch-target|div.flex.min-w-# > div.flex.min-w-# > span[data-slot=fan-menu-anchor] |Voice dictation",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-w-0 > div.flex.min-w-0 > span[data-slot=fan-menu-anchor] > button[data-slot=tooltip-trigger]",
+   "text": "Voice dictation"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Show me every markdown feature you support, including a very wide tabl",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Show me every markdown feature you support, including a very wide table and a di"
+  },
+  {
+   "key": "touch-target|div.status-drawer-content > div[data-slot=status-row] > span.status-ro|",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.status-drawer-content > div[data-slot=status-row] > span.status-row-icon.flex > button.flex.size-3.5",
+   "text": ""
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-content] > div.shrink-#.px-# > div.inline-flex.m|Search sessions",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=sidebar-content] > div.shrink-0.px-2 > div.inline-flex.min-w-0 > input.h-7.min-w-0",
+   "text": "Search sessions"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=select-content] > div[role=presentation] > div[dat|Name",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=select-content] > div[role=presentation] > div[data-slot=select-item]",
+   "text": "Name"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Thanks! Now a short reply please.",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Thanks! Now a short reply please."
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_assistant-message-content] > div[data-slot=aui_think|Thought",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=aui_assistant-message-content] > div[data-slot=aui_thinking-disclosure] > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Thought"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=select-content] > div[role=presentation] > div[dat|Featured",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=select-content] > div[role=presentation] > div[data-slot=select-item]",
+   "text": "Featured"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div[data-slot=sidebar-group] > div.group/section.fl|PINNED",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > div[data-slot=sidebar-group] > div.group/section.flex > button.group/section-label.flex",
+   "text": "PINNED"
+  },
+  {
+   "key": "touch-target|div.flex.min-w-# > div.flex.min-w-# > span.flex.items-center > button[|Start voice conversation",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-w-0 > div.flex.min-w-0 > span.flex.items-center > button[data-slot=tooltip-trigger]",
+   "text": "Start voice conversation"
+  },
+  {
+   "key": "touch-target|div[data-slot=dialog-content] > button[data-slot=dialog-close-button]|Close",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=dialog-content] > button[data-slot=dialog-close-button]",
+   "text": "Close"
+  },
+  {
+   "key": "touch-target|div.flex.min-w-# > div.flex.min-w-# > span.flex.items-center > button[|Voice chat engine",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-w-0 > div.flex.min-w-0 > span.flex.items-center > button[data-slot=tooltip-trigger]",
+   "text": "Voice chat engine"
+  },
+  {
+   "key": "touch-target|div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.|Dismiss",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > span.ml-auto.flex > button[data-slot=button]",
+   "text": "Dismiss"
+  },
+  {
+   "key": "touch-target|span.contents > div[data-slot=context-menu-trigger] > span.pointer-eve|Close",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "span.contents > div[data-slot=context-menu-trigger] > span.pointer-events-none.absolute > button.grid.w-(--pane-tab-close-width)",
+   "text": "Close"
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-group-content] > div[data-slot=context-menu-trig|Reorder Plan weekend trip",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=sidebar-group-content] > div[data-slot=context-menu-trigger] > div.pl-2.pr-2 > span[role=button]",
+   "text": "Reorder Plan weekend trip"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div.pl-#.pr-# > span.min-w-#.fle|Plan weekend trip",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=context-menu-trigger] > div.pl-2.pr-2 > span.min-w-0.flex-1 > button[data-slot=row-button]",
+   "text": "Plan weekend trip"
+  },
+  {
+   "key": "touch-target|div.overflow-y-auto.py-#.# > div[data-slot=dropdown-menu-group] > div[|Add to favorites",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.overflow-y-auto.py-0.5 > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger] > button[data-slot=tooltip-trigger]",
+   "text": "Add to favorites"
+  },
+  {
+   "key": "touch-target|div.relative.flex > div.relative.flex > div[data-slot=context-menu-tri|Minimize",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.relative.flex > div.relative.flex > div[data-slot=context-menu-trigger] > button.mx-1.grid",
+   "text": "Minimize"
+  },
+  {
+   "key": "touch-target|div.max-w-full.text-xs > ol.m-#.grid > li.grid.min-w-# > a.ref.wrap-br|Result #: A very long result title about Capacitor and Android foldabl",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.max-w-full.text-xs > ol.m-0.grid > li.grid.min-w-0 > a.ref.wrap-break-word",
+   "text": "Result 1: A very long result title about Capacitor and Android foldable layouts"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |@@approval audit run",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "@@approval audit run"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |@@error audit run",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "@@error audit run"
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-# > button|Show right sidebar",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-70 > button[data-slot=tooltip-trigger]",
+   "text": "Show right sidebar"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div.flex.shrink-# > div.relative|Session actions",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=context-menu-trigger] > div.flex.shrink-0 > div.relative.z-2 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Session actions"
+  },
+  {
+   "key": "touch-target|div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-# > b|Users",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.h-screen > footer[data-slot=statusbar] > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "Users"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div > div.group/disclosure-row.relative > |Explored Component.tsx, ran # command",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Explored Component.tsx, ran 1 command"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |@@slow audit run",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "@@slow audit run"
+  },
+  {
+   "key": "touch-target|div.grid.gap-# > div > div.flex.items-center > button[data-slot=toolti|Copy full changelog",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.grid.gap-3 > div > div.flex.items-center > button[data-slot=tooltip-trigger]",
+   "text": "Copy full changelog"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |@@think audit run",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "@@think audit run"
+  },
+  {
+   "key": "touch-target|div[data-slot=dropdown-menu-content] > div.overflow-y-auto.py-#.# > di|Opus #.# MED",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=dropdown-menu-content] > div.overflow-y-auto.py-0.5 > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Opus 4.7 MED"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|app.ts +# −#",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "app.ts +1 −1"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div.relative > button[data-slot|Collapse: Model",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div.relative > button[data-slot=button]",
+   "text": "Collapse: Model"
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-# > button|Hide sidebar",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-70 > button[data-slot=tooltip-trigger]",
+   "text": "Hide sidebar"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_assistant-message-content] > div[data-slot=tool-bloc|Copy file",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=aui_assistant-message-content] > div[data-slot=tool-block] > div.relative.grid > button[data-slot=tooltip-trigger]",
+   "text": "Copy file"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div > div.group/disclosure-row.relative > |Explored project, searched “capacitor android webview safe area insets",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Explored project, searched “capacitor android webview safe area insets sams…”, r"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |¿Puedes escribir texto en varios idiomas? 日本語、中文、العربية y emoji 🚀",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "¿Puedes escribir texto en varios idiomas? 日本語、中文、العربية y emoji 🚀"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |שלום, מה שלומך? SuperCalifragilisticoEspialidosoSuperCalifragilisticoE",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "שלום, מה שלומך? SuperCalifragilisticoEspialidosoSuperCalifragilisticoEspialidoso"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |SuperCalifragilisticoEspialidosoSuperCalifragilisticoEspialidosoSuperC",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "SuperCalifragilisticoEspialidosoSuperCalifragilisticoEspialidosoSuperCalifragili"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |https://example.com/very-long-path-segment-with-no-break-opportunity/v",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "https://example.com/very-long-path-segment-with-no-break-opportunity/very-long-p"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Multi line user message with blank lines indented code-looking line",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Multi line user message with blank lines indented code-looking line"
+  },
+  {
+   "key": "touch-target|div.overflow-hidden > div.mb-#.min-w-# > div.group/disclosure-row.rela|Running rm -rf ./audit-tmp-dir-that-does-not-exist",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.overflow-hidden > div.mb-1.min-w-0 > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Running rm -rf ./audit-tmp-dir-that-does-not-exist"
+  },
+  {
+   "key": "touch-target|div > article[data-slot=tool-approval-card] > div[data-slot=tool-appro|Reject",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > article[data-slot=tool-approval-card] > div[data-slot=tool-approval-actions] > button[data-slot=button]",
+   "text": "Reject"
+  },
+  {
+   "key": "touch-target|div > article[data-slot=tool-approval-card] > div[data-slot=tool-appro|Always allow…",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > article[data-slot=tool-approval-card] > div[data-slot=tool-approval-actions] > button[data-slot=dropdown-menu-trigger]",
+   "text": "Always allow…"
+  },
+  {
+   "key": "touch-target|div > article[data-slot=tool-approval-card] > div[data-slot=tool-appro|Run ↵",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > article[data-slot=tool-approval-card] > div[data-slot=tool-approval-actions] > button[data-slot=button]",
+   "text": "Run ↵"
+  },
+  {
+   "key": "touch-target|div[data-slot=dropdown-menu-content] > div.overflow-y-auto.py-#.# > di|Sonnet #.# MED",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=dropdown-menu-content] > div.overflow-y-auto.py-0.5 > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Sonnet 4.6 MED"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Model",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Model"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Chat",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Chat"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Appearance",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Appearance"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Workspace",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Workspace"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Safety",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Safety"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Browser",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Browser"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Memory & Context",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Memory & Context"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Voice",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Voice"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Settings Ctrl ,",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Settings Ctrl ,"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Capabilities",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Capabilities"
+  },
+  {
+   "key": "touch-target|div.text-sm > div.flex.items-center > div.flex.shrink-# > button[data-|Reconnect gateway",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.text-sm > div.flex.items-center > div.flex.shrink-0 > button[data-slot=tooltip-trigger]",
+   "text": "Reconnect gateway"
+  },
+  {
+   "key": "touch-target|div.text-sm > div.flex.items-center > div.flex.shrink-# > button[data-|Open system panel",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.text-sm > div.flex.items-center > div.flex.shrink-0 > button[data-slot=tooltip-trigger]",
+   "text": "Open system panel"
+  },
+  {
+   "key": "touch-target|div.text-sm > div.flex.items-center > div.flex.shrink-# > button[data-|Restart gateway",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.text-sm > div.flex.items-center > div.flex.shrink-0 > button[data-slot=tooltip-trigger]",
+   "text": "Restart gateway"
+  },
+  {
+   "key": "touch-target|div.text-sm > div.border-t.border-border/# > div.flex.items-center > b|View all logs →",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.text-sm > div.border-t.border-border/50 > div.flex.items-center > button[data-slot=button]",
+   "text": "View all logs →"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div > div.group/disclosure-row.relative > |Ran # command, used # tools, # tool call failed",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Ran 1 command, used 3 tools, 1 tool call failed"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.relative.flex > div[data-slot=aui_msg-actions] |Branch in new chat",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-6 > div.relative.flex > div[data-slot=aui_msg-actions] > button[data-slot=tooltip-trigger]",
+   "text": "Branch in new chat"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Compare a local WebView against a remote renderer.",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Compare a local WebView against a remote renderer."
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |And the short answer?",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "And the short answer?"
+  },
+  {
+   "key": "touch-target|div.flex-#.flex > div[data-slot=alert] > div[data-slot=alert-descripti|Enable webhooks",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex-1.flex > div[data-slot=alert] > div[data-slot=alert-description] > button[data-slot=button]",
+   "text": "Enable webhooks"
+  },
+  {
+   "key": "touch-target|div.flex.w-full > div.flex.min-h-# > div.group/row.row-hover > button[|Morning briefing",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.w-full > div.flex.min-h-0 > div.group/row.row-hover > button[data-slot=row-button]",
+   "text": "Morning briefing"
+  },
+  {
+   "key": "touch-target|div.flex.w-full > div.flex.min-h-# > div.group/row.row-hover > button[|Important-mail monitor",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.w-full > div.flex.min-h-0 > div.group/row.row-hover > button[data-slot=row-button]",
+   "text": "Important-mail monitor"
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-# > button|Show sidebar",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=sidebar-wrapper] > div.contents > div.fixed.z-70 > button[data-slot=tooltip-trigger]",
+   "text": "Show sidebar"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_assistant-message-root] > div[data-slot=aui_assistan|Open image: gradient.png",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=aui_assistant-message-root] > div[data-slot=aui_assistant-message-content] > div.mt-1.5 > a.mt-2.ref",
+   "text": "Open image: gradient.png"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.relative.flex > div[data-slot=aui_msg-actions] |Copy",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-6 > div.relative.flex > div[data-slot=aui_msg-actions] > button[data-slot=tooltip-trigger]",
+   "text": "Copy"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.relative.flex > div[data-slot=aui_msg-actions] |Read aloud",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-6 > div.relative.flex > div[data-slot=aui_msg-actions] > button[data-slot=tooltip-trigger]",
+   "text": "Read aloud"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.relative.flex > div[data-slot=aui_msg-actions] |Refresh",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-6 > div.relative.flex > div[data-slot=aui_msg-actions] > button[data-slot=tooltip-trigger]",
+   "text": "Refresh"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Reload",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Reload"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Hide tabs Ctrl+Alt+T",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Hide tabs Ctrl+Alt+T"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div > div.group/disclosure-row.relative > |Loaded skill: systematic-debugging, opened example.com/very-long-path-",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Loaded skill: systematic-debugging, opened example.com/very-long-path-segment-wi"
+  },
+  {
+   "key": "touch-target|div.grid.gap-# > div[role=group] > label.flex.w-full > textarea[data-s|",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.grid.gap-1 > div[role=group] > label.flex.w-full > textarea[data-slot=textarea]",
+   "text": ""
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-content] > div.shrink-#.px-# > div.inline-flex.m|Clear search",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=sidebar-content] > div.shrink-0.px-2 > div.inline-flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "Clear search"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div[data-slot=sidebar-group] > div.group/section.fl|RESULTS",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > div[data-slot=sidebar-group] > div.group/section.flex > button.group/section-label.flex",
+   "text": "RESULTS"
+  },
+  {
+   "key": "touch-target|div.grid.min-w-# > div[data-slot=tool-block] > div.relative.grid > but|Copy output",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.grid.min-w-0 > div[data-slot=tool-block] > div.relative.grid > button[data-slot=tooltip-trigger]",
+   "text": "Copy output"
+  },
+  {
+   "key": "touch-target|div.grid.w-full > div.flex.min-w-# > div.flex.min-w-# > button[data-sl|Audit Model",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.grid.w-full > div.flex.min-w-0 > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "Audit Model"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > aside.flex.min-h-# > div.pb-# > button[data-slot=se|Featured",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > aside.flex.min-h-0 > div.pb-2 > button[data-slot=select-trigger]",
+   "text": "Featured"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div[data-slot=context-menu-trigger] > div.shrink-#.|default",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > div[data-slot=context-menu-trigger] > div.shrink-0.pr-1 > button[data-slot=dropdown-menu-trigger]",
+   "text": "default"
+  },
+  {
+   "key": "touch-target|div.grid.w-full > div.flex.min-w-# > div.flex.min-w-# > button[data-sl|Switch model",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.grid.w-full > div.flex.min-w-0 > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "Switch model"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Grouping Updated",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Grouping Updated"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Ordering",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Ordering"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Show",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Show"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Inbox style",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-checkbox-item]",
+   "text": "Inbox style"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Profile rail",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-checkbox-item]",
+   "text": "Profile rail"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Status",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Status"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Pull request",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Pull request"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Profile",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Profile"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Archived",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-checkbox-item]",
+   "text": "Archived"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Collapse all",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-item]",
+   "text": "Collapse all"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Open in new tab",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Open in new tab"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|New window",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "New window"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Rename…",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Rename…"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Pin",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Pin"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Mark as unread",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Mark as unread"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Appearance",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-sub-trigger]",
+   "text": "Appearance"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Copy ID",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Copy ID"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Branch",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Branch"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Export",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Export"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Move to project",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-sub-trigger]",
+   "text": "Move to project"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Archive",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Archive"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Delete",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Delete"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Ran ls -la /very/long/path/to/some/directory/with/many/nested/segments",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Ran ls -la /very/long/path/to/some/directory/with/many/nested/segments + 1 comma"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Read Component.tsx L#-#",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Read Component.tsx L1-40"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Read example.com/very-long-path-segment-with-no-break-opportunity/very",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Read example.com/very-long-path-segment-with-no-break-opportunity/very-long-path"
+  },
+  {
+   "key": "touch-target|div.relative.min-h-# > div[data-slot=aui_thread-viewport] > div[data-s|Show earlier messages",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.relative.min-h-0 > div[data-slot=aui_thread-viewport] > div[data-slot=aui_thread-content] > button.mx-auto.mb-(--conversation-turn-gap)",
+   "text": "Show earlier messages"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Short question",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Short question"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div.contents > div[data-sl|New session",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div.contents > div[data-slot=context-menu-item]",
+   "text": "New session"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div.contents > div[data-sl|Settings",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div.contents > div[data-slot=context-menu-item]",
+   "text": "Settings"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div.contents > div[data-sl|Update Hermes",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div.contents > div[data-slot=context-menu-item]",
+   "text": "Update Hermes"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_assistant-message-content] > div[data-slot=aui_think|Thought for #s",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=aui_assistant-message-content] > div[data-slot=aui_thinking-disclosure] > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Thought for 2s"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |a queued follow-up message that is long enough to wrap onto a second l",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "a queued follow-up message that is long enough to wrap onto a second line in the"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |A long multi-line draft.",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "A long multi-line draft."
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Files…",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-item]",
+   "text": "Files…"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Folder…",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-item]",
+   "text": "Folder…"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Images…",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-item]",
+   "text": "Images…"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Paste image",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-item]",
+   "text": "Paste image"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|URL…",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-item]",
+   "text": "URL…"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Prompt snippets…",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-item]",
+   "text": "Prompt snippets…"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Search models",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-search] > input.h-4.w-full",
+   "text": "Search models"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Speech-to-text + Hermes voice",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-radio-group] > div[data-slot=dropdown-menu-radio-item]",
+   "text": "Speech-to-text + Hermes voice"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Advanced",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Advanced"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Accounts",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Accounts"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|API keys",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "API keys"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Chat Font Appearance",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Chat Font Appearance"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Terminal Font Appearance",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Terminal Font Appearance"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Chat Text Size Appearance",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Chat Text Size Appearance"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|New session Ctrl N",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "New session Ctrl N"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|New window Ctrl Shift N",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "New window Ctrl Shift N"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Messaging",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Messaging"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Artifacts",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Artifacts"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Cron",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Cron"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Profiles",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Profiles"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Spawn tree",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Spawn tree"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Memory Graph",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Memory Graph"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Open folder as project… Ctrl O",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Open folder as project… Ctrl O"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=command-group] > div[role=group] > div[data-slot=c|Settings",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=command-group] > div[role=group] > div[data-slot=command-item]",
+   "text": "Settings"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.min-h-# > div.shrink-#.flex > button.round|/",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > div.flex.min-h-0 > div.shrink-0.flex > button.rounded.px-1.5",
+   "text": "/"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.min-h-# > div.shrink-#.flex > button.round|C:\\IA\\Proyectos\\hermes movil\\mobile",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > div.flex.min-h-0 > div.shrink-0.flex > button.rounded.px-1.5",
+   "text": "C:\\IA\\Proyectos\\hermes movil\\mobile"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.shrink-#.flex > div.flex.shrink-# > button[data|New folder",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > div.shrink-0.flex > div.flex.shrink-0 > button[data-slot=button]",
+   "text": "New folder"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.shrink-#.flex > div.flex.shrink-# > button[data|Cancel",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > div.shrink-0.flex > div.flex.shrink-0 > button[data-slot=button]",
+   "text": "Cancel"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.shrink-#.flex > div.flex.shrink-# > button[data|Select folder",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > div.shrink-0.flex > div.flex.shrink-0 > button[data-slot=button]",
+   "text": "Select folder"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Ran code import json + # commands",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Ran code import json + 11 commands"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Loaded skill: systematic-debugging",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Loaded skill: systematic-debugging"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Analyzed image",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Analyzed image"
+  },
+  {
+   "key": "touch-target|div.relative.grid > div.max-w-#.overflow-hidden > span[data-slot=aui_m|Open image",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.relative.grid > div.max-w-72.overflow-hidden > span[data-slot=aui_markdown-image] > button.ref.font-medium",
+   "text": "Open image"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Ran false",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Ran false"
+  },
+  {
+   "key": "touch-target|div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anch|Restore checkpoint",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > div.pointer-events-none.absolute > button[data-slot=tooltip-trigger]",
+   "text": "Restore checkpoint"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Line two of the draft that is long enough to wrap around on the narrow",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Line two of the draft that is long enough to wrap around on the narrow cover scr"
+  },
+  {
+   "key": "touch-target|div[data-slot=dropdown-menu-content] > div.overflow-y-auto.py-#.# > di|Opus # MED",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=dropdown-menu-content] > div.overflow-y-auto.py-0.5 > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Opus 4 MED"
+  },
+  {
+   "key": "touch-target|article.group/artifact.overflow-hidden > div.space-y-#.#.p-# > div.fle|Chat",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "article.group/artifact.overflow-hidden > div.space-y-1.5.p-2 > div.flex.flex-wrap > button[data-slot=button]",
+   "text": "Chat"
+  },
+  {
+   "key": "touch-target|div.flex.w-full > div.flex.min-h-# > div.group/row.row-hover > button[|Weekly review",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.w-full > div.flex.min-h-0 > div.group/row.row-hover > button[data-slot=row-button]",
+   "text": "Weekly review"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div.pl-#.pr-# > span.min-w-#.fle|Fix the failing CI pipeline",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=context-menu-trigger] > div.pl-2.pr-2 > span.min-w-0.flex-1 > button[data-slot=row-button]",
+   "text": "Fix the failing CI pipeline"
+  },
+  {
+   "key": "touch-target|div.shrink-#.px-#.# > div[data-slot=profile-rail] > span[data-slot=con|default",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.shrink-0.px-0.5 > div[data-slot=profile-rail] > span[data-slot=context-menu-trigger] > button.inline-flex.shrink-0",
+   "text": "default"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Cron job",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Cron job"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Line three",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Line three"
+  },
+  {
+   "key": "touch-target|div.grid.w-full > div.flex.min-w-# > div.flex.min-w-# > button[data-sl|Med",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.grid.w-full > div.flex.min-w-0 > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "Med"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Hide Sessions",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Hide Sessions"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Hide Bots",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Hide Bots"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=context-menu-content] > div[data-slot=context-menu|Restore",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=context-menu-content] > div[data-slot=context-menu-item]",
+   "text": "Restore"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > header.grid.shrink-# > div.inline-flex.max-w-full >|Search skills",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > header.grid.shrink-0 > div.inline-flex.max-w-full > input.min-w-0.max-w-full",
+   "text": "Search skills"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > header.grid.shrink-# > div.flex.min-w-# > button[da|List view",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > header.grid.shrink-0 > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "List view"
+  },
+  {
+   "key": "text-collapsed|div[data-slot=pane-tab] > div.pane-tab-content.h-full > span.flex.h-fu|SCHEDULED JOBS",
+   "rule": "text-collapsed",
+   "severity": "medium",
+   "selector": "div[data-slot=pane-tab] > div.pane-tab-content.h-full > span.flex.h-full > span.block.min-w-0",
+   "text": "SCHEDULED JOBS"
+  },
+  {
+   "key": "scenario-failed|dialogs|Rename / delete / archive confirmation dialogs",
+   "rule": "scenario-failed",
+   "severity": "medium",
+   "selector": "dialogs",
+   "text": "Rename / delete / archive confirmation dialogs"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_assistant-message-root] > div[data-slot=aui_changed-|Review",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=aui_assistant-message-root] > div[data-slot=aui_changed-files] > div.flex.items-center > button.shrink-0.cursor-pointer",
+   "text": "Review"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_assistant-message-content] > form.my-#.#.grid > div.|Skip",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=aui_assistant-message-content] > form.my-1.5.grid > div.flex.items-center > button[data-slot=button]",
+   "text": "Skip"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Line four",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Line four"
+  },
+  {
+   "key": "touch-target|div[data-slot=dropdown-menu-content] > div.overflow-y-auto.py-#.# > di|Sonnet # MED",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=dropdown-menu-content] > div.overflow-y-auto.py-0.5 > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Sonnet 4 MED"
+  },
+  {
+   "key": "text-collapsed|main.mx-auto.flex > div.mb-#.flex > nav.flex.min-w-# > span.truncate.t|Saved credentials",
+   "rule": "text-collapsed",
+   "severity": "medium",
+   "selector": "main.mx-auto.flex > div.mb-3.flex > nav.flex.min-w-0 > span.truncate.text-foreground",
+   "text": "Saved credentials"
+  },
+  {
+   "key": "text-collapsed|main.mx-auto.flex > div.mb-#.flex > nav.flex.min-w-# > span.truncate.t|Persistent memory",
+   "rule": "text-collapsed",
+   "severity": "medium",
+   "selector": "main.mx-auto.flex > div.mb-3.flex > nav.flex.min-w-0 > span.truncate.text-foreground",
+   "text": "Persistent memory"
+  },
+  {
+   "key": "text-collapsed|main.mx-auto.flex > div.mb-#.flex > nav.flex.min-w-# > span.truncate.t|Key bindings",
+   "rule": "text-collapsed",
+   "severity": "medium",
+   "selector": "main.mx-auto.flex > div.mb-3.flex > nav.flex.min-w-0 > span.truncate.text-foreground",
+   "text": "Key bindings"
+  },
+  {
+   "key": "text-collapsed|div.px-#.py-#.# > section > div.group.flex > span.min-w-#.flex-#|Open command palette",
+   "rule": "text-collapsed",
+   "severity": "medium",
+   "selector": "div.px-2.py-1.5 > section > div.group.flex > span.min-w-0.flex-1",
+   "text": "Open command palette"
+  },
+  {
+   "key": "touch-target|div.flex.w-full > div.flex.min-h-# > div.group/row.row-hover > button[|Workday start reminder",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.w-full > div.flex.min-h-0 > div.group/row.row-hover > button[data-slot=row-button]",
+   "text": "Workday start reminder"
+  },
+  {
+   "key": "touch-target|div.flex.w-full > div.flex.min-h-# > div.group/row.row-hover > button[|Custom reminder",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.w-full > div.flex.min-h-0 > div.group/row.row-hover > button[data-slot=row-button]",
+   "text": "Custom reminder"
+  },
+  {
+   "key": "touch-target|div.flex.w-full > div.flex.min-h-# > div.group/row.row-hover > button[|Evening wind-down",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.w-full > div.flex.min-h-0 > div.group/row.row-hover > button[data-slot=row-button]",
+   "text": "Evening wind-down"
+  },
+  {
+   "key": "touch-target|div.flex.w-full > div.flex.min-h-# > div.group/row.row-hover > button[|Topic news digest",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.w-full > div.flex.min-h-0 > div.group/row.row-hover > button[data-slot=row-button]",
+   "text": "Topic news digest"
+  },
+  {
+   "key": "touch-target|aside.flex.min-h-# > div.flex.flex-col > div.inline-grid.w-fit > butto|All",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "aside.flex.min-h-0 > div.flex.flex-col > div.inline-grid.w-fit > button.flex.items-center",
+   "text": "All"
+  },
+  {
+   "key": "touch-target|aside.flex.min-h-# > div.flex.flex-col > div.inline-grid.w-fit > butto|Claude Code",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "aside.flex.min-h-0 > div.flex.flex-col > div.inline-grid.w-fit > button.flex.items-center",
+   "text": "Claude Code"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Project",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Project"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Copy path",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-item]",
+   "text": "Copy path"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Reveal in filetree",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-item]",
+   "text": "Reveal in filetree"
+  },
+  {
+   "key": "touch-target|div.col-start-#.min-w-# > div[data-slot=alert-description] > div.mt-#.|See what's new",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.col-start-2.min-w-0 > div[data-slot=alert-description] > div.mt-1.5.flex > button[data-slot=button]",
+   "text": "See what's new"
+  },
+  {
+   "key": "touch-target|div[data-slot=card-stack-surface] > div > div[data-slot=alert] > butto|Dismiss notification",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=card-stack-surface] > div > div[data-slot=alert] > button[data-slot=button]",
+   "text": "Dismiss notification"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Run a bunch of tools so I can see how each tool card looks.",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Run a bunch of tools so I can see how each tool card looks."
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Line five",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Line five"
+  },
+  {
+   "key": "touch-target|div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] |Line six",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=thread-timeline] > div[data-slot=thread-timeline-ticks] > div.thread-timeline-track > button[data-slot=tooltip-trigger]",
+   "text": "Line six"
+  },
+  {
+   "key": "touch-target|div[data-slot=dropdown-menu-content] > div.overflow-y-auto.py-#.# > di|Haiku #.# MED",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=dropdown-menu-content] > div.overflow-y-auto.py-0.5 > div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger]",
+   "text": "Haiku 4.5 MED"
+  },
+  {
+   "key": "text-collapsed|main.mx-auto.flex > div.mb-#.flex > nav.flex.min-w-# > span.truncate.t|Password managers",
+   "rule": "text-collapsed",
+   "severity": "medium",
+   "selector": "main.mx-auto.flex > div.mb-3.flex > nav.flex.min-w-0 > span.truncate.text-foreground",
+   "text": "Password managers"
+  },
+  {
+   "key": "text-collapsed|main.mx-auto.flex > div.mb-#.flex > nav.flex.min-w-# > span.truncate.t|Context & compression",
+   "rule": "text-collapsed",
+   "severity": "medium",
+   "selector": "main.mx-auto.flex > div.mb-3.flex > nav.flex.min-w-0 > span.truncate.text-foreground",
+   "text": "Context & compression"
+  },
+  {
+   "key": "text-collapsed|main.mx-auto.flex > div.mb-#.flex > nav.flex.min-w-# > span.truncate.t|HUD gesture",
+   "rule": "text-collapsed",
+   "severity": "medium",
+   "selector": "main.mx-auto.flex > div.mb-3.flex > nav.flex.min-w-0 > span.truncate.text-foreground",
+   "text": "HUD gesture"
+  },
+  {
+   "key": "text-collapsed|main.mx-auto.flex > div.mb-#.flex > nav.flex.min-w-# > span.truncate.t|Screen capture",
+   "rule": "text-collapsed",
+   "severity": "medium",
+   "selector": "main.mx-auto.flex > div.mb-3.flex > nav.flex.min-w-0 > span.truncate.text-foreground",
+   "text": "Screen capture"
+  },
+  {
+   "key": "touch-target|main.mx-auto.flex > div.mb-#.flex > nav.flex.min-w-# > button[data-slo|Model",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "main.mx-auto.flex > div.mb-3.flex > nav.flex.min-w-0 > button[data-slot=button]",
+   "text": "Model"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.min-w-# > span.relative.shrink-# > button[|claude-code",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > div.flex.min-w-0 > span.relative.shrink-0 > button[data-slot=switch]",
+   "text": "claude-code"
+  },
+  {
+   "key": "touch-target|span.flex.flex-col > span.flex.flex-wrap > span.inline-flex.max-w-full|Autonomous Ai Agents",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "span.flex.flex-col > span.flex.flex-wrap > span.inline-flex.max-w-full > button[data-slot=button]",
+   "text": "Autonomous Ai Agents"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.min-w-# > span.relative.shrink-# > button[|codex",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-h-0 > div.flex.min-w-0 > span.relative.shrink-0 > button[data-slot=switch]",
+   "text": "codex"
+  },
+  {
+   "key": "touch-target|div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary)|Opened example.com/very-long-path-segment-with-no-break-opportunity/ve",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div[data-slot=tool-block] > div.border-b.border-(--ui-stroke-tertiary) > div.group/disclosure-row.relative > button.flex.min-w-0",
+   "text": "Opened example.com/very-long-path-segment-with-no-break-opportunity/very-long-pa"
+  },
+  {
+   "key": "touch-target|div.flex.min-w-# > span.relative.shrink-# > span[data-slot=tooltip-tri|Add apple-notes",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "div.flex.min-w-0 > span.relative.shrink-0 > span[data-slot=tooltip-trigger] > button[data-slot=switch]",
+   "text": "Add apple-notes"
+  },
+  {
+   "key": "touch-target|span.flex.flex-col > span.flex.flex-wrap > span.inline-flex.max-w-full|Apple",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "span.flex.flex-col > span.flex.flex-wrap > span.inline-flex.max-w-full > button[data-slot=button]",
+   "text": "Apple"
+  },
+  {
+   "key": "touch-target|span.flex.flex-col > span.flex.flex-wrap > span.inline-flex.max-w-full|macOS",
+   "rule": "touch-target",
+   "severity": "medium",
+   "selector": "span.flex.flex-col > span.flex.flex-wrap > span.inline-flex.max-w-full > button[data-slot=button]",
+   "text": "macOS"
+  },
+  {
+   "key": "touch-target|div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tab|NEW SESSION",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tablist] > div[data-slot=pane-tab]",
+   "text": "NEW SESSION"
+  },
+  {
+   "key": "touch-target|div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tab|SESSIONS",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tablist] > div[data-slot=pane-tab]",
+   "text": "SESSIONS"
+  },
+  {
+   "key": "touch-target|div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tab|BOTS",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tablist] > div[data-slot=pane-tab]",
+   "text": "BOTS"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|UNTITLED SESSION",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "UNTITLED SESSION"
+  },
+  {
+   "key": "touch-target|div.relative.flex > div.pointer-events-none.absolute > div.pointer-eve|Close settings",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.flex > div.pointer-events-none.absolute > div.pointer-events-auto.absolute > button[data-slot=button]",
+   "text": "Close settings"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div.relative > button.row-hover|Model",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div.relative > button.row-hover.flex",
+   "text": "Model"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.flex > button[data-slot=tooltip-trigger]",
+   "text": ""
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|MARKDOWN SHOWCASE: TABLES, CODE, MATH, MERMAID, IMAGES",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "MARKDOWN SHOWCASE: TABLES, CODE, MATH, MERMAID, IMAGES"
+  },
+  {
+   "key": "tiny-text|div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-t|MED",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "div[data-slot=dropdown-menu-group] > div[data-slot=dropdown-menu-sub-trigger] > span.flex.min-w-0 > span[data-slot=badge]",
+   "text": "MED"
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li|New session Ctrl N",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li[data-slot=sidebar-menu-item] > button[data-slot=context-menu-trigger]",
+   "text": "New session Ctrl N"
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li|Capabilities",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li[data-slot=sidebar-menu-item] > button[data-slot=context-menu-trigger]",
+   "text": "Capabilities"
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li|Messaging",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li[data-slot=sidebar-menu-item] > button[data-slot=context-menu-trigger]",
+   "text": "Messaging"
+  },
+  {
+   "key": "tiny-text|span.flex.w-full > span.flex.min-w-# > span[data-slot=badge] > span.tr|Built In",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "span.flex.w-full > span.flex.min-w-0 > span[data-slot=badge] > span.truncate",
+   "text": "Built In"
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li|Artifacts",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li[data-slot=sidebar-menu-item] > button[data-slot=context-menu-trigger]",
+   "text": "Artifacts"
+  },
+  {
+   "key": "touch-target|div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li|Scheduled jobs",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=sidebar-group-content] > ul[data-slot=sidebar-menu] > li[data-slot=sidebar-menu-item] > button[data-slot=context-menu-trigger]",
+   "text": "Scheduled jobs"
+  },
+  {
+   "key": "touch-target|div.relative.flex > div.pointer-events-none.absolute > div.pointer-eve|Close command center",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.flex > div.pointer-events-none.absolute > div.pointer-events-auto.absolute > button[data-slot=button]",
+   "text": "Close command center"
+  },
+  {
+   "key": "tiny-text|div.flex.min-w-# > div.hidden.min-w-# > button.group/text-tab.inline-f|#",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "div.flex.min-w-0 > div.hidden.min-w-0 > button.group/text-tab.inline-flex > span.font-normal.text-(--ui-text-tertiary)",
+   "text": "51"
+  },
+  {
+   "key": "tiny-text|div.flex.min-h-# > span.flex.w-full > span.flex.min-w-# > span[data-sl|v#.#.#",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > span.flex.w-full > span.flex.min-w-0 > span[data-slot=badge]",
+   "text": "v1.0.1"
+  },
+  {
+   "key": "tiny-text|div[data-slot=tool-block] > div.relative.grid > div.flex.min-w-# > spa|exit #",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "div[data-slot=tool-block] > div.relative.grid > div.flex.min-w-0 > span.shrink-0.rounded",
+   "text": "exit 0"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div.relative > button.row-hover|Sessions",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div.relative > button.row-hover.flex",
+   "text": "Sessions"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Thanks! Now a short reply please.",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Thanks! Now a short reply please."
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|TOOL CARDS: TERMINAL, FILES, WEB, TODO, DELEGATE, UNKNOWN MCP",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "TOOL CARDS: TERMINAL, FILES, WEB, TODO, DELEGATE, UNKNOWN MCP"
+  },
+  {
+   "key": "touch-target|div.relative.min-h-# > div.pointer-events-none.absolute > div.pointer-|Close",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.min-h-0 > div.pointer-events-none.absolute > div.pointer-events-auto.absolute > button[data-slot=button]",
+   "text": "Close"
+  },
+  {
+   "key": "tiny-text|div.flex.min-h-# > div.flex.w-full > div.flex.min-h-# > div.font-mediu|BLUEPRINTS",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > div.flex.w-full > div.flex.min-h-0 > div.font-medium.uppercase",
+   "text": "BLUEPRINTS"
+  },
+  {
+   "key": "touch-target|div.relative.min-h-# > div.pointer-events-none.absolute > div.pointer-|Close cron",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.min-h-0 > div.pointer-events-none.absolute > div.pointer-events-auto.absolute > button[data-slot=button]",
+   "text": "Close cron"
+  },
+  {
+   "key": "tiny-text|header.space-y-# > div.min-w-# > div.flex.flex-wrap > span.inline-flex|Default",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "header.space-y-3 > div.min-w-0 > div.flex.flex-wrap > span.inline-flex.items-center",
+   "text": "Default"
+  },
+  {
+   "key": "touch-target|div.relative.min-h-# > div.pointer-events-none.absolute > div.pointer-|Close profiles",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.min-h-0 > div.pointer-events-none.absolute > div.pointer-events-auto.absolute > button[data-slot=button]",
+   "text": "Close profiles"
+  },
+  {
+   "key": "touch-target|div.relative.min-h-# > div.pointer-events-none.absolute > div.pointer-|Close agents",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.min-h-0 > div.pointer-events-none.absolute > div.pointer-events-auto.absolute > button[data-slot=button]",
+   "text": "Close agents"
+  },
+  {
+   "key": "touch-target|div.relative.min-h-# > div.pointer-events-none.absolute > div.pointer-|Close memory graph",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.min-h-0 > div.pointer-events-none.absolute > div.pointer-events-auto.absolute > button[data-slot=button]",
+   "text": "Close memory graph"
+  },
+  {
+   "key": "touch-target|div.absolute.inset-# > div.relative.isolate > div[data-slot=composer-b|# messages",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.absolute.inset-0 > div.relative.isolate > div[data-slot=composer-bounds] > button.thread-jump-button.absolute",
+   "text": "3 messages"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Sessions",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Sessions"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div.relative > button.row-hover|System",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div.relative > button.row-hover.flex",
+   "text": "System"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul > li.group.flex > button.min-w-#.flex-#|@@clarify audit run # oct #, #:#",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul > li.group.flex > button.min-w-0.flex-1",
+   "text": "@@clarify audit run 2 oct 2026, 12:44"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Run a bunch of tools so I can see how each tool card looks.",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Run a bunch of tools so I can see how each tool card looks."
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|VERY LONG CONVERSATION (# MESSAGES)",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "VERY LONG CONVERSATION (120 MESSAGES)"
+  },
+  {
+   "key": "touch-target|div.grid.min-h-# > div.grid.gap-# > div.grid.gap-# > button[data-slot=|Update now",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.min-h-0 > div.grid.gap-5 > div.grid.gap-2 > button[data-slot=button]",
+   "text": "Update now"
+  },
+  {
+   "key": "touch-target|div.grid.min-h-# > div.grid.gap-# > div.grid.gap-# > button[data-slot=|Maybe later",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.min-h-0 > div.grid.gap-5 > div.grid.gap-2 > button[data-slot=button]",
+   "text": "Maybe later"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Show me every markdown feature you support, including a very wide tabl",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Show me every markdown feature you support, including a very wide table and a di"
+  },
+  {
+   "key": "touch-target|div.mb-#.flex > div.flex.shrink-# > div.inline-flex.min-w-# > input.h-|Search sessions, views, and actions",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.mb-3.flex > div.flex.shrink-0 > div.inline-flex.min-w-0 > input.h-7.min-w-0",
+   "text": "Search sessions, views, and actions"
+  },
+  {
+   "key": "touch-target|tbody > tr.group/artifact > td.align-middle.p-# > a.ref.flex|example.com",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "tbody > tr.group/artifact > td.align-middle.p-0 > a.ref.flex",
+   "text": "example.com"
+  },
+  {
+   "key": "tiny-text|section.flex.flex-col > div.sticky.top-# > div.flex.h-# > div.shrink-#|#-# of # items",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "section.flex.flex-col > div.sticky.top-0 > div.flex.h-6 > div.shrink-0.text-muted-foreground",
+   "text": "1-12 of 12 items"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|TEXTO INTERNACIONAL 日本語 中文 العربية 🚀 EMOJI",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "TEXTO INTERNACIONAL 日本語 中文 العربية 🚀 EMOJI"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|THINKING BLOCKS AND REASONING",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "THINKING BLOCKS AND REASONING"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|And the short answer?",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "And the short answer?"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|EDGE CASES",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "EDGE CASES"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|@@APPROVAL AUDIT RUN",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "@@APPROVAL AUDIT RUN"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|@@approval audit run",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "@@approval audit run"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|@@think audit run",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "@@think audit run"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|@@ERROR AUDIT RUN",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "@@ERROR AUDIT RUN"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|@@error audit run",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "@@error audit run"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|@@slow audit run",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "@@slow audit run"
+  },
+  {
+   "key": "touch-target|div[role=dialog] > div[data-slot=command] > button.flex.w-full|Back / Settings",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[role=dialog] > div[data-slot=command] > button.flex.w-full",
+   "text": "Back / Settings"
+  },
+  {
+   "key": "tiny-text|div.flex.min-w-# > div > button[data-slot=dropdown-menu-trigger] > spa|#",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "div.flex.min-w-0 > div > button[data-slot=dropdown-menu-trigger] > span.font-normal.text-(--ui-text-tertiary)",
+   "text": "51"
+  },
+  {
+   "key": "tiny-text|div.text-sm > div.border-t.border-border/# > div.flex.items-center > d|RECENT ACTIVITY",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "div.text-sm > div.border-t.border-border/50 > div.flex.items-center > div.font-semibold.uppercase",
+   "text": "RECENT ACTIVITY"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Manual Ask before actions that require approval",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-radio-group] > div[data-slot=dropdown-menu-radio-item]",
+   "text": "Manual Ask before actions that require approval"
+  },
+  {
+   "key": "touch-target|div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-me|Off Run without approval prompts",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div > div[data-slot=dropdown-menu-content] > div[data-slot=dropdown-menu-radio-group] > div[data-slot=dropdown-menu-radio-item]",
+   "text": "Off Run without approval prompts"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|HERE IS A **STREAMING** ANSWER WITH `INLINE CODE` ##",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "HERE IS A **STREAMING** ANSWER WITH `INLINE CODE` #2"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.w-full > div.inline-flex.min-w-# > input.h|Search cron jobs...",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > div.flex.w-full > div.inline-flex.min-w-0 > input.h-7.min-w-0",
+   "text": "Search cron jobs..."
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.w-full > div.flex.min-h-# > button[data-sl|New cron",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > div.flex.w-full > div.flex.min-h-0 > button[data-slot=tooltip-trigger]",
+   "text": "New cron"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.w-full > div.inline-flex.min-w-# > input.h|Search profiles...",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > div.flex.w-full > div.inline-flex.min-w-0 > input.h-7.min-w-0",
+   "text": "Search profiles..."
+  },
+  {
+   "key": "touch-target|div.flex.w-full > div.flex.min-h-# > div[data-slot=context-menu-trigge|default",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.flex.w-full > div.flex.min-h-0 > div[data-slot=context-menu-trigger] > button[data-slot=row-button]",
+   "text": "default"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.w-full > div.flex.min-h-# > button[data-sl|New profile",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > div.flex.w-full > div.flex.min-h-0 > button[data-slot=tooltip-trigger]",
+   "text": "New profile"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div.inline-flex.min-w-# > i|Search messaging...",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div.inline-flex.min-w-0 > input.h-7.min-w-0",
+   "text": "Search messaging..."
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul.space-y-# > li > button.row-hover.flex|Telegram",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul.space-y-1 > li > button.row-hover.flex",
+   "text": "Telegram"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div.inline-flex.min-w-# > i|Search artifacts...",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div.inline-flex.min-w-0 > input.h-7.min-w-0",
+   "text": "Search artifacts..."
+  },
+  {
+   "key": "tiny-text|section.flex.flex-col > div.sticky.top-# > div.flex.h-# > div.shrink-#|#-# of # images",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "section.flex.flex-col > div.sticky.top-0 > div.flex.h-6 > div.shrink-0.text-muted-foreground",
+   "text": "1-2 of 2 images"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|¿Puedes escribir texto en varios idiomas? 日本語、中文、العربية y emoji 🚀",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "¿Puedes escribir texto en varios idiomas? 日本語、中文、العربية y emoji 🚀"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Compare a local WebView against a remote renderer.",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Compare a local WebView against a remote renderer."
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|@@SLOW AUDIT RUN",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "@@SLOW AUDIT RUN"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|/new Start a new desktop chat (usage: /new [name])",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button[data-slot=tooltip-trigger]",
+   "text": "/new Start a new desktop chat (usage: /new [name])"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|/save Save the current transcript to JSON (usage: /save <json|md|html>",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button[data-slot=tooltip-trigger]",
+   "text": "/save Save the current transcript to JSON (usage: /save <json|md|html> [filename"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|/retry Retry the last message (resend to agent)",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button[data-slot=tooltip-trigger]",
+   "text": "/retry Retry the last message (resend to agent)"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|FIX THE FAILING CI PIPELINE ##",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "FIX THE FAILING CI PIPELINE #2"
+  },
+  {
+   "key": "touch-target|div[data-slot=code-card-body] > div.relative > div.pointer-events-none|Expand",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=code-card-body] > div.relative > div.pointer-events-none.absolute > button.pointer-events-auto.flex",
+   "text": "Expand"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|EXTREMELY LONG SESSION TITLE THAT KEEPS GOING AND GOING AND GOING WITH",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "EXTREMELY LONG SESSION TITLE THAT KEEPS GOING AND GOING AND GOING WITHOUT END TO"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Short question",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Short question"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|@@CLARIFY AUDIT RUN",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "@@CLARIFY AUDIT RUN"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|@@clarify audit run",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "@@clarify audit run"
+  },
+  {
+   "key": "touch-target|div[data-slot=clarify-inline] > div.grid.gap-# > div[role=group] > but|A staging (Recommended)",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=clarify-inline] > div.grid.gap-1 > div[role=group] > button.flex.w-full",
+   "text": "A staging (Recommended)"
+  },
+  {
+   "key": "touch-target|div[data-slot=clarify-inline] > div.grid.gap-# > div[role=group] > but|B production",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=clarify-inline] > div.grid.gap-1 > div[role=group] > button.flex.w-full",
+   "text": "B production"
+  },
+  {
+   "key": "touch-target|div[data-slot=clarify-inline] > div.grid.gap-# > div[role=group] > but|A lint (Recommended)",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=clarify-inline] > div.grid.gap-1 > div[role=group] > button.flex.w-full",
+   "text": "A lint (Recommended)"
+  },
+  {
+   "key": "touch-target|div[data-slot=clarify-inline] > div.grid.gap-# > div[role=group] > but|B unit tests",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=clarify-inline] > div.grid.gap-1 > div[role=group] > button.flex.w-full",
+   "text": "B unit tests"
+  },
+  {
+   "key": "touch-target|div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tab|/",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tablist] > div[data-slot=pane-tab]",
+   "text": "/"
+  },
+  {
+   "key": "touch-target|div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tab|@",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.flex > div[data-slot=context-menu-trigger] > div[role=tablist] > div[data-slot=pane-tab]",
+   "text": "@"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|@diff git diff",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button.relative.flex",
+   "text": "@diff git diff"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|@staged staged diff",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button.relative.flex",
+   "text": "@staged staged diff"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|@file: attach file",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button.relative.flex",
+   "text": "@file: attach file"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Line three",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Line three"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Line four",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Line four"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Line five",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Line five"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Line six",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Line six"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Main model",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Main model"
+  },
+  {
+   "key": "touch-target|div.@container/catalog.flex > div.flex.min-h-# > aside.flex.min-h-# > |All sources",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.@container/catalog.flex > div.flex.min-h-0 > aside.flex.min-h-0 > button.row-hover.flex",
+   "text": "All sources"
+  },
+  {
+   "key": "touch-target|div.@container/catalog.flex > div.flex.min-h-# > aside.flex.min-h-# > |Installed",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.@container/catalog.flex > div.flex.min-h-0 > aside.flex.min-h-0 > button.row-hover.flex",
+   "text": "Installed"
+  },
+  {
+   "key": "touch-target|div.@container/catalog.flex > div.flex.min-h-# > aside.flex.min-h-# > |Built In",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.@container/catalog.flex > div.flex.min-h-0 > aside.flex.min-h-0 > button.row-hover.flex",
+   "text": "Built In"
+  },
+  {
+   "key": "touch-target|div.@container/catalog.flex > div.flex.min-h-# > aside.flex.min-h-# > |Optional",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.@container/catalog.flex > div.flex.min-h-0 > aside.flex.min-h-0 > button.row-hover.flex",
+   "text": "Optional"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul.space-y-# > li > button.row-hover.flex|Discord",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul.space-y-1 > li > button.row-hover.flex",
+   "text": "Discord"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul.space-y-# > li > button.row-hover.flex|S Slack",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul.space-y-1 > li > button.row-hover.flex",
+   "text": "S Slack"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul.space-y-# > li > button.row-hover.flex|Mattermost",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul.space-y-1 > li > button.row-hover.flex",
+   "text": "Mattermost"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul.space-y-# > li > button.row-hover.flex|Matrix",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul.space-y-1 > li > button.row-hover.flex",
+   "text": "Matrix"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul.space-y-# > li > button.row-hover.flex|WhatsApp",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul.space-y-1 > li > button.row-hover.flex",
+   "text": "WhatsApp"
+  },
+  {
+   "key": "touch-target|div.shrink-# > div.grid.items-center > div.flex.min-w-# > button[data-|Refresh artifacts",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.shrink-0 > div.grid.items-center > div.flex.min-w-0 > button[data-slot=tooltip-trigger]",
+   "text": "Refresh artifacts"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.min-h-# > div.min-h-#.flex-# > button.row-|..",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > div.flex.min-h-0 > div.min-h-0.flex-1 > button.row-hover.flex",
+   "text": ".."
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.min-h-# > div.min-h-#.flex-# > button.row-|android",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > div.flex.min-h-0 > div.min-h-0.flex-1 > button.row-hover.flex",
+   "text": "android"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.min-h-# > div.min-h-#.flex-# > button.row-|src",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > div.flex.min-h-0 > div.min-h-0.flex-1 > button.row-hover.flex",
+   "text": "src"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.min-h-# > div.min-h-#.flex-# > button.row-|test",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > div.flex.min-h-0 > div.min-h-0.flex-1 > button.row-hover.flex",
+   "text": "test"
+  },
+  {
+   "key": "touch-target|div.flex.min-h-# > div.flex.min-h-# > div.min-h-#.flex-# > button.row-|ui-audit",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > div.flex.min-h-0 > div.min-h-0.flex-1 > button.row-hover.flex",
+   "text": "ui-audit"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|@@THINK AUDIT RUN",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "@@THINK AUDIT RUN"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|/moa Run one prompt through the default Mixture of Agents preset, then",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button[data-slot=tooltip-trigger]",
+   "text": "/moa Run one prompt through the default Mixture of Agents preset, then restore y"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|/status Show current session status",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button[data-slot=tooltip-trigger]",
+   "text": "/status Show current session status"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|/codex-runtime Toggle codex app-server runtime for OpenAI/Codex models",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button[data-slot=tooltip-trigger]",
+   "text": "/codex-runtime Toggle codex app-server runtime for OpenAI/Codex models (usage: /"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|A LONG MULTI-LINE DRAFT. ##",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "A LONG MULTI-LINE DRAFT. #2"
+  },
+  {
+   "key": "tiny-text|div.flex.min-h-# > section > div.mt-#.flex > span|#-#-#",
+   "rule": "tiny-text",
+   "severity": "low",
+   "selector": "div.flex.min-h-0 > section > div.mt-1.flex > span",
+   "text": "2026-09-18"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul > li.group.flex > button.min-w-#.flex-#|@@approval audit run # oct #, #:#",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul > li.group.flex > button.min-w-0.flex-1",
+   "text": "@@approval audit run 2 oct 2026, 12:44"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div.hidden.min-w-# > button|Skills #",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div.hidden.min-w-0 > button.group/text-tab.inline-flex",
+   "text": "Skills 51"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div.hidden.min-w-# > button|Tools #",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div.hidden.min-w-0 > button.group/text-tab.inline-flex",
+   "text": "Tools 25"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div > button[data-slot=drop|Skills #",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div > button[data-slot=dropdown-menu-trigger]",
+   "text": "Skills 51"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div.hidden.min-w-# > button|All #",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div.hidden.min-w-0 > button.group/text-tab.inline-flex",
+   "text": "All 14"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div > button[data-slot=drop|All #",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div > button[data-slot=dropdown-menu-trigger]",
+   "text": "All 14"
+  },
+  {
+   "key": "touch-target|div.relative.flex > div.pointer-events-none.absolute > div.pointer-eve|Refresh",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.flex > div.pointer-events-none.absolute > div.pointer-events-auto.absolute > button[data-slot=button]",
+   "text": "Refresh"
+  },
+  {
+   "key": "touch-target|div.absolute.inset-# > div.relative.isolate > div[data-slot=composer-b|# message",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.absolute.inset-0 > div.relative.isolate > div[data-slot=composer-bounds] > button.thread-jump-button.absolute",
+   "text": "1 message"
+  },
+  {
+   "key": "touch-target|div[data-slot=clarify-inline] > div.grid.gap-# > div[role=group] > but|C e#e",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=clarify-inline] > div.grid.gap-1 > div[role=group] > button.flex.w-full",
+   "text": "C e2e"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|/prompt Compose your next prompt in $EDITOR (markdown), then send it (",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button[data-slot=tooltip-trigger]",
+   "text": "/prompt Compose your next prompt in $EDITOR (markdown), then send it (usage: /pr"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|/undo Back up N user turns and re-prompt (default #) (usage: /undo [N]",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button[data-slot=tooltip-trigger]",
+   "text": "/undo Back up N user turns and re-prompt (default 1) (usage: /undo [N])"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|A long multi-line draft.",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "A long multi-line draft."
+  },
+  {
+   "key": "touch-target|div[data-slot=clarify-inline] > div.grid.gap-# > div[role=group] > but|C a very long option label that keeps going to see how choice buttons ",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=clarify-inline] > div.grid.gap-1 > div[role=group] > button.flex.w-full",
+   "text": "C a very long option label that keeps going to see how choice buttons wrap on a "
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|a queued follow-up message that is long enough to wrap onto a second l",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "a queued follow-up message that is long enough to wrap onto a second line in the"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|@folder: attach folder",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button.relative.flex",
+   "text": "@folder: attach folder"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|@url: fetch url",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button.relative.flex",
+   "text": "@url: fetch url"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div.relative > button.row-hover|Usage",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div.relative > button.row-hover.flex",
+   "text": "Usage"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div.relative > button.row-hover|Maintenance",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div.relative > button.row-hover.flex",
+   "text": "Maintenance"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Behavior",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Behavior"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|General",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "General"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Projects & discovery",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Projects & discovery"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Approvals",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Approvals"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Browser profile",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Browser profile"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Saved credentials",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Saved credentials"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Persistent memory",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Persistent memory"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Voice conversation",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Voice conversation"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Desktop & startup",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Desktop & startup"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Desktop alerts",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Desktop alerts"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Overview",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Overview"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Accounts",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Accounts"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|This window",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "This window"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Key bindings",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Key bindings"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Tools",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Tools"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Archive & retention",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Archive & retention"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Version & updates",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Version & updates"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div.hidden.min-w-# > button|Connectors",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div.hidden.min-w-0 > button.group/text-tab.inline-flex",
+   "text": "Connectors"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div.hidden.min-w-# > button|Plugins",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div.hidden.min-w-0 > button.group/text-tab.inline-flex",
+   "text": "Plugins"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul.space-y-# > li > button.row-hover.flex|Signal",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul.space-y-1 > li > button.row-hover.flex",
+   "text": "Signal"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul.space-y-# > li > button.row-hover.flex|BlueBubbles (iMessage)",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul.space-y-1 > li > button.row-hover.flex",
+   "text": "BlueBubbles (iMessage)"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul.space-y-# > li > button.row-hover.flex|Home Assistant",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul.space-y-1 > li > button.row-hover.flex",
+   "text": "Home Assistant"
+  },
+  {
+   "key": "touch-target|div.min-h-#.flex-# > ul.space-y-# > li > button.row-hover.flex|Email",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.min-h-0.flex-1 > ul.space-y-1 > li > button.row-hover.flex",
+   "text": "Email"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div.hidden.min-w-# > button|Images #",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div.hidden.min-w-0 > button.group/text-tab.inline-flex",
+   "text": "Images 2"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div.hidden.min-w-# > button|Files #",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div.hidden.min-w-0 > button.group/text-tab.inline-flex",
+   "text": "Files 0"
+  },
+  {
+   "key": "touch-target|div.grid.items-center > div.flex.min-w-# > div.hidden.min-w-# > button|Links #",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.items-center > div.flex.min-w-0 > div.hidden.min-w-0 > button.group/text-tab.inline-flex",
+   "text": "Links 12"
+  },
+  {
+   "key": "touch-target|div.relative.flex > div.pointer-events-none.absolute > div.pointer-eve|Close",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.relative.flex > div.pointer-events-none.absolute > div.pointer-events-auto.absolute > button[data-slot=button]",
+   "text": "Close"
+  },
+  {
+   "key": "touch-target|div[data-slot=dialog-content] > div.grid.min-h-# > div[data-slot=dialo|Cancel",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=dialog-content] > div.grid.min-h-0 > div[data-slot=dialog-footer] > button[data-slot=button]",
+   "text": "Cancel"
+  },
+  {
+   "key": "touch-target|div[data-slot=dialog-content] > div.grid.min-h-# > div[data-slot=dialo|Save",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=dialog-content] > div.grid.min-h-0 > div[data-slot=dialog-footer] > button[data-slot=button]",
+   "text": "Save"
+  },
+  {
+   "key": "touch-target|div.absolute.inset-# > div.relative.isolate > div[data-slot=composer-b|Scroll to bottom",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.absolute.inset-0 > div.relative.isolate > div[data-slot=composer-bounds] > button.thread-jump-button.absolute",
+   "text": "Scroll to bottom"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|HERE IS A **STREAMING** ANSWER WITH `INLINE CODE`",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "HERE IS A **STREAMING** ANSWER WITH `INLINE CODE`"
+  },
+  {
+   "key": "touch-target|div[data-slot=context-menu-trigger] > div[role=tablist] > span.content|A LONG MULTI-LINE DRAFT.",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=context-menu-trigger] > div[role=tablist] > span.contents > div[data-slot=context-menu-trigger]",
+   "text": "A LONG MULTI-LINE DRAFT."
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div#_r_vo_-config:model > butto|Main model",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div#_r_vo_-config:model > button.row-hover.flex",
+   "text": "Main model"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div#_r_vo_-config:model > butto|Fallback models",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div#_r_vo_-config:model > button.row-hover.flex",
+   "text": "Fallback models"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div#_r_vo_-config:model > butto|Auxiliary models",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div#_r_vo_-config:model > button.row-hover.flex",
+   "text": "Auxiliary models"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div#_r_vo_-config:model > butto|Mixture of Agents",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div#_r_vo_-config:model > button.row-hover.flex",
+   "text": "Mixture of Agents"
+  },
+  {
+   "key": "touch-target|div.grid.gap-# > section > div.flex.flex-wrap > button[data-slot=selec|Custom endpoint",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.gap-6 > section > div.flex.flex-wrap > button[data-slot=select-trigger]",
+   "text": "Custom endpoint"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Fallback models",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Fallback models"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Auxiliary models",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Auxiliary models"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Mixture of Agents",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Mixture of Agents"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Attachments",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Attachments"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Theme",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Theme"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Typography",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Typography"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Window & layout",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Window & layout"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Chat display",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Chat display"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Pet",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Pet"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Shell environment",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Shell environment"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Files & execution",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Files & execution"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Privacy & network",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Privacy & network"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Checkpoints",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Checkpoints"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Local & private URLs",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Local & private URLs"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Password managers",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Password managers"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Context & compression",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Context & compression"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Speech to text",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Speech to text"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Text to speech",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Text to speech"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Agent limits",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Agent limits"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Tool access",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Tool access"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Terminal backend",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Terminal backend"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Subagents",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Subagents"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Output limits",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Output limits"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Sounds",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Sounds"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|API keys",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "API keys"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Custom Endpoints",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Custom Endpoints"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Saved connections",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Saved connections"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Remote updates",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Remote updates"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|HUD gesture",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "HUD gesture"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Screen capture",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Screen capture"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Settings",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Settings"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Default project folder",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Default project folder"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > div.pointer-events-none.relative > div.pointer-event|Uninstall",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > div.pointer-events-none.relative > div.pointer-events-auto.min-w-0 > button[data-slot=dropdown-menu-trigger]",
+   "text": "Uninstall"
+  },
+  {
+   "key": "touch-target|article.group/artifact.overflow-hidden > div.relative.flex > span[data|Download image",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "article.group/artifact.overflow-hidden > div.relative.flex > span[data-slot=artifact-media] > button.absolute.right-2",
+   "text": "Download image"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|/yolo Toggle YOLO — auto-approve dangerous commands",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button[data-slot=tooltip-trigger]",
+   "text": "/yolo Toggle YOLO — auto-approve dangerous commands"
+  },
+  {
+   "key": "touch-target|div[data-slot=composer-dock] > form[data-slot=composer-root] > div[dat|/approvals Show or set the persistent dangerous-command approval mode ",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=composer-dock] > form[data-slot=composer-root] > div[data-slot=composer-completion-drawer] > button[data-slot=tooltip-trigger]",
+   "text": "/approvals Show or set the persistent dangerous-command approval mode (usage: /a"
+  },
+  {
+   "key": "touch-target|div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-|Line two of the draft that is long enough to wrap around on the narrow",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div[data-slot=aui_user-bubble-actions] > div.human-message-with-todos-wrapper.flex > div[data-slot=popover-anchor] > button.composer-human-message.standalone-glass",
+   "text": "Line two of the draft that is long enough to wrap around on the narrow cover scr"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div#_r_#_-config:model > button|Main model",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div#_r_134_-config:model > button.row-hover.flex",
+   "text": "Main model"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div#_r_#_-config:model > button|Fallback models",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div#_r_134_-config:model > button.row-hover.flex",
+   "text": "Fallback models"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div#_r_#_-config:model > button|Auxiliary models",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div#_r_134_-config:model > button.row-hover.flex",
+   "text": "Auxiliary models"
+  },
+  {
+   "key": "touch-target|div.grid.h-full > aside.flex.min-h-# > div#_r_#_-config:model > button|Mixture of Agents",
+   "rule": "touch-target",
+   "severity": "low",
+   "selector": "div.grid.h-full > aside.flex.min-h-0 > div#_r_134_-config:model > button.row-hover.flex",
+   "text": "Mixture of Agents"
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2023"],
+    "types": ["node", "vite/client"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@/main": ["./src/types/desktop-main.d.ts"],
+      "@/*": ["../upstream/apps/desktop/src/*"],
+      "@hermes/plugin-sdk": ["../upstream/apps/desktop/src/sdk/index.ts"],
+      "@hermes/shared/ansi": ["../upstream/apps/shared/src/ansi.ts"],
+      "@hermes/shared/billing": ["../upstream/apps/shared/src/billing-types.ts"],
+      "@hermes/shared/color": ["../upstream/apps/shared/src/color.ts"],
+      "@hermes/shared/i18n": ["../upstream/apps/shared/src/i18n.ts"],
+      "@hermes/shared/skin": ["../upstream/apps/shared/src/skin.ts"],
+      "@hermes/shared/translucency": ["../upstream/apps/shared/src/translucency.ts"],
+      "@hermes/shared": ["../upstream/apps/shared/src/index.ts"]
+    }
+  },
+  "include": ["src", "test", "vite.config.ts", "vitest.config.ts", "vitest.e2e.config.ts", "build-constants.ts", "capacitor.config.ts"]
+}

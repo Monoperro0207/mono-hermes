@@ -1,0 +1,89 @@
+# How Mono Hermes works
+
+`window.hermesDesktop` is the only door the Hermes desktop renderer uses to reach its backend
+(`electron/preload.ts`, typed in `src/global.d.ts`). `mobile/src/entry.ts` installs a
+Capacitor-backed implementation of it **before** importing the untouched
+`upstream/apps/desktop/src/main.tsx`.
+
+| File (`mobile/src/bridge/`) | Concern |
+|---|---|
+| `install.ts` | Typed composition root. The literal is checked against upstream's `Window['hermesDesktop']`, so a new required member upstream is a **compile error** (drift detection). |
+| `auth.ts` | Native bearer login (below), refresh, single-flight rotation. |
+| `api.ts` | `api()` = Electron's `hermes:api`: bearer REST, `?profile=` scoping, `"<status>: <body>"` errors. |
+| `gateway-ws.ts` | Mints a fresh single-use ticket per WebSocket dial. |
+| `platform.ts`, `local-files.ts`, `media.ts` | Browser, clipboard, notifications, mic, keep-awake, downloads/share, file picker, `hermes-media://`. |
+| `stubs.ts` | Desktop-only surface (local backend, updater, terminal, git, windows, HUD, Cloud). |
+| `connection.ts`, `storage.ts` | The one saved server + tokens sealed with a non-extractable AES-GCM key. |
+
+Outside the bridge: `mobile/src/mobile.css` (phone layout adaptations, each block names the upstream
+behaviour it compensates for), `composer-touch.ts` (Enter inserts a newline on touch screens),
+`compat.ts` / `compat-notice.ts` (server-version notice), `connect-screen.ts` (login screen).
+
+## Login
+
+The gateway brokers a native-app flow that works for the password provider without a browser:
+`GET /auth/native/authorize` (PKCE S256, loopback redirect URI that is never fetched) -> 302 to
+`/login` plus a broker cookie -> `POST /auth/password-login` returns the loopback URL carrying
+`code`+`state` -> `POST /auth/native/token` yields `access_token`/`refresh_token`. REST then uses
+`Authorization: Bearer`, refreshing through `/auth/native/refresh` on expiry or 401. WebSockets use
+`POST /api/auth/ws-ticket` -> `/api/ws?ticket=` (30 s, single use, never cached).
+
+## Why native HTTP instead of `fetch`
+
+The WebView origin is `http://localhost`, which the gateway's CORS allows - but its auth gate answers
+the credential-less CORS preflight of any authenticated route with 401, so a cross-origin `fetch`
+with an `Authorization` header cannot work. The login also needs the raw `Set-Cookie` header and a
+non-followed redirect. Capacitor's native HTTP (`HttpURLConnection`) has none of those limits. Plain
+`fetch` is only used by the dev harness / tests (`createFetchTransport`).
+
+## Transport policy
+
+Plain `http://` is only accepted for Tailscale (`100.64.0.0/10`, `*.ts.net`), LAN and loopback hosts
+(`src/bridge/util.ts`). Android's network security config cannot express a CIDR range, so cleartext is
+allowed there and enforced in the app instead. `https://` works anywhere.
+
+## Versions
+
+- App version: `mobile/package.json` `version` (Android versionName; versionCode = major*10000 + minor*100 + patch).
+- Pinned Hermes: `mobile/upstream-pin.json` (`commit` + `backendVersion`), written by
+  `scripts/update-upstream.*` and verified against the submodule by `scripts/upstream-pin.mjs check`.
+  Both reach the app as build-time constants (`mobile/build-constants.ts` -> `src/build-info.ts`).
+- Compatibility notice: after connecting, the app reads `version` from `GET /api/status`. If the server
+  is newer by a minor/major version, or older than the pinned backend version, it shows one dismissible
+  notice (remembered per server version).
+
+## Security notes
+
+- Tokens are sealed with a non-extractable AES-GCM key (IndexedDB) and stored in Preferences; Android
+  backup/transfer is disabled. This stops casual inspection, not a rooted device.
+- The server only ever sees bearer tokens/tickets; the password is sent once, at login.
+- `dashboard.basic_auth` passwords are rate limited by the gateway (10 attempts/minute/IP).
+- Keep the firewall rule limited to the Tailscale range.
+
+## UI audit
+
+`npm run ui:audit` (in `mobile/`) drives the REAL renderer (the same bundle the APK ships) in Chromium
+with touch + mobile emulation at several phone/foldable/tablet viewports, using a mock OpenAI-compatible
+model and a seeded throwaway Hermes home so the real gateway produces streaming turns, approvals, errors,
+long threads, tables, code, math, RTL text, and every tool-card kind. Every state in
+`ui-audit/scenarios.mjs` is screenshotted into `mobile/ui-audit/screens/<viewport>/` (git-ignored) and
+checked in the page: text fit (with [pretext](https://github.com/chenglou/pretext)), horizontal overflow,
+off-screen or overlapping controls, touch targets under 44px, hover-only controls, dialogs taller than
+the screen, console errors, and soft-keyboard composer visibility.
+
+Output: `ui-audit/REPORT.md` + `report.json`. `ui-audit/waivers.json` lists accepted findings with their
+reasons; `ui-audit/baseline.json` is the pre-fix run so the report also lists what was fixed;
+`ui-audit/INVENTORY.md` is the screen/state inventory. The report generator redacts the local home
+directory from anything it writes. Re-run it after every upstream update: new upstream layout bugs show
+up as new issues.
+
+```
+cd mobile
+npm run ui:audit                         # build + throwaway gateway + Playwright, ~10 min
+npm run ui:audit -- --viewports fold-cover,phone --only settings,session-tools
+npm run ui:audit -- --no-build           # reuse mobile/dist
+```
+
+Real-WebView spot check (emulator or phone, debug APK): `node ui-audit/device-server.mjs` starts the
+seeded throwaway gateway for `10.0.2.2`, `node ui-audit/device-shots.mjs cover|inner` drives the app
+through its debuggable WebView and saves `adb screencap` images into `ui-audit/device/`.
