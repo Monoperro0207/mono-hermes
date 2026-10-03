@@ -20,6 +20,13 @@ server, so sessions, streaming turns and history are shared live.
                                                  └──────────────────────────┘
 ```
 
+## Quick setup
+
+- **Step by step guide** (Windows, macOS, Linux; Tailscale, firewall, autostart, troubleshooting): [docs/SETUP.md](docs/SETUP.md)
+- **Let an AI agent do the PC side** (paste one prompt into Hermes, Claude Code, Codex...): [docs/agent-setup-prompt.md](docs/agent-setup-prompt.md)
+
+Then install the APK from [Releases](../../releases) and connect (see [Phone setup](#2-phone-setup)).
+
 ## Screenshots
 
 | Cover screen | Sidebar | Unfolded (settings) |
@@ -35,6 +42,8 @@ server, so sessions, streaming turns and history are shared live.
 - Android 7.0+ (a recent WebView, Chrome 111+)
 
 ## 1. PC setup (once)
+
+> Condensed version. The full guide with autostart files and troubleshooting is [docs/SETUP.md](docs/SETUP.md).
 
 **Install Hermes** with its official installer ([docs](https://github.com/NousResearch/hermes-agent#readme)):
 `curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash` (macOS/Linux) or
