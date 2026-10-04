@@ -24,12 +24,12 @@ streaming turns and history are shared live.
 
 ## Demo
 
-<p align="center">
-  <a href="docs/media/mono-hermes-demo.mp4"><img src="docs/media/mono-hermes-demo-preview.gif" alt="Mono Hermes demo (6x speed preview)" width="320"></a><br>
-  <sub>6x preview. <a href="docs/media/mono-hermes-demo.mp4">Watch the full 1:36 demo</a> (screen-recorded on a Samsung Galaxy Tab S8 Ultra with the display at 2K resolution, which is why the full desktop layout shows; private content blurred).</sub>
-</p>
+| Tablet | Phone |
+|:---:|:---:|
+| <a href="docs/media/mono-hermes-demo.mp4"><img src="docs/media/mono-hermes-demo-preview.gif" alt="Mono Hermes on a tablet (6x preview)" width="300"></a> | <a href="docs/media/mono-hermes-phone-demo.mp4"><img src="docs/media/mono-hermes-phone-demo-preview.gif" alt="Mono Hermes on a phone (4x preview)" width="200"></a> |
+| <sub>6x preview. <a href="docs/media/mono-hermes-demo.mp4">Full 1:36 demo</a>, Samsung Galaxy Tab S8 Ultra with the display at 2K resolution (that's why the full desktop layout shows).</sub> | <sub>4x preview. <a href="docs/media/mono-hermes-phone-demo.mp4">Full 1:05 demo</a> on a regular (non-foldable) phone.</sub> |
 
-<!-- phone demo: added later -->
+<sub>Real devices; private content blurred.</sub>
 
 | Cover screen | Sidebar | Unfolded (settings) |
 |---|---|---|
