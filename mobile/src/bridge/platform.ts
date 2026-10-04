@@ -10,7 +10,7 @@
 import type { AuthSession } from './auth'
 import type { HttpTransport } from './http'
 import { isMobileFilePath, readAsDataUrl, readDataUrl, readText, registerFile } from './local-files'
-import { errorMessage } from './util'
+import { classifyHost, errorMessage } from './util'
 
 type HermesNotification = Parameters<Window['hermesDesktop']['notify']>[0]
 
@@ -371,14 +371,77 @@ export function saveImageBuffer(data: ArrayBuffer | Uint8Array, ext: string, nam
   return Promise.resolve(registerFile(new Blob([bytes as BlobPart]), filename))
 }
 
+const LINK_TITLE_MAX_REDIRECTS = 3
+const LINK_TITLE_MAX_BYTES = 64 * 1024
+
+/**
+ * Link titles are fetched with the phone's own network identity, so only public web hosts
+ * qualify: http(s) to a hostname that is neither loopback, Tailscale nor LAN. IPv6 literals
+ * are refused outright. A public DNS name that resolves to a private address (DNS
+ * rebinding) cannot be detected from the WebView; that residual risk is documented.
+ */
+function publicWebUrl(raw: string): URL | null {
+  let parsed: URL
+
+  try {
+    parsed = new URL(raw)
+  } catch {
+    return null
+  }
+
+  const webScheme = parsed.protocol === 'http:' || parsed.protocol === 'https:'
+  const bareHost = !parsed.hostname.startsWith('[') && !parsed.username && !parsed.password
+
+  return webScheme && bareHost && classifyHost(parsed.hostname) === 'public' ? parsed : null
+}
+
+const REDIRECT_STATUSES = new Set([301, 302, 303, 307, 308])
+
 export async function fetchLinkTitle(url: string): Promise<string> {
   try {
     const { CapacitorHttp } = await import('@capacitor/core')
-    const response = await CapacitorHttp.get({ headers: { Accept: 'text/html' }, readTimeout: 6000, connectTimeout: 4000, url })
-    const html = typeof response.data === 'string' ? response.data.slice(0, 64 * 1024) : ''
-    const match = /<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)
+    let current = publicWebUrl(url)
 
-    return match ? match[1].replace(/\s+/g, ' ').trim() : ''
+    // Redirects are followed by hand so every hop passes the same public-host check.
+    for (let hop = 0; current && hop <= LINK_TITLE_MAX_REDIRECTS; hop += 1) {
+      const response = await CapacitorHttp.get({
+        connectTimeout: 4000,
+        disableRedirects: true,
+        headers: { Accept: 'text/html', Range: `bytes=0-${LINK_TITLE_MAX_BYTES - 1}` },
+        readTimeout: 6000,
+        responseType: 'text',
+        url: current.href
+      })
+
+      const headers = Object.fromEntries(
+        Object.entries(response.headers ?? {}).map(([key, value]) => [key.toLowerCase(), String(value)])
+      )
+
+      if (REDIRECT_STATUSES.has(response.status)) {
+        let next: URL | null = null
+
+        try {
+          next = headers.location ? publicWebUrl(new URL(headers.location, current).href) : null
+        } catch {
+          next = null
+        }
+
+        current = next
+
+        continue
+      }
+
+      if (response.status >= 400 || !/\btext\/html\b/i.test(headers['content-type'] ?? '')) {
+        return ''
+      }
+
+      const html = typeof response.data === 'string' ? response.data.slice(0, LINK_TITLE_MAX_BYTES) : ''
+      const match = /<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)
+
+      return match ? match[1].replace(/\s+/g, ' ').trim() : ''
+    }
+
+    return ''
   } catch {
     return ''
   }
