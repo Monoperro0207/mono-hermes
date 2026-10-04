@@ -8,8 +8,10 @@
  * (`GET /api/files/stream?path=`), and plays it from a Blob URL.
  *
  * Trade-off: the whole file is downloaded before playback starts (no Range
- * seeking), which suits TTS replies and short clips; anything above
- * MAX_MEDIA_BYTES is refused rather than risking an out-of-memory crash.
+ * seeking), which suits TTS replies and short clips. A HEAD request first reads the
+ * file size, so anything above MAX_MEDIA_BYTES is refused before any body is
+ * downloaded (the size is re-checked after download as a backstop). Finished Blob
+ * URLs are kept in a small LRU and revoked once evicted and no longer in use.
  */
 
 import { type AuthSession } from './auth'
@@ -44,27 +46,103 @@ function base64ToBlob(base64: string, type: string): Blob {
   return new Blob([bytes], { type })
 }
 
-export function createMediaResolver(auth: AuthSession) {
-  const cache = new Map<string, Promise<string>>()
+/** Blob URLs kept for replay: bounded by decoded bytes and by entry count (least recently used goes first). */
+export const MEDIA_CACHE_MAX_BYTES = 128 * 1024 * 1024
+export const MEDIA_CACHE_MAX_ENTRIES = 24
+
+interface CacheEntry {
+  promise: Promise<string>
+  /** Decoded size; 0 until the download settles. */
+  bytes: number
+  blobUrl: string | null
+}
+
+export interface MediaResolverOptions {
+  /** Live media elements, used to avoid revoking a Blob URL that is still playing. Defaults to the document's audio/video. */
+  mediaElements?: () => Iterable<Pick<HTMLMediaElement, 'currentSrc' | 'src'>>
+}
+
+const documentMediaElements = (): Iterable<HTMLMediaElement> =>
+  typeof document === 'undefined' ? [] : document.querySelectorAll<HTMLMediaElement>('audio,video')
+
+function headerMap(headers: Record<string, unknown> | undefined): Record<string, string> {
+  return Object.fromEntries(Object.entries(headers ?? {}).map(([key, value]) => [key.toLowerCase(), String(value)]))
+}
+
+export function createMediaResolver(auth: AuthSession, options: MediaResolverOptions = {}) {
+  const mediaElements = options.mediaElements ?? documentMediaElements
+  const cache = new Map<string, CacheEntry>()
+
+  const inUse = (blobUrl: string): boolean => {
+    for (const element of mediaElements()) {
+      if (element.src === blobUrl || element.currentSrc === blobUrl) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  /** Drops least-recently-used entries until both limits hold. Entries still attached to an element stay and are retried on the next eviction. */
+  const evict = (keep: string) => {
+    let total = 0
+
+    for (const entry of cache.values()) {
+      total += entry.bytes
+    }
+
+    for (const [key, entry] of cache) {
+      if (total <= MEDIA_CACHE_MAX_BYTES && cache.size <= MEDIA_CACHE_MAX_ENTRIES) {
+        return
+      }
+
+      if (key === keep || !entry.blobUrl || inUse(entry.blobUrl)) {
+        continue
+      }
+
+      URL.revokeObjectURL(entry.blobUrl)
+      cache.delete(key)
+      total -= entry.bytes
+    }
+  }
 
   return (mediaUrl: string): Promise<string> => {
     const cached = cache.get(mediaUrl)
 
     if (cached) {
-      return cached
+      // Refresh recency (Map keeps insertion order).
+      cache.delete(mediaUrl)
+      cache.set(mediaUrl, cached)
+
+      return cached.promise
     }
 
-    const pending = (async () => {
+    const entry: CacheEntry = { blobUrl: null, bytes: 0, promise: Promise.resolve('') }
+
+    entry.promise = (async () => {
       const { CapacitorHttp } = await import('@capacitor/core')
       const path = mediaRequestPath(mediaUrl)
 
       const response = await auth.withBearer(async (token, baseUrl) => {
-        const result = await CapacitorHttp.request({
-          headers: { Authorization: `Bearer ${token}` },
-          method: 'GET',
-          responseType: 'blob',
-          url: `${baseUrl}${path}`
-        })
+        const headers = { Authorization: `Bearer ${token}` }
+        const url = `${baseUrl}${path}`
+
+        // Pre-flight: refuse an oversized file before a single body byte is downloaded.
+        // Any HEAD problem other than an expired token falls through to the GET below,
+        // whose post-download check stays as the backstop.
+        const head = await CapacitorHttp.request({ headers, method: 'HEAD', url }).catch(() => null)
+
+        if (head?.status === 401) {
+          throw new HttpStatusError(401, '')
+        }
+
+        const length = Number(headerMap(head?.headers as Record<string, unknown> | undefined)['content-length'])
+
+        if (head && head.status < 400 && Number.isFinite(length) && length > MAX_MEDIA_BYTES) {
+          throw new Error('This media file is too large to play on the phone.')
+        }
+
+        const result = await CapacitorHttp.request({ headers, method: 'GET', responseType: 'blob', url })
 
         if (result.status >= 400) {
           throw new HttpStatusError(result.status, typeof result.data === 'string' ? result.data : '')
@@ -80,17 +158,25 @@ export function createMediaResolver(auth: AuthSession) {
         throw new Error('This media file is too large to play on the phone.')
       }
 
-      const headers = Object.fromEntries(
-        Object.entries(response.headers ?? {}).map(([key, value]) => [key.toLowerCase(), String(value)])
-      )
+      const blob = base64ToBlob(base64, headerMap(response.headers)['content-type'] ?? 'application/octet-stream')
+      const blobUrl = URL.createObjectURL(blob)
 
-      return URL.createObjectURL(base64ToBlob(base64, headers['content-type'] ?? 'application/octet-stream'))
+      entry.blobUrl = blobUrl
+      entry.bytes = blob.size
+      evict(mediaUrl)
+
+      return blobUrl
     })()
 
-    cache.set(mediaUrl, pending)
-    pending.catch(() => cache.delete(mediaUrl))
+    cache.set(mediaUrl, entry)
 
-    return pending
+    entry.promise.catch(() => {
+      if (cache.get(mediaUrl) === entry) {
+        cache.delete(mediaUrl)
+      }
+    })
+
+    return entry.promise
   }
 }
 

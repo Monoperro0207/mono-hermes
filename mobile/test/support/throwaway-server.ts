@@ -47,7 +47,7 @@ function hermesCommand(): string {
  * 260-char path limit breaks native wheels (psutil DLL) under deeper paths. It lives
  * in the git-ignored repo-root `.cache/`, never in the user's real Hermes home.
  */
-function throwawayHome(): string {
+export function throwawayHome(): string {
   return process.env.HERMES_TEST_HOME || path.resolve(import.meta.dirname, '../../../.cache/hm')
 }
 
