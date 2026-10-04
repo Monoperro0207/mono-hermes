@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/icon/mono-hermes-logo.png" alt="Mono Hermes icon" width="128"></p>
+<p align="center"><img src="assets/icon/mono-hermes-poster.jpg" alt="Mono Hermes" width="320"></p>
 
 # Mono Hermes
 
