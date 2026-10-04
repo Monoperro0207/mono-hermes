@@ -530,6 +530,71 @@ S('composer-keyboard', 'composer', 'Soft keyboard open: composer + thread remain
   await page.setViewportSize({ width: vp.width, height: vp.height })
 }, { reload: true })
 
+// --- rotation (GitHub issue #2) -------------------------------------------------------------
+/** Page-side layout invariants that must hold after any viewport change. Returns failure strings. */
+function rotationLayoutFailures() {
+  const shown = el => {
+    for (let e = el; e && e !== document.body; e = e.parentElement) if (getComputedStyle(e).display === 'none') return false
+    const r = el.getBoundingClientRect()
+    return r.width > 0 && r.height > 0
+  }
+  const fails = []
+  const de = document.documentElement
+  if (Math.max(de.scrollWidth, document.body.scrollWidth) > innerWidth + 1) fails.push(`horizontal overflow ${de.scrollWidth} > ${innerWidth}`)
+  const root = document.getElementById('root')
+  const rs = getComputedStyle(root)
+  const shell = document.querySelector('[data-contrib-shell]')?.getBoundingClientRect()
+  const fillW = innerWidth - parseFloat(rs.paddingLeft) - parseFloat(rs.paddingRight)
+  const fillH = innerHeight - parseFloat(rs.paddingTop) - parseFloat(rs.paddingBottom)
+  if (!shell || Math.abs(shell.width - fillW) > 2 || Math.abs(shell.height - fillH) > 2) fails.push(`shell ${Math.round(shell?.width)}x${Math.round(shell?.height)} does not fill ${fillW}x${fillH}`)
+  for (const track of Array.from(document.querySelectorAll('[data-tree-split]')).flatMap(s => Array.from(s.children))) {
+    const r = track.getBoundingClientRect()
+    if (shown(track) && r.width > 2 && r.height > 2 && !Array.from(track.querySelectorAll('[data-tree-group]')).some(shown)) fails.push(`blank layout track ${Math.round(r.width)}x${Math.round(r.height)} at x=${Math.round(r.left)}`)
+  }
+  if (matchMedia('(max-width: 639.98px)').matches) {
+    const main = Array.from(document.querySelectorAll('[data-tree-group=grp-main]')).find(shown)?.getBoundingClientRect()
+    if (!main || Math.abs(main.width - (shell?.width ?? 0)) > 2) fails.push(`narrow: chat pane ${Math.round(main?.width)}px does not span the ${Math.round(shell?.width)}px shell`)
+  }
+  const composer = Array.from(document.querySelectorAll('[data-slot=composer-root]')).find(shown)?.getBoundingClientRect()
+  if (!composer || composer.top < 0 || composer.bottom > innerHeight + 1 || composer.right > innerWidth + 1) fails.push('composer missing or off screen')
+  return fails
+}
+
+S('rotation', 'shell', 'Rotation: portrait <-> landscape with sidebar / right rail toggled in either orientation', async ({ page, snap, vp }) => {
+  const portrait = { width: Math.min(vp.width, vp.height), height: Math.max(vp.width, vp.height) }
+  const landscape = { width: portrait.height, height: portrait.width }
+  const turn = async size => {
+    await page.setViewportSize(size)
+    await page.waitForTimeout(900)
+  }
+  const verify = async label => {
+    const res = await snap(label, { settle: 500 })
+    for (const detail of await page.evaluate(rotationLayoutFailures)) res.findings.push({ rule: 'rotation-layout', severity: 'high', selector: label, text: '', rect: [0, 0, 0, 0], detail })
+  }
+  const rail = open => page.getByRole('button', { name: open ? 'Show right sidebar' : 'Hide right sidebar', exact: true }).first().click({ timeout: 1500 }).then(() => page.waitForTimeout(700)).catch(() => {})
+  // each case: [name, orientation the toggle happens in, toggle]
+  const cases = [
+    ['idle', portrait, async () => {}],
+    ['rail-land', landscape, () => rail(true)],
+    ['rail-port', portrait, () => rail(true)],
+    ['sidebar-land', landscape, () => ensureSidebar(page, true)],
+    ['sidebar-port', portrait, () => ensureSidebar(page, true)]
+  ]
+  for (const [name, at, toggle] of cases) {
+    await reset(page)
+    await ensureSidebar(page, false)
+    await rail(false)
+    await turn(at)
+    await toggle()
+    await verify(`${name}-0`)
+    await turn(at === portrait ? landscape : portrait)
+    await verify(`${name}-1`)
+    await turn(at)
+    await verify(`${name}-2`)
+  }
+  await turn({ width: vp.width, height: vp.height })
+}, { reload: true })
+
 // --- status bar / menus -------------------------------------------------------------------
 S('statusbar-menus', 'shell', 'Status bar controls and their popovers', async ({ page, snap }) => {
   await reset(page)

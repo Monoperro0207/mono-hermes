@@ -52,3 +52,8 @@ mobile/ui-audit/report.json
 .claude/
 .atl/
 apk/
+
+# Rotation device run: keep the JSON results and one before/after pair, regenerate the rest
+mobile/ui-audit/device/rotation-*.png
+!mobile/ui-audit/device/rotation-before-phone-rail-land-1-r0.png
+!mobile/ui-audit/device/rotation-after-phone-rail-land-1-r0.png

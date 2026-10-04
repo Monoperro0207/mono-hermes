@@ -26,6 +26,7 @@ import { buildInfo } from './build-info'
 import { installCompatNotice } from './compat-notice'
 import { installNoAutofocusKeyboard, installTouchComposer } from './composer-touch'
 import { createConnectUi } from './connect-screen'
+import { installDesktopOnlyPanes } from './desktop-only-panes'
 import { wireNativeLifecycle } from './lifecycle'
 
 function showFatal(message: string) {
@@ -87,6 +88,8 @@ async function start() {
 
   seedPhoneDefaults()
   await import('@/main')
+  // Same module instance the renderer registers its panes in (one Vite graph).
+  installDesktopOnlyPanes((await import('@/contrib/registry')).registry)
   await import('./mobile.css')
   installTouchComposer()
   installNoAutofocusKeyboard()

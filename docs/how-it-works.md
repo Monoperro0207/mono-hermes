@@ -88,3 +88,26 @@ npm run ui:audit -- --no-build           # reuse mobile/dist
 Real-WebView spot check (emulator or phone, debug APK): `node ui-audit/device-server.mjs` starts the
 seeded throwaway gateway for `10.0.2.2`, `node ui-audit/device-shots.mjs cover|inner` drives the app
 through its debuggable WebView and saves `adb screencap` images into `ui-audit/device/`.
+
+Rotation (issue #2) is checked twice:
+
+- The `rotation` audit scenario swaps the Playwright viewport between portrait and landscape with the
+  left sidebar or the right rail toggled in either orientation, and reports `rotation-layout` (high)
+  when the page overflows horizontally, the shell does not fill the viewport, a layout column is left
+  with no visible pane in it, the chat pane does not span the screen below 640px, or the composer is
+  off screen.
+- `node ui-audit/device-rotation.mjs [label] [phone,fold-cover,fold-inner,tablet]` uses the real system
+  rotation (`adb shell settings put system user_rotation`) on the emulator/phone at four panel sizes
+  (`wm size/density`), in seven states (idle, left sidebar or right rail opened in portrait or in
+  landscape, soft keyboard up, a live streaming turn, Settings open). After every rotation it applies
+  the same checks plus: the viewport follows the rotation, no wide-layout edge overlay stays open,
+  the composer stays above the keyboard, Settings covers the screen, and returning to an orientation
+  gives the same layout as before. Screenshots + JSON go to `ui-audit/device/rotation-<label>-*`; it
+  restores auto-rotate and `wm size/density` and exits 1 on any failure.
+
+```
+cd mobile
+node ui-audit/device-server.mjs                    # terminal 1 (throwaway gateway)
+node ui-audit/device-rotation.mjs after            # terminal 2 (debug APK installed)
+npm run ui:audit -- --no-build --only rotation
+```

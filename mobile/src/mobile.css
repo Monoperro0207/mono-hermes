@@ -178,6 +178,24 @@ webview {
 }
 
 /* ------------------------------------------------------------------------------------------
+ * Sessions sidebar in a short viewport (a phone turned to landscape: ~300px of height)
+ *
+ * sidebar-content is a non-scrolling column: nav group (New session ... Scheduled jobs, ~240px),
+ * search box and profile rail are shrink-0, only the session list between them flexes. Shorter than
+ * those fixed rows, the list collapsed to 0px and the nav ran on under the status bar, unreachable.
+ * Let the whole column scroll and keep a usable list height; on taller screens nothing overflows, so
+ * nothing changes.
+ * ---------------------------------------------------------------------------------------- */
+[data-slot='sidebar-content'] {
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+}
+
+[data-slot='sidebar-content'] > [class~='overflow-y-auto'] {
+  min-height: 12rem;
+}
+
+/* ------------------------------------------------------------------------------------------
  * Status bar (20px tall, 6 items: command, gateway, cwd, approval, client + backend version)
  * ---------------------------------------------------------------------------------------- */
 [data-slot='statusbar'] {
@@ -518,6 +536,13 @@ webview {
   position: absolute;
 }
 
+/* The status bar is the bottom row: grow its hit areas sideways and down, never up over the content
+   above it (in a short landscape viewport the last visible sidebar row sits right on top of the bar
+   and its lower half went to the status-bar button). */
+[data-slot='statusbar'] button::after {
+  top: 0;
+}
+
 @media (pointer: coarse) {
   /* Small icon controls anywhere else: composer, tabs, message actions, status rows, dialogs. */
   :is(
@@ -731,7 +756,9 @@ select {
 
 /* ------------------------------------------------------------------------------------------
  * Terminal pane: it needs a node-pty PTY on the machine running the renderer; on the phone there is
- * none, so the pane would only show an empty strip. Hide it (and its status-bar toggle).
+ * none, so the pane would only show an empty strip. The pane itself is taken out of the layout tree
+ * (src/desktop-only-panes.ts) so its zone never keeps a blank column; these rules only make sure no
+ * leftover zone or tab of it is ever painted.
  * ---------------------------------------------------------------------------------------- */
 [data-tree-group='grp-terminal'],
 [data-tree-tab='terminal'] {
