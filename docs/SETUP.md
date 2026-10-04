@@ -162,7 +162,7 @@ Sessions are shared live only if the desktop app uses the **same server process*
 
 | Symptom | Likely cause and fix |
 |---|---|
-| App cannot connect | Tailscale off on phone or PC; wrong IP (rerun `tailscale ip -4`); server not running (`hermes serve --status`); the URL must be `http://`, not `https://`. |
+| App cannot connect | Tailscale off on phone or PC; wrong IP (rerun `tailscale ip -4`); server not running (`hermes serve --status`); the URL must be `http://`, not `https://`. If you entered a local-network address (`192.168.x.x`, `10.x.x.x`, `*.local`) the app warns that `http://` is unencrypted there: use the Tailscale address (`100.x.y.z`) instead. |
 | `curl` works on the PC but not from the phone | Firewall rule missing or scoped wrong (step 4); server bound to `127.0.0.1` instead of `0.0.0.0`. |
 | 401 / wrong password | Re-enter the login. Forgot it: stop the server, remove the `dashboard.basic_auth` block from Hermes' `config.yaml`, and redo step 3. |
 | "Server newer/older than the app" notice | Advisory only. Check for a newer Mono Hermes release if things misbehave. |

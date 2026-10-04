@@ -53,10 +53,11 @@ plus your Hermes username and password. To share sessions with the desktop app, 
   public internet, and there is no Mono Hermes cloud: the app talks to the one server you enter.
 - **Transport:** the URL is usually plain `http://` inside Tailscale, which encrypts traffic end to end
   (WireGuard). Android's network config cannot express IP ranges, so the app enforces the rule itself
-  (`mobile/src/bridge/util.ts`): `http://` is accepted only for Tailscale (`100.64.0.0/10`, `*.ts.net`),
-  loopback, private LAN ranges (`10/8`, `172.16/12`, `192.168/16`), `*.local` and single-label names;
-  anything else must use `https://`. Over LAN or loopback, `http://` is cleartext on that network. User-installed
-  CAs are not trusted.
+  (`mobile/src/bridge/util.ts`): `http://` is accepted silently only for Tailscale (`100.64.0.0/10`,
+  `*.ts.net`) and loopback. LAN addresses (`10/8`, `172.16/12`, `192.168/16`, `169.254/16`, `*.local` and
+  single-label names) are cleartext on a shared network, so the app shows a warning and asks for explicit
+  consent, remembered only for that exact server URL, before sending a password. Anything else must use
+  `https://`. User-installed CAs are not trusted.
 - **Authentication:** Hermes native password login with PKCE yields a short-lived bearer token plus a rotating
   refresh token; WebSockets use single-use, 30 s tickets. The password is sent once at login and never stored.
 - **Stored on the device:** the server URL, the last username (to pre-fill the form) and the token set.
@@ -71,6 +72,9 @@ plus your Hermes username and password. To share sessions with the desktop app, 
 - **No telemetry:** no analytics, crash reporting or third-party servers in the app. Traffic goes to your
   server, plus pages you or the agent link to (image and link-title fetches). The bundled Hermes UI has its own
   opt-in usage-stats setting; its desktop metrics bridge is not implemented here, so it does nothing on Android.
+- **Link titles:** the title fetch only contacts public web hosts: `http(s)` only, never loopback, Tailscale,
+  LAN or IPv6-literal addresses, at most 3 redirects (each one re-checked) and a 64 KB read. Residual risk: a
+  public DNS name that resolves to a private address (DNS rebinding) cannot be detected from the WebView.
 - **Reporting a vulnerability:** use a private
   [GitHub security advisory](https://github.com/Monoperro0207/mono-hermes/security/advisories/new); see [SECURITY.md](SECURITY.md).
 
@@ -94,7 +98,7 @@ the microphone permission and a server STT provider), local notifications while 
 host terminal, filesystem and git panels, the in-app browser or preview pane (links open in the system browser),
 HUD, pet overlay, tray, extra windows, Hermes Cloud sign-in, SSH and multiple saved servers (one server only),
 push notifications (a fully killed app is not woken by the server), and audio or video seeking
-(media is downloaded whole, 64 MB cap).
+(media is downloaded whole, 64 MB cap; the size is checked before downloading, so a larger file is refused without transferring it).
 
 ## Compatibility and updates
 
@@ -107,7 +111,7 @@ worth integrating or a break is detected (a weekly workflow watches upstream). H
 
 | Mono Hermes | UI built from Hermes | Also tested against server |
 |---|---|---|
-| 0.2.0 | 0.21.5, `158fd638da1629c8e62caf9ade1515d162def8ab` | 0.21.5, `10c6188de188871f64a88dd95bc6b262adb0c307` |
+| 0.2.x | 0.21.5, `158fd638da1629c8e62caf9ade1515d162def8ab` | 0.21.5, `10c6188de188871f64a88dd95bc6b262adb0c307` |
 | 0.1.x | 0.21.5, `10c6188de188871f64a88dd95bc6b262adb0c307` | n/a |
 
 ## Build from source

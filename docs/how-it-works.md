@@ -38,9 +38,18 @@ non-followed redirect. Capacitor's native HTTP (`HttpURLConnection`) has none of
 
 ## Transport policy
 
-Plain `http://` is only accepted for Tailscale (`100.64.0.0/10`, `*.ts.net`), LAN and loopback hosts
-(`src/bridge/util.ts`). Android's network security config cannot express a CIDR range, so cleartext is
-allowed there and enforced in the app instead. `https://` works anywhere.
+Plain `http://` is accepted silently only for Tailscale (`100.64.0.0/10`, `*.ts.net`) and loopback hosts
+(`src/bridge/util.ts`, `classifyHost`). LAN hosts (private ranges, link-local, `*.local`, single-label names)
+need the user's explicit consent at sign-in: the connect screen shows a warning and a checkbox, and the
+accepted base URL is stored with the connection (`lanCleartextAcceptedFor`), so a different LAN address asks
+again. Any other `http://` host is refused. Android's network security config cannot express a CIDR range, so
+cleartext is allowed there and enforced in the app instead. `https://` works anywhere.
+
+Two other native fetches are bounded the same way. Link titles (`fetchLinkTitle`) only contact public web
+hosts, follow at most 3 redirects with every hop re-checked, and read at most 64 KB. Media
+(`createMediaResolver`) sends a `HEAD` first and refuses a file over the 64 MB cap before downloading it; the
+Blob URLs it creates sit in a small LRU (128 MB / 24 entries) and are revoked when evicted, unless an
+`<audio>`/`<video>` element is still using them.
 
 ## Versions
 
