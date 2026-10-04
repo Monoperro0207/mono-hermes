@@ -23,7 +23,15 @@
 
 import { type ConnectionStore, type TokenSet } from './connection'
 import { CookieJar, type HttpTransport, HttpStatusError, type RawResponse } from './http'
-import { assertTransportAllowed, errorMessage, normalizeBaseUrl, randomBase64url, s256Challenge } from './util'
+import {
+  assertTransportAllowed,
+  errorMessage,
+  isLanCleartext,
+  normalizeBaseUrl,
+  randomBase64url,
+  s256Challenge,
+  type TransportPolicyOptions
+} from './util'
 
 /** Syntactically valid loopback redirect; nothing listens on it and it is never fetched. */
 export const NATIVE_REDIRECT_URI = 'http://127.0.0.1:47321/hermes-mobile/callback'
@@ -116,9 +124,13 @@ function describeFailure(response: RawResponse, fallback: string): string {
 }
 
 /** Public, credential-free reachability + capability probe (/api/status, /api/auth/providers). */
-export async function probeServer(transport: HttpTransport, rawUrl: string): Promise<ServerProbe> {
+export async function probeServer(
+  transport: HttpTransport,
+  rawUrl: string,
+  policy: TransportPolicyOptions = {}
+): Promise<ServerProbe> {
   const baseUrl = normalizeBaseUrl(rawUrl)
-  assertTransportAllowed(baseUrl)
+  assertTransportAllowed(baseUrl, policy)
 
   let status: RawResponse
 
@@ -375,13 +387,14 @@ export class AuthSession {
   }
 
   /** Probe, log in and persist both the connection descriptor and the tokens. */
-  async login(rawUrl: string, input: PasswordLoginInput): Promise<ServerProbe> {
-    const probe = await probeServer(this.transport, rawUrl)
+  async login(rawUrl: string, input: PasswordLoginInput, policy: TransportPolicyOptions = {}): Promise<ServerProbe> {
+    const probe = await probeServer(this.transport, rawUrl, policy)
     const tokens = await passwordLogin(this.transport, probe, input)
     const provider = tokens.provider || input.provider || probe.providers.find(p => p.supportsPassword)?.name || ''
 
     await this.store.setConnection({
       baseUrl: probe.baseUrl,
+      lanCleartextAcceptedFor: policy.allowLanCleartext && isLanCleartext(probe.baseUrl) ? probe.baseUrl : undefined,
       provider,
       username: input.username,
       version: probe.version ?? undefined

@@ -252,6 +252,10 @@ async function runProfile(name) {
             set('server', url)
             set('username', user)
             set('password', pass)
+            // 10.0.2.2 is a LAN address: plain http:// to it needs the explicit consent checkbox, which only
+            // exists after the first submit was answered with the warning (second pass ticks it).
+            const consent = form.querySelector('input[name=lan-consent]')
+            if (consent && !consent.checked) consent.click()
             form.requestSubmit()
           },
           env.HERMES_TEST_URL.replace('127.0.0.1', '10.0.2.2'),

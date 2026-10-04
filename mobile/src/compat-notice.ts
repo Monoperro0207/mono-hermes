@@ -81,7 +81,8 @@ export function installCompatNotice(store: ConnectionStore, transport: HttpTrans
     removeCurrent = null
 
     try {
-      const probe = await probeServer(transport, connection.baseUrl)
+      // GET /api/status carries no credentials, and the session itself was already established.
+      const probe = await probeServer(transport, connection.baseUrl, { allowLanCleartext: true })
       const notice = pendingNotice(window.localStorage, probe.version, buildInfo.pinnedBackendVersion)
 
       if (notice) {

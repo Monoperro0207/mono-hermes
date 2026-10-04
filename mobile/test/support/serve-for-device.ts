@@ -4,7 +4,9 @@
  *
  *   node test/support/serve-for-device.ts [publicHost]      # default publicHost 10.0.2.2
  *
- * 10.0.2.2 is how the emulator sees the host's loopback. Credentials go to the git-ignored
+ * 10.0.2.2 is how the emulator sees the host's loopback. It is a LAN-class address, so the
+ * connect screen shows the cleartext warning on the first sign-in: tick the "I understand"
+ * checkbox (input name "lan-consent") before connecting. Credentials go to the git-ignored
  * mobile/.env.test; stop with Ctrl+C (the server and its process tree are killed).
  */
 import path from 'node:path'

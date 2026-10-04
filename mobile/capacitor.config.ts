@@ -8,8 +8,9 @@ import type { CapacitorConfig } from '@capacitor/cli'
  *   (and only that kind of origin), and a plain-http page can open ws:// sockets
  *   to a Tailscale IP without mixed-content blocking.
  * - Cleartext traffic to the PC is permitted by android/app/src/main/res/xml/
- *   network_security_config.xml; the app itself restricts it to Tailscale / LAN /
- *   loopback hosts (src/bridge/util.ts assertTransportAllowed).
+ *   network_security_config.xml; the app itself allows it silently only for Tailscale
+ *   and loopback hosts, asks for explicit consent before signing in over a LAN address,
+ *   and refuses it for everything else (src/bridge/util.ts assertTransportAllowed).
  * - CapacitorHttp stays OFF globally: the bridge calls it explicitly where a native
  *   request is needed (login + REST); patching every fetch would break streaming
  *   responses the renderer relies on.

@@ -15,7 +15,14 @@ import {
 import { ConnectionStore } from '../src/bridge/connection'
 import { CookieJar, type HttpTransport, type RawRequest, type RawResponse, splitSetCookie } from '../src/bridge/http'
 import { createMemoryStore, createPlainSecretBox } from '../src/bridge/storage'
-import { assertTransportAllowed, isCleartextHostAllowed, normalizeBaseUrl, s256Challenge } from '../src/bridge/util'
+import {
+  assertTransportAllowed,
+  classifyHost,
+  isCleartextHostAllowed,
+  LanCleartextConsentRequired,
+  normalizeBaseUrl,
+  s256Challenge
+} from '../src/bridge/util'
 
 const probe: ServerProbe = {
   authRequired: true,
@@ -48,17 +55,102 @@ describe('url + transport policy', () => {
     expect(() => normalizeBaseUrl('')).toThrow()
   })
 
-  it('allows cleartext only for Tailscale, LAN and loopback', () => {
-    for (const host of ['100.64.0.1', '100.127.255.254', 'my-pc.tail1234.ts.net', '192.168.1.5', '10.0.0.2', '172.16.0.9', '127.0.0.1', 'localhost', 'desktop-pc']) {
+  it('classifies hosts by how far their traffic travels', () => {
+    const table: Record<string, string> = {
+      '100.64.0.1': 'tailnet',
+      '100.127.255.254': 'tailnet',
+      '100.63.0.1': 'public',
+      '100.128.0.1': 'public',
+      '10.0.0.2': 'lan',
+      '127.0.0.1': 'loopback',
+      '169.254.10.20': 'lan',
+      '172.16.0.9': 'lan',
+      '172.32.0.1': 'public',
+      '192.168.1.5': 'lan',
+      '8.8.8.8': 'public',
+      '::1': 'loopback',
+      '[::1]': 'loopback',
+      '[2001:db8::1]': 'public',
+      'desktop-pc': 'lan',
+      'example.com': 'public',
+      'localhost': 'loopback',
+      'my-pc.tail1234.ts.net': 'tailnet',
+      'printer.local': 'lan',
+      'app.localhost': 'loopback'
+    }
+
+    for (const [host, expected] of Object.entries(table)) {
+      expect(classifyHost(host), host).toBe(expected)
+    }
+
+    // The URL parser canonicalises numeric / hex IPv4 forms before they reach the classifier.
+    expect(classifyHost(new URL('http://2130706433').hostname)).toBe('loopback')
+    expect(classifyHost(new URL('http://0x7f.1').hostname)).toBe('loopback')
+    expect(classifyHost(new URL('http://3232235777').hostname)).toBe('lan')
+    expect(classifyHost(new URL('http://[::1]:9119').hostname)).toBe('loopback')
+  })
+
+  it('accepts cleartext without consent only for Tailscale and loopback', () => {
+    for (const host of ['100.64.0.1', '100.127.255.254', 'my-pc.tail1234.ts.net', '127.0.0.1', 'localhost']) {
       expect(isCleartextHostAllowed(host), host).toBe(true)
     }
 
-    for (const host of ['100.63.0.1', '100.128.0.1', '8.8.8.8', 'example.com', '172.32.0.1']) {
+    for (const host of ['192.168.1.5', '10.0.0.2', '172.16.0.9', 'desktop-pc', 'printer.local', '100.63.0.1', '100.128.0.1', '8.8.8.8', 'example.com', '172.32.0.1']) {
       expect(isCleartextHostAllowed(host), host).toBe(false)
     }
+  })
 
-    expect(() => assertTransportAllowed('http://example.com:9119')).toThrow(/https/)
+  it('requires consent for http:// to a LAN address and never allows public http://', () => {
+    expect(() => assertTransportAllowed('http://100.64.0.1:9119')).not.toThrow()
+    expect(() => assertTransportAllowed('http://127.0.0.1:9119')).not.toThrow()
     expect(() => assertTransportAllowed('https://example.com')).not.toThrow()
+    expect(() => assertTransportAllowed('https://192.168.1.5')).not.toThrow()
+
+    for (const url of ['http://192.168.1.5:9119', 'http://10.0.2.2:9119', 'http://desktop-pc:9119', 'http://printer.local']) {
+      expect(() => assertTransportAllowed(url), url).toThrow(LanCleartextConsentRequired)
+      expect(() => assertTransportAllowed(url, { allowLanCleartext: false }), url).toThrow(LanCleartextConsentRequired)
+      expect(() => assertTransportAllowed(url, { allowLanCleartext: true }), url).not.toThrow()
+    }
+
+    // The consent flag never widens the policy beyond the LAN class.
+    expect(() => assertTransportAllowed('http://example.com:9119', { allowLanCleartext: true })).toThrow(/https/)
+    expect(() => assertTransportAllowed('http://example.com:9119')).toThrow(/https/)
+  })
+
+  it('records the accepted LAN URL on login, and only for LAN cleartext', async () => {
+    const login = async (url: string, policy?: { allowLanCleartext?: boolean }) => {
+      const store = new ConnectionStore(createMemoryStore(), createPlainSecretBox())
+      let state = ''
+
+      const { transport } = scripted(req => {
+        const { pathname, searchParams } = new URL(req.url)
+
+        if (pathname === '/api/status') {
+          return { body: JSON.stringify({ auth_flows: ['native_pkce'], auth_providers: ['basic'], auth_required: true, version: '1.0' }) }
+        }
+
+        if (pathname === '/auth/native/authorize') {
+          state = searchParams.get('state')!
+
+          return { headers: { location: '/login' }, setCookie: ['hermes_session_pkce=h; Path=/'], status: 302 }
+        }
+
+        if (pathname === '/auth/password-login') {
+          return { body: JSON.stringify({ next: `http://127.0.0.1:47321/hermes-mobile/callback?code=GW&state=${state}`, ok: true }) }
+        }
+
+        return { body: JSON.stringify({ access_token: 'AT', expires_at: 4102444800, provider: 'basic', refresh_token: 'RT', user_id: 'u' }) }
+      })
+
+      await new AuthSession(store, transport).login(url, { password: 'p', username: 'u' }, policy)
+
+      return (await store.getConnection())?.lanCleartextAcceptedFor
+    }
+
+    await expect(login('http://192.168.1.5:9119')).rejects.toBeInstanceOf(LanCleartextConsentRequired)
+    await expect(login('http://192.168.1.5:9119', { allowLanCleartext: true })).resolves.toBe('http://192.168.1.5:9119')
+    await expect(login('http://100.64.1.2:9119', { allowLanCleartext: true })).resolves.toBeUndefined()
+    await expect(login('http://100.64.1.2:9119')).resolves.toBeUndefined()
   })
 
   it('computes RFC 7636 S256 challenges', async () => {

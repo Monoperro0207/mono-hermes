@@ -205,7 +205,9 @@ export function buildBridge(options: BridgeOptions): BridgeRuntime {
 
   const probe = async (remoteUrl: string): Promise<DesktopConnectionProbeResult> => {
     try {
-      const result = await probeServer(transport, remoteUrl)
+      // Credential-free reachability check only; the LAN-cleartext consent is collected by the
+      // connect screen right before a password is sent (AuthSession.login).
+      const result = await probeServer(transport, remoteUrl, { allowLanCleartext: true })
 
       return {
         authMode: result.authRequired ? 'oauth' : 'token',

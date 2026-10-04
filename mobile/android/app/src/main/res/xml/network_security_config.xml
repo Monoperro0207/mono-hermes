@@ -7,8 +7,10 @@
   Android's network security config can only match DOMAIN names, not CIDR ranges, so
   100.x.y.z addresses cannot be listed individually. Cleartext is therefore permitted
   at this layer and the real restriction is enforced in the app itself:
-  src/bridge/util.ts (assertTransportAllowed) refuses http:// for anything that is not
-  a Tailscale, LAN or loopback host. User-installed CAs are NOT trusted.
+  src/bridge/util.ts (assertTransportAllowed) accepts http:// silently only for Tailscale
+  and loopback hosts. LAN addresses (RFC 1918, link-local, *.local, single-label names)
+  need the user's explicit per-server consent at sign-in, and every other host must use
+  https. User-installed CAs are NOT trusted.
 -->
 <network-security-config>
     <base-config cleartextTrafficPermitted="true">

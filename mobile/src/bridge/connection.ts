@@ -15,6 +15,11 @@ export interface StoredConnection {
   /** Auth provider name chosen at login (usually "basic"). */
   provider: string
   version?: string
+  /**
+   * Set when the user accepted plain http:// to a LAN address at login. Holds the exact
+   * normalized base URL, so the consent is per server: a different LAN URL asks again.
+   */
+  lanCleartextAcceptedFor?: string
 }
 
 export interface TokenSet {
