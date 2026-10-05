@@ -18,6 +18,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -60,6 +61,12 @@
                   "y": 712,
                   "w": 390,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -76,6 +83,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -126,6 +134,12 @@
                   "y": 234,
                   "w": 584,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 292,
+                  "w": 269,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -142,6 +156,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -184,6 +199,12 @@
                   "y": 712,
                   "w": 390,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -200,6 +221,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -250,6 +272,12 @@
                   "y": 234,
                   "w": 584,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 292,
+                  "w": 269,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -266,6 +294,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -309,6 +338,12 @@
                   "w": 390,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -324,6 +359,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-secondary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -375,6 +411,12 @@
                   "w": 584,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 292,
+                  "w": 269,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -390,6 +432,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -432,6 +475,12 @@
                   "y": 712,
                   "w": 390,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -453,6 +502,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -501,6 +551,12 @@
                   "w": 390,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -516,6 +572,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -567,6 +624,12 @@
                   "w": 584,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 292,
+                  "w": 269,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -582,6 +645,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -625,6 +689,12 @@
                   "w": 390,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -640,6 +710,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -690,6 +761,12 @@
                   "y": 234,
                   "w": 584,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 292,
+                  "w": 269,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -711,6 +788,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -761,6 +839,12 @@
                   "y": 234,
                   "w": 816,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 292,
+                  "w": 501,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -777,6 +861,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -820,6 +905,12 @@
                   "w": 390,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -835,6 +926,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -886,6 +978,12 @@
                   "w": 816,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 292,
+                  "w": 501,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -901,6 +999,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -943,6 +1042,12 @@
                   "y": 712,
                   "w": 390,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -964,6 +1069,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -1006,6 +1112,12 @@
                   "y": 712,
                   "w": 390,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -1022,6 +1134,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -1073,6 +1186,12 @@
                   "w": 816,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 292,
+                  "w": 501,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -1088,6 +1207,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -1131,6 +1251,12 @@
                   "w": 390,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -1146,6 +1272,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -1196,6 +1323,12 @@
                   "y": 234,
                   "w": 816,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 292,
+                  "w": 501,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -1217,6 +1350,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -1274,6 +1408,12 @@
                   "y": 234,
                   "w": 579,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 292,
+                  "w": 264,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -1290,6 +1430,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -1333,6 +1474,12 @@
                   "w": 390,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -1348,6 +1495,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -1406,6 +1554,12 @@
                   "w": 579,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 292,
+                  "w": 264,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -1421,6 +1575,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -1463,6 +1618,12 @@
                   "y": 712,
                   "w": 390,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 207,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -1482,15 +1643,16 @@
               "measure": {
                 "inner": {
                   "w": 412,
-                  "h": 866
+                  "h": 530
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
-                  "h": 866
+                  "h": 530
                 },
                 "vv": {
                   "w": 412,
-                  "h": 866,
+                  "h": 530,
                   "top": 0,
                   "scale": 1
                 },
@@ -1510,22 +1672,28 @@
                   "x": 0,
                   "y": 0,
                   "w": 412,
-                  "h": 866
+                  "h": 530
                 },
                 "main": {
                   "x": 0,
                   "y": 0,
                   "w": 412,
-                  "h": 842
+                  "h": 506
                 },
                 "blankTracks": [],
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 11,
-                  "y": 736,
+                  "y": 400,
                   "w": 390,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 458,
+                  "w": 207,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -1540,15 +1708,16 @@
               "measure": {
                 "inner": {
                   "w": 866,
-                  "h": 300
+                  "h": 127
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
-                  "h": 300
+                  "h": 127
                 },
                 "vv": {
                   "w": 866,
-                  "h": 300,
+                  "h": 127,
                   "top": 0,
                   "scale": 1
                 },
@@ -1568,13 +1737,13 @@
                   "x": 0,
                   "y": 0,
                   "w": 866,
-                  "h": 300
+                  "h": 127
                 },
                 "main": {
                   "x": 28,
                   "y": 0,
                   "w": 838,
-                  "h": 276
+                  "h": 127
                 },
                 "blankTracks": [],
                 "sideZones": [
@@ -1583,15 +1752,21 @@
                     "x": 0,
                     "y": 0,
                     "w": 28,
-                    "h": 276
+                    "h": 127
                   }
                 ],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 39,
-                  "y": 170,
+                  "y": 21,
                   "w": 816,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 79,
+                  "w": 501,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -1606,15 +1781,16 @@
               "measure": {
                 "inner": {
                   "w": 412,
-                  "h": 866
+                  "h": 530
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
-                  "h": 866
+                  "h": 530
                 },
                 "vv": {
                   "w": 412,
-                  "h": 866,
+                  "h": 530,
                   "top": 0,
                   "scale": 1
                 },
@@ -1634,22 +1810,28 @@
                   "x": 0,
                   "y": 0,
                   "w": 412,
-                  "h": 866
+                  "h": 530
                 },
                 "main": {
                   "x": 0,
                   "y": 0,
                   "w": 412,
-                  "h": 842
+                  "h": 506
                 },
                 "blankTracks": [],
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 11,
-                  "y": 736,
+                  "y": 400,
                   "w": 390,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 458,
+                  "w": 207,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -1664,15 +1846,16 @@
               "measure": {
                 "inner": {
                   "w": 866,
-                  "h": 300
+                  "h": 127
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
-                  "h": 300
+                  "h": 127
                 },
                 "vv": {
                   "w": 866,
-                  "h": 300,
+                  "h": 127,
                   "top": 0,
                   "scale": 1
                 },
@@ -1692,13 +1875,13 @@
                   "x": 0,
                   "y": 0,
                   "w": 866,
-                  "h": 300
+                  "h": 127
                 },
                 "main": {
                   "x": 28,
                   "y": 0,
                   "w": 838,
-                  "h": 276
+                  "h": 127
                 },
                 "blankTracks": [],
                 "sideZones": [
@@ -1707,15 +1890,21 @@
                     "x": 0,
                     "y": 0,
                     "w": 28,
-                    "h": 276
+                    "h": 127
                   }
                 ],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 39,
-                  "y": 170,
+                  "y": 21,
                   "w": 816,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 79,
+                  "w": 501,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -1737,6 +1926,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -1779,6 +1969,12 @@
                   "y": 712,
                   "w": 390,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 235,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -1795,6 +1991,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -1846,6 +2043,12 @@
                   "w": 816,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 292,
+                  "w": 529,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -1861,6 +2064,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -1904,6 +2108,12 @@
                   "w": 390,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 770,
+                  "w": 235,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": true
               },
@@ -1919,6 +2129,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -1969,6 +2180,12 @@
                   "y": 234,
                   "w": 816,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 292,
+                  "w": 529,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": true
@@ -1990,6 +2207,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -2028,6 +2246,7 @@
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -2050,6 +2269,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -2096,6 +2316,7 @@
                 ],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -2118,6 +2339,7 @@
                   "w": 412,
                   "h": 842
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 412,
                   "h": 842
@@ -2156,6 +2378,7 @@
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -2178,6 +2401,7 @@
                   "w": 866,
                   "h": 364
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 866,
                   "h": 364
@@ -2224,6 +2448,7 @@
                 ],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -2257,6 +2482,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -2299,6 +2525,12 @@
                   "y": 688,
                   "w": 323,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -2315,6 +2547,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -2365,6 +2598,12 @@
                   "y": 167,
                   "w": 560,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 225,
+                  "w": 245,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -2381,6 +2620,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -2423,6 +2663,12 @@
                   "y": 688,
                   "w": 323,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -2439,6 +2685,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -2489,6 +2736,12 @@
                   "y": 167,
                   "w": 560,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 225,
+                  "w": 245,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -2505,6 +2758,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -2548,6 +2802,12 @@
                   "w": 323,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -2563,6 +2823,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-secondary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -2614,6 +2875,12 @@
                   "w": 560,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 225,
+                  "w": 245,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -2629,6 +2896,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -2671,6 +2939,12 @@
                   "y": 688,
                   "w": 323,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -2692,6 +2966,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -2740,6 +3015,12 @@
                   "w": 323,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -2755,6 +3036,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -2806,6 +3088,12 @@
                   "w": 560,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 225,
+                  "w": 245,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -2821,6 +3109,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -2864,6 +3153,12 @@
                   "w": 323,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -2879,6 +3174,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -2929,6 +3225,12 @@
                   "y": 167,
                   "w": 560,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 225,
+                  "w": 245,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -2950,6 +3252,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -3000,6 +3303,12 @@
                   "y": 167,
                   "w": 792,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 225,
+                  "w": 477,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -3016,6 +3325,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -3059,6 +3369,12 @@
                   "w": 323,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -3074,6 +3390,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -3125,6 +3442,12 @@
                   "w": 792,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 225,
+                  "w": 477,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -3140,6 +3463,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -3182,6 +3506,12 @@
                   "y": 688,
                   "w": 323,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -3203,6 +3533,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -3245,6 +3576,12 @@
                   "y": 688,
                   "w": 323,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -3261,6 +3598,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -3312,6 +3650,12 @@
                   "w": 792,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 225,
+                  "w": 477,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -3327,6 +3671,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -3370,6 +3715,12 @@
                   "w": 323,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -3385,6 +3736,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -3435,6 +3787,12 @@
                   "y": 167,
                   "w": 792,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 225,
+                  "w": 477,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -3456,6 +3814,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -3513,6 +3872,12 @@
                   "y": 167,
                   "w": 555,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 225,
+                  "w": 372,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -3529,6 +3894,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -3572,6 +3938,12 @@
                   "w": 323,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -3587,6 +3959,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -3645,6 +4018,12 @@
                   "w": 555,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 225,
+                  "w": 372,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -3660,6 +4039,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -3702,6 +4082,12 @@
                   "y": 688,
                   "w": 323,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 140,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -3721,15 +4107,16 @@
               "measure": {
                 "inner": {
                   "w": 345,
-                  "h": 842
+                  "h": 555
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
-                  "h": 842
+                  "h": 555
                 },
                 "vv": {
                   "w": 345,
-                  "h": 842,
+                  "h": 555,
                   "top": 0,
                   "scale": 1
                 },
@@ -3749,22 +4136,28 @@
                   "x": 0,
                   "y": 0,
                   "w": 345,
-                  "h": 842
+                  "h": 555
                 },
                 "main": {
                   "x": 0,
                   "y": 0,
                   "w": 345,
-                  "h": 818
+                  "h": 531
                 },
                 "blankTracks": [],
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 11,
-                  "y": 712,
+                  "y": 425,
                   "w": 323,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 483,
+                  "w": 140,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -3779,15 +4172,16 @@
               "measure": {
                 "inner": {
                   "w": 842,
-                  "h": 233
+                  "h": 82
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
-                  "h": 233
+                  "h": 82
                 },
                 "vv": {
                   "w": 842,
-                  "h": 233,
+                  "h": 82,
                   "top": 0,
                   "scale": 1
                 },
@@ -3807,13 +4201,13 @@
                   "x": 0,
                   "y": 0,
                   "w": 842,
-                  "h": 233
+                  "h": 82
                 },
                 "main": {
                   "x": 28,
                   "y": 0,
                   "w": 814,
-                  "h": 209
+                  "h": 82
                 },
                 "blankTracks": [],
                 "sideZones": [
@@ -3822,15 +4216,21 @@
                     "x": 0,
                     "y": 0,
                     "w": 28,
-                    "h": 209
+                    "h": 82
                   }
                 ],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 39,
-                  "y": 103,
+                  "y": -24,
                   "w": 792,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 34,
+                  "w": 477,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -3845,15 +4245,16 @@
               "measure": {
                 "inner": {
                   "w": 345,
-                  "h": 842
+                  "h": 555
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
-                  "h": 842
+                  "h": 555
                 },
                 "vv": {
                   "w": 345,
-                  "h": 842,
+                  "h": 555,
                   "top": 0,
                   "scale": 1
                 },
@@ -3873,22 +4274,28 @@
                   "x": 0,
                   "y": 0,
                   "w": 345,
-                  "h": 842
+                  "h": 555
                 },
                 "main": {
                   "x": 0,
                   "y": 0,
                   "w": 345,
-                  "h": 818
+                  "h": 531
                 },
                 "blankTracks": [],
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 11,
-                  "y": 712,
+                  "y": 425,
                   "w": 323,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 483,
+                  "w": 140,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -3903,15 +4310,16 @@
               "measure": {
                 "inner": {
                   "w": 842,
-                  "h": 233
+                  "h": 82
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
-                  "h": 233
+                  "h": 82
                 },
                 "vv": {
                   "w": 842,
-                  "h": 233,
+                  "h": 82,
                   "top": 0,
                   "scale": 1
                 },
@@ -3931,13 +4339,13 @@
                   "x": 0,
                   "y": 0,
                   "w": 842,
-                  "h": 233
+                  "h": 82
                 },
                 "main": {
                   "x": 28,
                   "y": 0,
                   "w": 814,
-                  "h": 209
+                  "h": 82
                 },
                 "blankTracks": [],
                 "sideZones": [
@@ -3946,15 +4354,21 @@
                     "x": 0,
                     "y": 0,
                     "w": 28,
-                    "h": 209
+                    "h": 82
                   }
                 ],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 39,
-                  "y": 103,
+                  "y": -24,
                   "w": 792,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 34,
+                  "w": 477,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -3976,6 +4390,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -4018,6 +4433,12 @@
                   "y": 688,
                   "w": 323,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 168,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -4034,6 +4455,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -4085,8 +4507,14 @@
                   "w": 792,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 225,
+                  "w": 505,
+                  "h": 29
+                },
                 "overlay": null,
-                "ticker": false
+                "ticker": true
               },
               "fails": []
             },
@@ -4100,6 +4528,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -4143,6 +4572,12 @@
                   "w": 323,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 746,
+                  "w": 168,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": true
               },
@@ -4158,6 +4593,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -4208,6 +4644,12 @@
                   "y": 167,
                   "w": 792,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 225,
+                  "w": 505,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": true
@@ -4229,6 +4671,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -4267,6 +4710,7 @@
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -4289,6 +4733,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -4335,6 +4780,7 @@
                 ],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -4357,6 +4803,7 @@
                   "w": 345,
                   "h": 818
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 345,
                   "h": 818
@@ -4395,6 +4842,7 @@
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -4417,6 +4865,7 @@
                   "w": 842,
                   "h": 297
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 842,
                   "h": 297
@@ -4463,6 +4912,7 @@
                 ],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -4496,6 +4946,7 @@
                   "w": 829,
                   "h": 630
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 630
@@ -4547,6 +4998,12 @@
                   "w": 547,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 558,
+                  "w": 364,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -4562,6 +5019,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -4612,6 +5070,12 @@
                   "y": 643,
                   "w": 372,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 701,
+                  "w": 189,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -4628,6 +5092,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -4678,6 +5143,12 @@
                   "y": 492,
                   "w": 547,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 550,
+                  "w": 364,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -4694,6 +5165,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -4744,6 +5216,12 @@
                   "y": 643,
                   "w": 372,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 701,
+                  "w": 189,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -4760,6 +5238,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -4811,6 +5290,12 @@
                   "w": 547,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 550,
+                  "w": 364,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -4826,6 +5311,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -4877,6 +5363,12 @@
                   "w": 372,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 701,
+                  "w": 189,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -4892,6 +5384,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -4942,6 +5435,12 @@
                   "y": 492,
                   "w": 547,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 550,
+                  "w": 364,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -4963,6 +5462,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -5013,6 +5513,12 @@
                   "y": 492,
                   "w": 547,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 550,
+                  "w": 364,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -5029,6 +5535,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -5080,6 +5587,12 @@
                   "w": 372,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 701,
+                  "w": 189,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -5095,6 +5608,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -5146,6 +5660,12 @@
                   "w": 547,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 550,
+                  "w": 364,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -5161,6 +5681,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -5211,6 +5732,12 @@
                   "y": 643,
                   "w": 372,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 701,
+                  "w": 189,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -5232,6 +5759,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -5282,6 +5810,12 @@
                   "y": 643,
                   "w": 372,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 701,
+                  "w": 189,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -5298,6 +5832,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -5349,6 +5884,12 @@
                   "w": 547,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 550,
+                  "w": 364,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -5364,6 +5905,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -5415,6 +5957,12 @@
                   "w": 372,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 701,
+                  "w": 189,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -5430,6 +5978,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -5480,6 +6029,12 @@
                   "y": 492,
                   "w": 547,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 550,
+                  "w": 364,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -5501,6 +6056,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -5558,6 +6114,12 @@
                   "y": 492,
                   "w": 542,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 550,
+                  "w": 359,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -5574,6 +6136,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -5632,6 +6195,12 @@
                   "w": 367,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 701,
+                  "w": 184,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -5647,6 +6216,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -5705,6 +6275,12 @@
                   "w": 542,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 550,
+                  "w": 359,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -5720,6 +6296,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -5777,6 +6354,12 @@
                   "y": 643,
                   "w": 367,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 701,
+                  "w": 184,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -5798,6 +6381,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -5855,6 +6439,12 @@
                   "y": 643,
                   "w": 367,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 701,
+                  "w": 184,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -5871,6 +6461,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -5929,6 +6520,12 @@
                   "w": 542,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 550,
+                  "w": 359,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -5944,6 +6541,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -6002,6 +6600,12 @@
                   "w": 367,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 701,
+                  "w": 184,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -6017,6 +6621,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -6074,6 +6679,12 @@
                   "y": 492,
                   "w": 542,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 550,
+                  "w": 359,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -6093,15 +6704,16 @@
               "measure": {
                 "inner": {
                   "w": 829,
-                  "h": 558
+                  "h": 333
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
-                  "h": 558
+                  "h": 333
                 },
                 "vv": {
                   "w": 829,
-                  "h": 558,
+                  "h": 333,
                   "top": 0,
                   "scale": 1
                 },
@@ -6121,13 +6733,13 @@
                   "x": 0,
                   "y": 0,
                   "w": 829,
-                  "h": 558
+                  "h": 333
                 },
                 "main": {
                   "x": 28,
                   "y": 0,
                   "w": 801,
-                  "h": 534
+                  "h": 309
                 },
                 "blankTracks": [],
                 "sideZones": [
@@ -6136,15 +6748,21 @@
                     "x": 0,
                     "y": 0,
                     "w": 28,
-                    "h": 534
+                    "h": 309
                   }
                 ],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 39,
-                  "y": 428,
+                  "y": 203,
                   "w": 779,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 261,
+                  "w": 464,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -6159,15 +6777,16 @@
               "measure": {
                 "inner": {
                   "w": 654,
-                  "h": 709
+                  "h": 485
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
-                  "h": 709
+                  "h": 485
                 },
                 "vv": {
                   "w": 654,
-                  "h": 709,
+                  "h": 485,
                   "top": 0,
                   "scale": 1
                 },
@@ -6187,13 +6806,13 @@
                   "x": 0,
                   "y": 0,
                   "w": 654,
-                  "h": 709
+                  "h": 485
                 },
                 "main": {
                   "x": 28,
                   "y": 0,
                   "w": 626,
-                  "h": 685
+                  "h": 461
                 },
                 "blankTracks": [],
                 "sideZones": [
@@ -6202,15 +6821,21 @@
                     "x": 0,
                     "y": 0,
                     "w": 28,
-                    "h": 685
+                    "h": 461
                   }
                 ],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 39,
-                  "y": 579,
+                  "y": 355,
                   "w": 604,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 413,
+                  "w": 289,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -6225,15 +6850,16 @@
               "measure": {
                 "inner": {
                   "w": 829,
-                  "h": 558
+                  "h": 333
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
-                  "h": 558
+                  "h": 333
                 },
                 "vv": {
                   "w": 829,
-                  "h": 558,
+                  "h": 333,
                   "top": 0,
                   "scale": 1
                 },
@@ -6253,13 +6879,13 @@
                   "x": 0,
                   "y": 0,
                   "w": 829,
-                  "h": 558
+                  "h": 333
                 },
                 "main": {
                   "x": 28,
                   "y": 0,
                   "w": 801,
-                  "h": 534
+                  "h": 309
                 },
                 "blankTracks": [],
                 "sideZones": [
@@ -6268,15 +6894,21 @@
                     "x": 0,
                     "y": 0,
                     "w": 28,
-                    "h": 534
+                    "h": 309
                   }
                 ],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 39,
-                  "y": 428,
+                  "y": 203,
                   "w": 779,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 261,
+                  "w": 464,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -6291,15 +6923,16 @@
               "measure": {
                 "inner": {
                   "w": 654,
-                  "h": 709
+                  "h": 485
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
-                  "h": 709
+                  "h": 485
                 },
                 "vv": {
                   "w": 654,
-                  "h": 709,
+                  "h": 485,
                   "top": 0,
                   "scale": 1
                 },
@@ -6319,13 +6952,13 @@
                   "x": 0,
                   "y": 0,
                   "w": 654,
-                  "h": 709
+                  "h": 485
                 },
                 "main": {
                   "x": 28,
                   "y": 0,
                   "w": 626,
-                  "h": 685
+                  "h": 461
                 },
                 "blankTracks": [],
                 "sideZones": [
@@ -6334,15 +6967,21 @@
                     "x": 0,
                     "y": 0,
                     "w": 28,
-                    "h": 685
+                    "h": 461
                   }
                 ],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 39,
-                  "y": 579,
+                  "y": 355,
                   "w": 604,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 413,
+                  "w": 289,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -6364,6 +7003,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -6414,6 +7054,12 @@
                   "y": 492,
                   "w": 779,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 550,
+                  "w": 492,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -6430,6 +7076,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -6481,8 +7128,14 @@
                   "w": 604,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 701,
+                  "w": 317,
+                  "h": 29
+                },
                 "overlay": null,
-                "ticker": true
+                "ticker": false
               },
               "fails": []
             },
@@ -6496,6 +7149,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -6547,6 +7201,12 @@
                   "w": 779,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 550,
+                  "w": 492,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": true
               },
@@ -6562,6 +7222,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -6612,6 +7273,12 @@
                   "y": 643,
                   "w": 604,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 701,
+                  "w": 317,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": true
@@ -6633,6 +7300,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -6679,6 +7347,7 @@
                 ],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -6701,6 +7370,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -6747,6 +7417,7 @@
                 ],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -6769,6 +7440,7 @@
                   "w": 829,
                   "h": 622
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 829,
                   "h": 622
@@ -6815,6 +7487,7 @@
                 ],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -6837,6 +7510,7 @@
                   "w": 654,
                   "h": 773
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 654,
                   "h": 773
@@ -6883,6 +7557,7 @@
                 ],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -6916,6 +7591,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -6966,6 +7642,12 @@
                   "y": 442,
                   "w": 737,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 500,
+                  "w": 422,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -6982,6 +7664,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -7024,6 +7707,12 @@
                   "y": 833,
                   "w": 582,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -7040,6 +7729,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -7090,6 +7780,12 @@
                   "y": 442,
                   "w": 737,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 500,
+                  "w": 422,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -7106,6 +7802,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -7148,6 +7845,12 @@
                   "y": 833,
                   "w": 582,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -7164,6 +7867,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -7215,6 +7919,12 @@
                   "w": 737,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 500,
+                  "w": 422,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -7230,6 +7940,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-primary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -7273,6 +7984,12 @@
                   "w": 582,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -7288,6 +8005,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -7338,6 +8056,12 @@
                   "y": 442,
                   "w": 737,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 500,
+                  "w": 422,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -7359,6 +8083,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -7409,6 +8134,12 @@
                   "y": 442,
                   "w": 737,
                   "h": 96
+                },
+                "editor": {
+                  "x": 317,
+                  "y": 500,
+                  "w": 422,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -7425,6 +8156,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -7468,6 +8200,12 @@
                   "w": 582,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -7483,6 +8221,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -7534,6 +8273,12 @@
                   "w": 737,
                   "h": 96
                 },
+                "editor": {
+                  "x": 317,
+                  "y": 500,
+                  "w": 422,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -7549,6 +8294,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -7591,6 +8337,12 @@
                   "y": 833,
                   "w": 582,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -7612,6 +8364,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -7660,6 +8413,12 @@
                   "w": 582,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -7675,6 +8434,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -7726,6 +8486,12 @@
                   "w": 969,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 500,
+                  "w": 654,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -7741,6 +8507,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -7784,6 +8551,12 @@
                   "w": 582,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -7799,6 +8572,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -7849,6 +8623,12 @@
                   "y": 442,
                   "w": 969,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 500,
+                  "w": 654,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -7870,6 +8650,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -7927,6 +8708,12 @@
                   "y": 442,
                   "w": 732,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 500,
+                  "w": 417,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -7943,6 +8730,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -7986,6 +8774,12 @@
                   "w": 582,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -8001,6 +8795,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -8059,6 +8854,12 @@
                   "w": 732,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 500,
+                  "w": 417,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -8074,6 +8875,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -8116,6 +8918,12 @@
                   "y": 833,
                   "w": 582,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -8137,6 +8945,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -8179,6 +8988,12 @@
                   "y": 833,
                   "w": 582,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -8195,6 +9010,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -8246,6 +9062,12 @@
                   "w": 969,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 500,
+                  "w": 654,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -8261,6 +9083,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -8304,6 +9127,12 @@
                   "w": 582,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 267,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -8319,6 +9148,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -8369,6 +9199,12 @@
                   "y": 442,
                   "w": 969,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 500,
+                  "w": 654,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -8388,15 +9224,16 @@
               "measure": {
                 "inner": {
                   "w": 1019,
-                  "h": 511
+                  "h": 284
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
-                  "h": 511
+                  "h": 284
                 },
                 "vv": {
                   "w": 1019,
-                  "h": 511,
+                  "h": 284,
                   "top": 0,
                   "scale": 1
                 },
@@ -8416,13 +9253,13 @@
                   "x": 0,
                   "y": 0,
                   "w": 1019,
-                  "h": 511
+                  "h": 284
                 },
                 "main": {
                   "x": 28,
                   "y": 0,
                   "w": 991,
-                  "h": 487
+                  "h": 260
                 },
                 "blankTracks": [],
                 "sideZones": [
@@ -8431,15 +9268,21 @@
                     "x": 0,
                     "y": 0,
                     "w": 28,
-                    "h": 487
+                    "h": 260
                   }
                 ],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 39,
-                  "y": 381,
+                  "y": 154,
                   "w": 969,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 212,
+                  "w": 654,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -8454,15 +9297,16 @@
               "measure": {
                 "inner": {
                   "w": 604,
-                  "h": 995
+                  "h": 675
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
-                  "h": 995
+                  "h": 675
                 },
                 "vv": {
                   "w": 604,
-                  "h": 995,
+                  "h": 675,
                   "top": 0,
                   "scale": 1
                 },
@@ -8482,22 +9326,28 @@
                   "x": 0,
                   "y": 0,
                   "w": 604,
-                  "h": 995
+                  "h": 675
                 },
                 "main": {
                   "x": 0,
                   "y": 0,
                   "w": 604,
-                  "h": 971
+                  "h": 651
                 },
                 "blankTracks": [],
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 11,
-                  "y": 865,
+                  "y": 545,
                   "w": 582,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 603,
+                  "w": 267,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -8512,15 +9362,16 @@
               "measure": {
                 "inner": {
                   "w": 1019,
-                  "h": 511
+                  "h": 284
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
-                  "h": 511
+                  "h": 284
                 },
                 "vv": {
                   "w": 1019,
-                  "h": 511,
+                  "h": 284,
                   "top": 0,
                   "scale": 1
                 },
@@ -8540,13 +9391,13 @@
                   "x": 0,
                   "y": 0,
                   "w": 1019,
-                  "h": 511
+                  "h": 284
                 },
                 "main": {
                   "x": 28,
                   "y": 0,
                   "w": 991,
-                  "h": 487
+                  "h": 260
                 },
                 "blankTracks": [],
                 "sideZones": [
@@ -8555,15 +9406,21 @@
                     "x": 0,
                     "y": 0,
                     "w": 28,
-                    "h": 487
+                    "h": 260
                   }
                 ],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 39,
-                  "y": 381,
+                  "y": 154,
                   "w": 969,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 212,
+                  "w": 654,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -8578,15 +9435,16 @@
               "measure": {
                 "inner": {
                   "w": 604,
-                  "h": 995
+                  "h": 675
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
-                  "h": 995
+                  "h": 675
                 },
                 "vv": {
                   "w": 604,
-                  "h": 995,
+                  "h": 675,
                   "top": 0,
                   "scale": 1
                 },
@@ -8606,22 +9464,28 @@
                   "x": 0,
                   "y": 0,
                   "w": 604,
-                  "h": 995
+                  "h": 675
                 },
                 "main": {
                   "x": 0,
                   "y": 0,
                   "w": 604,
-                  "h": 971
+                  "h": 651
                 },
                 "blankTracks": [],
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": {
                   "x": 11,
-                  "y": 865,
+                  "y": 545,
                   "w": 582,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 603,
+                  "w": 267,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -8643,6 +9507,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -8693,6 +9558,12 @@
                   "y": 442,
                   "w": 969,
                   "h": 96
+                },
+                "editor": {
+                  "x": 85,
+                  "y": 500,
+                  "w": 682,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": false
@@ -8709,6 +9580,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -8752,6 +9624,12 @@
                   "w": 582,
                   "h": 96
                 },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 295,
+                  "h": 29
+                },
                 "overlay": null,
                 "ticker": false
               },
@@ -8767,6 +9645,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -8818,8 +9697,14 @@
                   "w": 969,
                   "h": 96
                 },
+                "editor": {
+                  "x": 85,
+                  "y": 500,
+                  "w": 682,
+                  "h": 29
+                },
                 "overlay": null,
-                "ticker": true
+                "ticker": false
               },
               "fails": []
             },
@@ -8833,6 +9718,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -8875,6 +9761,12 @@
                   "y": 833,
                   "w": 582,
                   "h": 96
+                },
+                "editor": {
+                  "x": 57,
+                  "y": 891,
+                  "w": 295,
+                  "h": 29
                 },
                 "overlay": null,
                 "ticker": true
@@ -8896,6 +9788,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -8942,6 +9835,7 @@
                 ],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -8964,6 +9858,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -9002,6 +9897,7 @@
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -9024,6 +9920,7 @@
                   "w": 1019,
                   "h": 572
                 },
+                "orientation": "landscape-primary",
                 "client": {
                   "w": 1019,
                   "h": 572
@@ -9070,6 +9967,7 @@
                 ],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,
@@ -9092,6 +9990,7 @@
                   "w": 604,
                   "h": 963
                 },
+                "orientation": "portrait-secondary",
                 "client": {
                   "w": 604,
                   "h": 963
@@ -9130,6 +10029,7 @@
                 "sideZones": [],
                 "narrowOverlay": null,
                 "composer": null,
+                "editor": null,
                 "overlay": {
                   "x": 0,
                   "y": 0,

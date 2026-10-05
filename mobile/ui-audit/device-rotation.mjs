@@ -20,7 +20,8 @@
  *   - no blank layout track: every displayed tree track holds a displayed pane zone
  *   - narrow (< 640px): the chat pane spans the whole shell (side panes are overlays, none docked)
  *   - wide: no narrow edge overlay left open
- *   - the composer is on screen (above the soft keyboard when it is up)
+ *   - the composer is on screen; with the soft keyboard up, the row being typed into is above it
+ *     (and the orientation is read from the screen, since the keyboard shrinks the viewport)
  *   - Settings: the overlay covers the viewport and does not overflow
  *   - coming back to an orientation gives the same layout it had there before (nothing stuck)
  * ROTATION_STATES=keyboard,settings limits the run to some states.
@@ -170,6 +171,9 @@ function measure() {
   const overlay = document.querySelector('[data-overlay-surface]')
   return {
     inner: { w: innerWidth, h: innerHeight },
+    // the soft keyboard shrinks the viewport (portrait 654x485 on the Fold inner screen looks landscape);
+    // the screen orientation is what the rotation set
+    orientation: screen.orientation?.type ?? null,
     client: { w: de.clientWidth, h: de.clientHeight },
     vv: vv ? { w: Math.round(vv.width), h: Math.round(vv.height), top: Math.round(vv.offsetTop), scale: vv.scale } : null,
     scroll: { w: Math.max(de.scrollWidth, document.body.scrollWidth), x: Math.round(scrollX), y: Math.round(scrollY) },
@@ -183,6 +187,8 @@ function measure() {
       .map(g => ({ id: g.getAttribute('data-tree-group'), ...rect(g) })),
     narrowOverlay: rect(Array.from(document.querySelectorAll('[data-narrow-overlay]')).find(shown)),
     composer: rect(Array.from(document.querySelectorAll('[data-slot=composer-root]')).find(shown)),
+    // the row being typed into: with the keyboard up in an 82px landscape strip only this row has to fit
+    editor: rect(Array.from(document.querySelectorAll('[data-slot=composer-root] [contenteditable=true]')).find(shown)),
     overlay: overlay && shown(overlay) ? { ...rect(overlay), scrollW: overlay.scrollWidth, clientW: overlay.clientWidth } : null,
     ticker: !!document.querySelector('[data-tool-ticker]')
   }
@@ -194,7 +200,8 @@ const near = (a, b, tol = 2) => Math.abs(a - b) <= tol
 function check(m, { landscape, state, ime }) {
   const fails = []
   const fail = (what, detail) => fails.push({ what, detail })
-  if (m.inner.w > m.inner.h !== landscape) fail('viewport did not follow the rotation', m.inner)
+  const isLandscape = ime && m.orientation ? m.orientation.startsWith('landscape') : m.inner.w > m.inner.h
+  if (isLandscape !== landscape) fail('viewport did not follow the rotation', { inner: m.inner, orientation: m.orientation })
   if (m.client.w !== m.inner.w || m.client.h !== m.inner.h) fail('html client size != viewport', { client: m.client, inner: m.inner })
   if (m.scroll.x || m.scroll.y) fail('page is scrolled', m.scroll)
   if (m.scroll.w > m.inner.w + 1) fail('horizontal overflow', { scrollW: m.scroll.w, innerW: m.inner.w })
@@ -207,7 +214,8 @@ function check(m, { landscape, state, ime }) {
     if (m.sideZones.length) fail('narrow: side pane docked in the grid', m.sideZones)
   } else if (m.narrowOverlay) fail('wide: narrow edge overlay still open', m.narrowOverlay)
   if (state !== 'settings') {
-    const c = m.composer
+    // keyboard up: the row being typed into must be fully visible; the status stack above it may scroll off
+    const c = ime && m.editor ? m.editor : m.composer
     const bottom = ime && m.vv ? m.vv.h : m.inner.h
     if (!c) fail('composer missing', null)
     else if (c.y < 0 || c.x < -1 || c.x + c.w > m.inner.w + 1 || c.y + c.h > bottom + 1) fail(ime ? 'composer hidden behind the keyboard / off screen' : 'composer off screen', { composer: c, inner: m.inner, vv: m.vv })
