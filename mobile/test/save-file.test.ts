@@ -233,6 +233,30 @@ describe('saveImageFromUrl', () => {
     expect(await saveImageFromUrl('data:nonsense', auth)).toBe(false)
   })
 
+  it('refuses a data: image over 32 MB before encoding or writing it', async () => {
+    const overCap = 'A'.repeat(Math.ceil(((32 * 1024 * 1024 + 1) * 4) / 3) + 4)
+
+    await expect(saveImageFromUrl(`data:image/png;base64,${overCap}`, auth)).rejects.toThrow('This image is too large to save on the phone (over 32 MB).')
+    await expect(saveImageFromUrl(`data:image/svg+xml,${'a'.repeat(32 * 1024 * 1024 + 1)}`, auth)).rejects.toThrow(/over 32 MB/)
+    expect(writeFile).not.toHaveBeenCalled()
+    expect(share).not.toHaveBeenCalled()
+  })
+
+  it('refuses a blob: image over 32 MB without reading its content', async () => {
+    const huge = { size: 32 * 1024 * 1024 + 1, type: 'image/png' }
+    const fetchMock = vi.fn().mockResolvedValue({ blob: async () => huge })
+    vi.stubGlobal('fetch', fetchMock)
+
+    try {
+      await expect(saveImageFromUrl('blob:http://localhost/123', auth)).rejects.toThrow('This image is too large to save on the phone (over 32 MB).')
+    } finally {
+      vi.unstubAllGlobals()
+    }
+
+    expect(fetchMock).toHaveBeenCalledWith('blob:http://localhost/123')
+    expect(writeFile).not.toHaveBeenCalled()
+  })
+
   it('downloads an image of the connected gateway with the bearer and a 32 MB cap', async () => {
     download({ contentType: 'image/jpeg' })
 

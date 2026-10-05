@@ -45,6 +45,17 @@ public final class BoundedFetcher {
     public static final String INVALID_REQUEST = "invalid_request";
     public static final String NETWORK = "network";
 
+    /** Free bytes left on the volume holding {@code dir}. */
+    public interface SpaceProbe {
+        long availableBytes(File dir);
+    }
+
+    /** Space kept free on the device after any download. */
+    static final long SPACE_MARGIN = 16L * 1024 * 1024;
+    /** Free space is re-checked after every this many bytes written (covers unknown lengths). */
+    static final long SPACE_RECHECK_BYTES = 8L * 1024 * 1024;
+    private static final SpaceProbe UNLIMITED_SPACE = dir -> Long.MAX_VALUE;
+
     private static final int CHUNK = 64 * 1024;
     private static final int ERROR_BODY_MAX = 4096;
     private static final int DOWNLOAD_PUBLIC_MAX_REDIRECTS = 3;
@@ -123,19 +134,30 @@ public final class BoundedFetcher {
 
     private final OkHttpClient publicClient;
     private final OkHttpClient gatewayClient;
+    private final SpaceProbe spaceProbe;
     private final Set<Call> blockedCalls = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
-    public static BoundedFetcher create() {
-        return new BoundedFetcher(new PublicOnlyDns(), AddressPolicy::isPublic);
+    public static BoundedFetcher create(SpaceProbe spaceProbe) {
+        return new BoundedFetcher(new PublicOnlyDns(), AddressPolicy::isPublic, spaceProbe);
     }
 
     /** For tests: inject the address policy and the DNS the policy-enforcing resolver delegates to. */
     public BoundedFetcher(Predicate<InetAddress> policy, Dns delegateDns) {
-        this(new PublicOnlyDns(delegateDns, policy), policy);
+        this(policy, delegateDns, UNLIMITED_SPACE);
+    }
+
+    /** For tests: as above, plus a fake free-space probe. */
+    BoundedFetcher(Predicate<InetAddress> policy, Dns delegateDns, SpaceProbe spaceProbe) {
+        this(new PublicOnlyDns(delegateDns, policy), policy, spaceProbe);
     }
 
     /** For tests: lets the DNS and the connect-time listener use different policies. */
     BoundedFetcher(Dns publicDns, Predicate<InetAddress> listenerPolicy) {
+        this(publicDns, listenerPolicy, UNLIMITED_SPACE);
+    }
+
+    private BoundedFetcher(Dns publicDns, Predicate<InetAddress> listenerPolicy, SpaceProbe spaceProbe) {
+        this.spaceProbe = spaceProbe;
         this.publicClient = new OkHttpClient.Builder()
             .dns(publicDns)
             .proxy(Proxy.NO_PROXY)
@@ -248,26 +270,39 @@ public final class BoundedFetcher {
                     return new DownloadResult(status, null, 0, contentType, disposition, readErrorBody(body));
                 }
                 String declared = response.header("Content-Length");
+                long declaredLength = 0;
                 if (declared != null) {
                     try {
-                        if (Long.parseLong(declared.trim()) > maxBytes) throw new FetchException(TOO_LARGE);
+                        declaredLength = Math.max(0, Long.parseLong(declared.trim()));
+                        if (declaredLength > maxBytes) throw new FetchException(TOO_LARGE);
                     } catch (NumberFormatException ignored) {
                         // Unparseable header: the streaming cap below still bounds the download.
                     }
                 }
                 File parent = destFile.getAbsoluteFile().getParentFile();
                 if (parent != null) parent.mkdirs();
+                // Against the announced size (0 when unknown), never against the ceiling: a small file
+                // must not need the ceiling's worth of free space.
+                requireSpace(parent, declaredLength);
                 long total = 0;
+                long nextSpaceCheck = SPACE_RECHECK_BYTES;
                 try (InputStream in = body.byteStream(); FileOutputStream out = new FileOutputStream(part)) {
                     byte[] buf = new byte[CHUNK];
                     while (true) {
-                        // Ask for one byte past the cap so exceeding it is detected immediately.
-                        int want = (int) Math.min(buf.length, maxBytes - total + 1);
+                        // Ask for one byte past the cap so exceeding it is detected immediately
+                        // (the +1 only applies below one buffer, so it cannot overflow).
+                        long remaining = maxBytes - total;
+                        int want = remaining >= buf.length ? buf.length : (int) remaining + 1;
                         int n = in.read(buf, 0, want);
                         if (n == -1) break;
                         if (total + n > maxBytes) throw new FetchException(TOO_LARGE);
                         out.write(buf, 0, n);
                         total += n;
+                        if (total >= nextSpaceCheck) {
+                            // Covers a missing or lying Content-Length: stop before the device fills up.
+                            requireSpace(parent, 0);
+                            nextSpaceCheck += SPACE_RECHECK_BYTES;
+                        }
                     }
                 }
                 if (destFile.exists() && !destFile.delete()) throw new FetchException(NETWORK);
@@ -277,6 +312,13 @@ public final class BoundedFetcher {
                 throw map(e, call);
             }
         }
+    }
+
+    /** Fails with {@link #INSUFFICIENT_SPACE} unless {@code bytes} more still leave the margin free. */
+    private void requireSpace(File dir, long bytes) throws FetchException {
+        if (dir == null) return;
+        // Subtraction, not addition: no overflow whatever the probe or the header reports.
+        if (spaceProbe.availableBytes(dir) - SPACE_MARGIN < bytes) throw new FetchException(INSUFFICIENT_SPACE);
     }
 
     private static String readErrorBody(ResponseBody body) throws IOException {

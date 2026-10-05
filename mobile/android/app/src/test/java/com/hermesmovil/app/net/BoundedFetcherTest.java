@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import okhttp3.Dns;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -301,5 +302,58 @@ public class BoundedFetcherTest {
         f.download(url("public.test", "/f"), headers, 1024, dest(), true);
         assertEquals("Bearer secret", server.takeRequest().getHeader("Authorization"));
         assertNull(server.takeRequest().getHeader("Authorization"));
+    }
+
+    // ---------------------------------------------------------- free space
+
+    private BoundedFetcher withFreeSpace(BoundedFetcher.SpaceProbe probe) {
+        return new BoundedFetcher(a -> a.isLoopbackAddress(), FAKE_DNS, probe);
+    }
+
+    @Test
+    public void smallFileNeedsOnlyItsOwnSizeNotTheCeiling() throws Exception {
+        // 10 KB free beyond the margin is plenty for a 5 KB file, even under a 1 GiB ceiling.
+        BoundedFetcher f = withFreeSpace(dir -> BoundedFetcher.SPACE_MARGIN + 10_000);
+        server.enqueue(new MockResponse().setBody(bytes(5_000, (byte) 1)));
+        DownloadResult r = f.download(url("public.test", "/f"), null, RequestLimits.GATEWAY_DOWNLOAD_MAX_BYTES, dest(), true);
+        assertEquals(5_000, r.bytes);
+        assertEquals(5_000, dest().length());
+    }
+
+    @Test
+    public void declaredLengthOverFreeSpaceIsRejectedBeforeWriting() throws Exception {
+        BoundedFetcher f = withFreeSpace(dir -> BoundedFetcher.SPACE_MARGIN + 1_000);
+        server.enqueue(new MockResponse().setBody(bytes(5_000, (byte) 1)));
+        try {
+            f.download(url("public.test", "/f"), null, 1024 * 1024, dest(), true);
+            fail("expected insufficient_space");
+        } catch (FetchException e) {
+            assertEquals("insufficient_space", e.code);
+        }
+        assertNoFiles();
+    }
+
+    @Test
+    public void spaceRunningOutMidStreamAborts() throws Exception {
+        // No Content-Length: the first check passes, the re-check after 8 MB finds the margin gone.
+        AtomicInteger checks = new AtomicInteger();
+        BoundedFetcher f = withFreeSpace(dir -> checks.getAndIncrement() == 0 ? BoundedFetcher.SPACE_MARGIN : BoundedFetcher.SPACE_MARGIN - 1);
+        int size = (int) BoundedFetcher.SPACE_RECHECK_BYTES + 1024 * 1024;
+        server.enqueue(new MockResponse().setChunkedBody(bytes(size, (byte) 1), 64 * 1024));
+        try {
+            f.download(url("public.test", "/f"), null, 64L * 1024 * 1024, dest(), true);
+            fail("expected insufficient_space");
+        } catch (FetchException e) {
+            assertEquals("insufficient_space", e.code);
+        }
+        assertEquals(2, checks.get());
+        assertNoFiles();
+    }
+
+    @Test
+    public void absurdFreeSpaceValuesDoNotOverflow() throws Exception {
+        BoundedFetcher f = withFreeSpace(dir -> Long.MAX_VALUE);
+        server.enqueue(new MockResponse().setBody("ok"));
+        assertEquals(2, f.download(url("public.test", "/f"), null, Long.MAX_VALUE, dest(), true).bytes);
     }
 }

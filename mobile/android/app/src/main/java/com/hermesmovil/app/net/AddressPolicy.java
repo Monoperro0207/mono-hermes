@@ -52,12 +52,14 @@ public final class AddressPolicy {
         if ((b0 & 0xe0) != 0x20) return false;
         // 6to4 2002::/16 -> judge the embedded IPv4.
         if (b0 == 0x20 && b1 == 0x02) return embeddedV4(b, 2);
+        int b2 = b[2] & 0xff;
         if (b0 == 0x20 && b1 == 0x01) {
-            int b2 = b[2] & 0xff;
-            int b3 = b[3] & 0xff;
-            if (b2 == 0x00 && b3 == 0x00) return false; // Teredo 2001::/32
-            if (b2 == 0x0d && b3 == 0xb8) return false; // documentation 2001:db8::/32
+            // 2001::/23 IETF protocol assignments: Teredo, benchmarking 2001:2::/48, ORCHID and a few
+            // anycast services. No ordinary web host lives there, so the whole block is refused.
+            if ((b2 & 0xfe) == 0x00) return false;
+            if (b2 == 0x0d && (b[3] & 0xff) == 0xb8) return false; // documentation 2001:db8::/32
         }
+        if (b0 == 0x3f && b1 == 0xff && (b2 & 0xf0) == 0x00) return false; // documentation 3fff::/20
         return true;
     }
 

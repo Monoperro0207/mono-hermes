@@ -489,9 +489,15 @@ async function downloadRemoteImage(
   }
 }
 
+/** Same wording as a native `too_large`, for images that are refused before any copy is made. */
+function imageTooLarge(): unknown {
+  return explainSaveError({ code: 'too_large' }, 'image', '32 MB')
+}
+
 /**
  * `saveImageFromUrl`: offer an image (data:, blob: or http) through the share sheet. `data:` and
- * `blob:` are already in memory; http(s) images are downloaded natively (no Base64 in JS).
+ * `blob:` are already in memory; http(s) images are downloaded natively (no Base64 in JS). The
+ * 32 MB cap applies to all three: in-memory images are measured before they are encoded or copied.
  */
 export async function saveImageFromUrl(url: string, auth: Pick<AuthSession, 'requireBaseUrl' | 'withBearer'>): Promise<boolean> {
   if (url.startsWith('data:') || url.startsWith('blob:')) {
@@ -505,10 +511,25 @@ export async function saveImageFromUrl(url: string, auth: Pick<AuthSession, 'req
         return false
       }
 
-      base64 = match[2] ? match[3] : btoa(decodeURIComponent(match[3]))
+      // Upper bounds of the decoded size: Base64 packs 3 bytes in 4 characters, and percent-decoding
+      // only ever shrinks a payload.
+      const payload = match[3]
+      const decodedBound = match[2] ? Math.floor((payload.length * 3) / 4) : payload.length
+
+      if (decodedBound > MAX_IMAGE_SAVE_BYTES) {
+        throw imageTooLarge()
+      }
+
+      base64 = match[2] ? payload : btoa(decodeURIComponent(payload))
       name += guessExtension(match[1] ?? 'image/png') || '.png'
     } else {
       const blob = await (await fetch(url)).blob()
+
+      // `size` is known without reading the content.
+      if (blob.size > MAX_IMAGE_SAVE_BYTES) {
+        throw imageTooLarge()
+      }
+
       base64 = (await readAsDataUrl(blob)).split(',', 2)[1] ?? ''
       name += guessExtension(blob.type) || '.png'
     }

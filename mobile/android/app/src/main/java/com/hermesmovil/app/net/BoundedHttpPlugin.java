@@ -22,14 +22,11 @@ import java.util.concurrent.RejectedExecutionException;
  */
 @CapacitorPlugin(name = "BoundedHttp")
 public class BoundedHttpPlugin extends Plugin {
-    private static final long SPACE_MARGIN = 16L * 1024 * 1024;
-    private static final int DEFAULT_MAX_REDIRECTS = 3;
-
     private final ExecutorService executor = Executors.newFixedThreadPool(4);
     private BoundedFetcher fetcher;
 
     private synchronized BoundedFetcher fetcher() {
-        if (fetcher == null) fetcher = BoundedFetcher.create();
+        if (fetcher == null) fetcher = BoundedFetcher.create(dir -> new StatFs(dir.getPath()).getAvailableBytes());
         return fetcher;
     }
 
@@ -50,7 +47,8 @@ public class BoundedHttpPlugin extends Plugin {
                     job.run(call);
                 } catch (BoundedFetcher.FetchException e) {
                     call.reject(e.getMessage(), e.code);
-                } catch (Exception e) {
+                } catch (Throwable e) {
+                    // Throwable, not Exception: an Error must still settle the JS promise.
                     call.reject(String.valueOf(e.getMessage()), BoundedFetcher.NETWORK);
                 }
             });
@@ -63,11 +61,12 @@ public class BoundedHttpPlugin extends Plugin {
     public void fetchPublicText(PluginCall call) {
         String url = call.getString("url");
         Integer maxBytes = call.getInt("maxBytes");
-        if (url == null || maxBytes == null || maxBytes <= 0) {
-            call.reject("url and a positive maxBytes are required", BoundedFetcher.INVALID_REQUEST);
+        Integer maxRedirects = call.getInt("maxRedirects", RequestLimits.TEXT_MAX_REDIRECTS);
+        if (url == null || !RequestLimits.validText(maxBytes, maxRedirects)) {
+            call.reject("url, maxBytes (1.." + RequestLimits.TEXT_MAX_BYTES + ") and maxRedirects (0.."
+                + RequestLimits.TEXT_MAX_REDIRECTS + ") are required", BoundedFetcher.INVALID_REQUEST);
             return;
         }
-        int maxRedirects = call.getInt("maxRedirects", DEFAULT_MAX_REDIRECTS);
         String accept = call.getString("accept");
         async(call, c -> {
             BoundedFetcher.TextResult r = fetcher().fetchPublicText(url, maxBytes, maxRedirects, accept);
@@ -86,13 +85,14 @@ public class BoundedHttpPlugin extends Plugin {
         String url = call.getString("url");
         Double maxBytesRaw = call.getDouble("maxBytes");
         String fileName = call.getString("fileName");
-        File dir = resolveDir(call.getString("directory"));
-        if (url == null || maxBytesRaw == null || maxBytesRaw <= 0 || dir == null || !validName(fileName)) {
+        String directory = call.getString("directory");
+        File dir = resolveDir(directory);
+        boolean publicOnly = call.getBoolean("publicOnly", false);
+        if (url == null || dir == null || !validName(fileName) || !RequestLimits.validDownload(maxBytesRaw, directory, publicOnly)) {
             call.reject("invalid download request", BoundedFetcher.INVALID_REQUEST);
             return;
         }
         long maxBytes = maxBytesRaw.longValue();
-        boolean publicOnly = call.getBoolean("publicOnly", false);
         Map<String, String> headers = new HashMap<>();
         JSObject rawHeaders = call.getObject("headers");
         if (rawHeaders != null) {
@@ -105,10 +105,7 @@ public class BoundedHttpPlugin extends Plugin {
         }
         async(call, c -> {
             dir.mkdirs();
-            // Checked up front so a download that cannot fit fails before it fills the disk.
-            if (new StatFs(dir.getPath()).getAvailableBytes() < maxBytes + SPACE_MARGIN) {
-                throw new BoundedFetcher.FetchException(BoundedFetcher.INSUFFICIENT_SPACE);
-            }
+            // Free space is checked by the fetcher against the real size, not against the ceiling.
             BoundedFetcher.DownloadResult r = fetcher().download(url, headers, maxBytes, new File(dir, fileName), publicOnly);
             JSObject out = new JSObject();
             out.put("status", r.status);

@@ -87,8 +87,10 @@ To share sessions with the desktop app, point it at the same server
   system proxy is used, at most 3 redirects are followed (each one re-validated) and at most 64 KB are read.
 - **Size limits** (enforced while streaming, never trusting `Content-Length` or a `HEAD`): link titles 64 KB;
   media 64 MB, held as one in-memory copy, with a Blob cache of 128 MB / 24 entries that is strict except for
-  files playing at that moment; saved gateway files 1 GiB (also checked against free space) and saved images
-  32 MB. An oversized download is aborted mid-transfer and never reaches memory or disk beyond the cap.
+  files playing at that moment; saved gateway files 1 GiB and saved images 32 MB, whether the image comes from
+  http(s), a `data:` URL or a `blob:` URL. The native plugin owns these ceilings and refuses any request above
+  them. An oversized download is aborted mid-transfer and never reaches memory or disk beyond the cap; free space
+  is checked against the real size of the download, keeping 16 MB free on the phone.
 - **Reporting a vulnerability:** use a private
   [GitHub security advisory](https://github.com/Monoperro0207/mono-hermes/security/advisories/new); see [SECURITY.md](SECURITY.md).
 
