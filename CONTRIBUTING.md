@@ -40,7 +40,12 @@ From `mobile/`:
 | `npm run test:e2e` | Runs the real bridge against a throwaway, isolated `hermes serve` (needs Hermes installed; never touches your own Hermes home or server) |
 | `npm run ui:audit` | Drives the real renderer in a phone-sized browser (Fold cover/inner, phone, tablet) and reports clipped text, overflow, small touch targets and more into `mobile/ui-audit/REPORT.md`; re-run after UI/CSS changes ([details](docs/how-it-works.md#ui-audit)) |
 
-CI runs typecheck, unit tests, the web build and `assembleDebug` on every push and pull request.
+CI runs typecheck, unit tests (Vitest and the JVM tests of the native plugin), the web build, `assembleDebug`, the
+E2E suite and an Android emulator smoke test on every push and pull request.
+
+`main` only accepts changes through a pull request whose three CI jobs passed; direct pushes, force-pushes and
+deleting `main` are refused by a repository ruleset. Release tags (`v*`) cannot be moved or deleted, so a bad
+release is fixed by the next patch version.
 
 ## Updating upstream
 

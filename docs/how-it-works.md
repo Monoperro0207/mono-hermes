@@ -63,10 +63,11 @@ a private address cannot be caught. The app therefore ships its own Capacitor pl
 
 | File | Concern |
 |---|---|
-| `BoundedHttpPlugin.java` | Capacitor bridge (`fetchPublicText`, `download`, `deleteFiles`); runs the blocking work on a small private pool. |
-| `BoundedFetcher.java` | The streaming client: byte caps enforced while reading (also when `Content-Length` is larger), a cache-file target for downloads, a free-space check before a download, manual redirects (max 3) with every hop re-validated, no system proxy. |
+| `BoundedHttpPlugin.java` | Capacitor bridge (`fetchPublicText`, `download`, `deleteFiles`); refuses any request above the ceilings in `RequestLimits`, and runs the blocking work on a small private pool. |
+| `RequestLimits.java` | The hard ceilings, owned by the native side whatever JavaScript asks for: link titles 64 KB and at most 3 redirects; media 64 MB; public-web image downloads 32 MB; gateway file saves 1 GiB. A size above the ceiling, non-finite, fractional or non-positive is refused, never clamped. |
+| `BoundedFetcher.java` | The streaming client: byte caps enforced while reading (also when `Content-Length` is larger), a cache-file target for downloads, a free-space check sized to the real download (the announced length plus a 16 MB margin, re-checked every 8 MB while writing, so a small file never needs the ceiling's worth of space), manual redirects (max 3) with every hop re-validated, no system proxy. |
 | `PublicOnlyDns.java` | Resolves the host itself and refuses it if **any** answer is non-public; OkHttp then connects only to those validated addresses, which closes DNS rebinding. |
-| `AddressPolicy.java` | What counts as public: not loopback, RFC1918, CGNAT (`100.64/10`, so Tailscale), link-local, ULA, multicast, documentation ranges, and IPv4-mapped / NAT64 / 6to4 forms that embed a private IPv4. |
+| `AddressPolicy.java` | What counts as public: not loopback, RFC1918, CGNAT (`100.64/10`, so Tailscale), link-local, ULA, multicast, documentation ranges (`2001:db8::/32`, `3fff::/20`), the IETF protocol block `2001::/23` (Teredo, benchmarking, ORCHID), and IPv4-mapped / NAT64 / 6to4 forms that embed a private IPv4. |
 
 Public-only mode is used for link titles and for image saves from any host except the connected server. The
 gateway itself (media, file saves, API) is reached with the bearer and without the public-only rule. JVM unit
