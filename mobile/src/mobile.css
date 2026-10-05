@@ -211,6 +211,16 @@ webview {
   }
 }
 
+/* Soft keyboard up in landscape: the viewport shrinks to the strip above the IME (82px on a Fold
+   cover screen). The composer dock (70px) and the 24px bar no longer fit together and the composer
+   was pushed above the top edge. Nothing is this short without the keyboard, so the bar only goes
+   away while typing and comes back when the keyboard closes. */
+@media (max-height: 160px) {
+  [data-slot='statusbar'] {
+    display: none !important;
+  }
+}
+
 /* ------------------------------------------------------------------------------------------
  * Chat transcript
  * ---------------------------------------------------------------------------------------- */
