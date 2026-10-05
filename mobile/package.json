@@ -1,7 +1,7 @@
 {
   "name": "hermes-mobile",
   "private": true,
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Android client that runs the official Hermes desktop renderer against a remote hermes serve gateway.",
   "type": "module",
   "engines": {
