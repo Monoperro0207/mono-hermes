@@ -369,7 +369,7 @@ export function buildBridge(options: BridgeOptions): BridgeRuntime {
     },
     saveGatewayFile,
     saveImageBuffer,
-    saveImageFromUrl,
+    saveImageFromUrl: url => saveImageFromUrl(url, auth),
     savePastedText: async text => registerFile(new Blob([text], { type: 'text/plain' }), `pasted-${Date.now()}.txt`),
     selectPaths: options => pickFiles(options),
     setActiveWork: work => setActiveWork(work.count),

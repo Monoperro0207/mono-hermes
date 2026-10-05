@@ -10,6 +10,14 @@
 import type { AuthSession } from './auth'
 import type { HttpTransport } from './http'
 import { isMobileFilePath, readAsDataUrl, readDataUrl, readText, registerFile } from './local-files'
+import {
+  deleteCacheFiles,
+  type DownloadResult,
+  downloadToCache,
+  downloadWithBearer,
+  fetchPublicText,
+  isTooLarge
+} from './native-http'
 import { classifyHost, errorMessage } from './util'
 
 type HermesNotification = Parameters<Window['hermesDesktop']['notify']>[0]
@@ -263,17 +271,23 @@ function filenameFromDisposition(header: string | undefined): string {
   }
 }
 
-/** Write bytes to the app cache and hand them to the Android share sheet ("Save to ..."). */
-async function shareBase64(base64: string, filename: string): Promise<{ path?: string; saved: boolean; canceled?: boolean }> {
-  const { Directory, Filesystem } = await import('@capacitor/filesystem')
+type ShareOutcome = { path?: string; saved: boolean; canceled?: boolean }
+
+/** Gateway files are streamed natively with this hard cap; nothing is held in JS memory. */
+export const MAX_SAVE_BYTES = 1024 * 1024 * 1024
+const MAX_IMAGE_SAVE_BYTES = 32 * 1024 * 1024
+/** Copies left in the share folder by earlier saves are removed once they are this old. */
+const SHARE_COPY_MAX_AGE_MS = 60 * 60 * 1000
+const MAX_FILE_NAME_LENGTH = 120
+
+/** Hand an app-cache file to the Android share sheet ("Save to ..."). Cancelling is not an error. */
+async function shareFileUri(uri: string, title: string): Promise<ShareOutcome> {
   const { Share } = await import('@capacitor/share')
 
-  const written = await Filesystem.writeFile({ data: base64, directory: Directory.Cache, path: `downloads/${filename}` })
-
   try {
-    await Share.share({ dialogTitle: 'Save or share', title: filename, url: written.uri })
+    await Share.share({ dialogTitle: 'Save or share', title, url: uri })
 
-    return { path: written.uri, saved: true }
+    return { path: uri, saved: true }
   } catch (error) {
     if (/cancel/i.test(errorMessage(error))) {
       return { canceled: true, saved: false }
@@ -283,12 +297,109 @@ async function shareBase64(base64: string, filename: string): Promise<{ path?: s
   }
 }
 
+/** In-memory bytes only (`data:` images): write to the app cache, then share. Large files take the native download path. */
+async function shareBase64(base64: string, filename: string): Promise<ShareOutcome> {
+  const { Directory, Filesystem } = await import('@capacitor/filesystem')
+
+  const written = await Filesystem.writeFile({ data: base64, directory: Directory.Cache, path: `downloads/${filename}` })
+
+  return shareFileUri(written.uri, filename)
+}
+
+/** The name becomes a file in the share folder: no separators or control characters, bounded length, extension kept. */
+function sanitizeFileName(raw: string, fallback: string): string {
+  const cleaned = raw
+    // eslint-disable-next-line no-control-regex
+    .replace(/[\\/\u0000-\u001f\u007f]+/g, '_')
+    .replace(/^[.\s]+/, '')
+    .trim()
+
+  if (!cleaned) {
+    return fallback
+  }
+
+  if (cleaned.length <= MAX_FILE_NAME_LENGTH) {
+    return cleaned
+  }
+
+  const ext = /\.[a-z0-9]{1,16}$/i.exec(cleaned)?.[0] ?? ''
+
+  return cleaned.slice(0, MAX_FILE_NAME_LENGTH - ext.length) + ext
+}
+
+const extensionOf = (name: string): string => /\.[a-z0-9]{1,10}$/i.exec(name)?.[0] ?? ''
+
+/**
+ * Share a file the native plugin already wrote. The on-disk name had to be chosen before the
+ * download (from `suggestedName` or the path), so the response can only add what the name lacks:
+ * when it has no extension, the one from Content-Disposition (else Content-Type, else
+ * `fallbackExt`) is appended by renaming the file in place.
+ */
+async function shareDownload(fileName: string, result: DownloadResult, fallbackExt = ''): Promise<ShareOutcome> {
+  let name = fileName
+  let uri = result.uri
+
+  if (!extensionOf(name)) {
+    const ext =
+      extensionOf(filenameFromDisposition(result.contentDisposition ?? undefined)) ||
+      guessExtension(result.contentType ?? '') ||
+      fallbackExt
+
+    if (ext) {
+      try {
+        const { Directory, Filesystem } = await import('@capacitor/filesystem')
+
+        await Filesystem.rename({ directory: Directory.Cache, from: `downloads/${name}`, to: `downloads/${name}${ext}` })
+        name += ext
+        uri += ext
+      } catch {
+        // Share it under the extension-less name rather than fail a finished download.
+      }
+    }
+  }
+
+  return shareFileUri(uri, name)
+}
+
+/** Best effort: drop share copies from earlier saves so the cache does not accumulate files. */
+async function sweepOldCopies(): Promise<void> {
+  try {
+    await deleteCacheFiles({ directory: 'downloads', olderThanMs: SHARE_COPY_MAX_AGE_MS })
+  } catch {
+    // A failed sweep must never block a save.
+  }
+}
+
+/** Native download failures worded for the user; anything else passes through untouched. */
+function explainSaveError(error: unknown, what: 'file' | 'image', limit: string): unknown {
+  const code = (error as { code?: unknown } | null)?.code
+
+  if (isTooLarge(error)) {
+    return new Error(`This ${what} is too large to save on the phone (over ${limit}).`)
+  }
+
+  if (code === 'insufficient_space') {
+    return new Error(`Not enough free space on the phone to save this ${what}.`)
+  }
+
+  if (code === 'blocked_host') {
+    return new Error('Only images from the public web or from your Hermes server can be saved.')
+  }
+
+  return error
+}
+
 export interface DownloadDeps {
   auth: AuthSession
   transport: HttpTransport
 }
 
-/** `saveGatewayFile`: download from /api/fs/download (bearer), then share/save on the phone. */
+/**
+ * `saveGatewayFile`: download from /api/fs/download (bearer), then share/save on the phone.
+ * The native plugin streams the body straight into the app cache (hard cap MAX_SAVE_BYTES), so the
+ * file is never Base64-encoded or held in JavaScript. The file keeps its real name (no prefix) because
+ * that is the name the share sheet shows; a same-named copy younger than an hour is overwritten.
+ */
 export function createGatewayFileSaver({ auth }: DownloadDeps) {
   return async (payload: {
     path: string
@@ -307,60 +418,110 @@ export function createGatewayFileSaver({ auth }: DownloadDeps) {
     const query = `path=${encodeURIComponent(filePath)}${session}`
     const downloadPath = pathWithProfileScope(`/api/fs/download?${query}`, payload.profile)
 
-    const { CapacitorHttp } = await import('@capacitor/core')
-
-    const response = await auth.withBearer(async (token, baseUrl) => {
-      const result = await CapacitorHttp.request({
-        headers: { Authorization: `Bearer ${token}` },
-        method: 'GET',
-        responseType: 'blob',
-        url: `${baseUrl}${downloadPath}`
-      })
-
-      if (result.status >= 400) {
-        const { HttpStatusError } = await import('./http')
-
-        throw new HttpStatusError(result.status, typeof result.data === 'string' ? result.data : '')
-      }
-
-      return result
-    })
-
-    const headers = Object.fromEntries(Object.entries(response.headers ?? {}).map(([k, v]) => [k.toLowerCase(), String(v)]))
     const fallback = filePath.split(/[\\/]/).filter(Boolean).pop() || 'download'
+    const fileName = sanitizeFileName(payload.suggestedName?.trim() || fallback, 'download')
 
-    const filename =
-      payload.suggestedName?.trim() ||
-      filenameFromDisposition(headers['content-disposition']) ||
-      fallback + (fallback.includes('.') ? '' : guessExtension(headers['content-type'] ?? ''))
+    await sweepOldCopies()
 
-    return shareBase64(String(response.data ?? ''), filename)
+    let result: DownloadResult
+
+    try {
+      result = await downloadWithBearer(auth, downloadPath, { directory: 'downloads', fileName, maxBytes: MAX_SAVE_BYTES })
+    } catch (error) {
+      throw explainSaveError(error, 'file', '1 GB')
+    }
+
+    return shareDownload(fileName, result)
   }
 }
 
-/** `saveImageFromUrl`: fetch an image (data: or http) and offer it through the share sheet. */
-export async function saveImageFromUrl(url: string): Promise<boolean> {
-  let base64: string
-  let name = 'image'
+/**
+ * Where an http(s) image comes from decides how it is fetched: the connected gateway gets the bearer
+ * (and only the gateway ever does); any other host is downloaded `publicOnly`, so a LAN or loopback
+ * address is refused natively. Failures throw, like the `fetch` this replaced.
+ */
+async function downloadRemoteImage(
+  url: string,
+  auth: Pick<AuthSession, 'requireBaseUrl' | 'withBearer'>,
+  fileName: string
+): Promise<DownloadResult> {
+  let parsed: URL
 
-  if (url.startsWith('data:')) {
-    const match = /^data:([^;,]+)?(;base64)?,(.*)$/s.exec(url)
-
-    if (!match) {
-      return false
-    }
-
-    base64 = match[2] ? match[3] : btoa(decodeURIComponent(match[3]))
-    name += guessExtension(match[1] ?? 'image/png') || '.png'
-  } else {
-    const blob = await (await fetch(url)).blob()
-    base64 = (await readAsDataUrl(blob)).split(',', 2)[1] ?? ''
-    name += guessExtension(blob.type) || '.png'
+  try {
+    parsed = new URL(url)
+  } catch {
+    throw new Error('Cannot save this image: not a valid URL.')
   }
 
-  const result = await shareBase64(base64, `${Date.now()}-${name}`)
+  if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+    throw new Error(`Cannot save an image from a ${parsed.protocol} URL.`)
+  }
 
-  return result.saved
+  const gateway = await auth
+    .requireBaseUrl()
+    .then(base => new URL(base))
+    .catch(() => null)
+
+  try {
+    if (gateway && parsed.origin === gateway.origin) {
+      return await downloadWithBearer(auth, `${parsed.pathname}${parsed.search}`, {
+        directory: 'downloads',
+        fileName,
+        maxBytes: MAX_IMAGE_SAVE_BYTES
+      })
+    }
+
+    const result = await downloadToCache({
+      directory: 'downloads',
+      fileName,
+      maxBytes: MAX_IMAGE_SAVE_BYTES,
+      publicOnly: true,
+      url: parsed.href
+    })
+
+    if (result.status >= 400 || !result.uri) {
+      throw new Error(`The image server answered ${result.status}.`)
+    }
+
+    return result
+  } catch (error) {
+    throw explainSaveError(error, 'image', '32 MB')
+  }
+}
+
+/**
+ * `saveImageFromUrl`: offer an image (data:, blob: or http) through the share sheet. `data:` and
+ * `blob:` are already in memory; http(s) images are downloaded natively (no Base64 in JS).
+ */
+export async function saveImageFromUrl(url: string, auth: Pick<AuthSession, 'requireBaseUrl' | 'withBearer'>): Promise<boolean> {
+  if (url.startsWith('data:') || url.startsWith('blob:')) {
+    let base64: string
+    let name = 'image'
+
+    if (url.startsWith('data:')) {
+      const match = /^data:([^;,]+)?(;base64)?,(.*)$/s.exec(url)
+
+      if (!match) {
+        return false
+      }
+
+      base64 = match[2] ? match[3] : btoa(decodeURIComponent(match[3]))
+      name += guessExtension(match[1] ?? 'image/png') || '.png'
+    } else {
+      const blob = await (await fetch(url)).blob()
+      base64 = (await readAsDataUrl(blob)).split(',', 2)[1] ?? ''
+      name += guessExtension(blob.type) || '.png'
+    }
+
+    return (await shareBase64(base64, `${Date.now()}-${name}`)).saved
+  }
+
+  await sweepOldCopies()
+
+  const fileName = `${Date.now()}-image`
+  const result = await downloadRemoteImage(url, auth, fileName)
+
+  return (await shareDownload(fileName, result, '.png')).saved
 }
 
 export function saveImageBuffer(data: ArrayBuffer | Uint8Array, ext: string, name?: string): Promise<string> {
@@ -377,8 +538,10 @@ const LINK_TITLE_MAX_BYTES = 64 * 1024
 /**
  * Link titles are fetched with the phone's own network identity, so only public web hosts
  * qualify: http(s) to a hostname that is neither loopback, Tailscale nor LAN. IPv6 literals
- * are refused outright. A public DNS name that resolves to a private address (DNS
- * rebinding) cannot be detected from the WebView; that residual risk is documented.
+ * are refused outright. This is only the cheap first gate on the URL text; the native plugin
+ * resolves DNS itself, rejects any answer that is not a public address and connects only to the
+ * addresses it validated (every redirect hop included), so a public name that resolves or
+ * rebinds to a private address is refused with `blocked_host`.
  */
 function publicWebUrl(raw: string): URL | null {
   let parsed: URL
@@ -395,53 +558,25 @@ function publicWebUrl(raw: string): URL | null {
   return webScheme && bareHost && classifyHost(parsed.hostname) === 'public' ? parsed : null
 }
 
-const REDIRECT_STATUSES = new Set([301, 302, 303, 307, 308])
-
 export async function fetchLinkTitle(url: string): Promise<string> {
-  try {
-    const { CapacitorHttp } = await import('@capacitor/core')
-    let current = publicWebUrl(url)
+  const target = publicWebUrl(url)
 
-    // Redirects are followed by hand so every hop passes the same public-host check.
-    for (let hop = 0; current && hop <= LINK_TITLE_MAX_REDIRECTS; hop += 1) {
-      const response = await CapacitorHttp.get({
-        connectTimeout: 4000,
-        disableRedirects: true,
-        headers: { Accept: 'text/html', Range: `bytes=0-${LINK_TITLE_MAX_BYTES - 1}` },
-        readTimeout: 6000,
-        responseType: 'text',
-        url: current.href
-      })
-
-      const headers = Object.fromEntries(
-        Object.entries(response.headers ?? {}).map(([key, value]) => [key.toLowerCase(), String(value)])
-      )
-
-      if (REDIRECT_STATUSES.has(response.status)) {
-        let next: URL | null = null
-
-        try {
-          next = headers.location ? publicWebUrl(new URL(headers.location, current).href) : null
-        } catch {
-          next = null
-        }
-
-        current = next
-
-        continue
-      }
-
-      if (response.status >= 400 || !/\btext\/html\b/i.test(headers['content-type'] ?? '')) {
-        return ''
-      }
-
-      const html = typeof response.data === 'string' ? response.data.slice(0, LINK_TITLE_MAX_BYTES) : ''
-      const match = /<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)
-
-      return match ? match[1].replace(/\s+/g, ' ').trim() : ''
-    }
-
+  if (!target) {
     return ''
+  }
+
+  try {
+    // The cap is enforced natively while reading, so at most LINK_TITLE_MAX_BYTES ever cross the bridge.
+    const page = await fetchPublicText({
+      accept: 'text/html',
+      maxBytes: LINK_TITLE_MAX_BYTES,
+      maxRedirects: LINK_TITLE_MAX_REDIRECTS,
+      url: target.href
+    })
+
+    const match = /<title[^>]*>([\s\S]*?)<\/title>/i.exec(page.text)
+
+    return match ? match[1].replace(/\s+/g, ' ').trim() : ''
   } catch {
     return ''
   }

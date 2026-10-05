@@ -1,48 +1,29 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const get = vi.hoisted(() => vi.fn())
+const plugin = vi.hoisted(() => ({ deleteFiles: vi.fn(), download: vi.fn(), fetchPublicText: vi.fn() }))
 
-vi.mock('@capacitor/core', () => ({ CapacitorHttp: { get } }))
+vi.mock('@capacitor/core', () => ({ Capacitor: { convertFileSrc: (uri: string) => uri }, registerPlugin: () => plugin }))
 
 import { fetchLinkTitle } from '../src/bridge/platform'
 
-type Reply = { data?: string; headers?: Record<string, string>; status?: number }
+const page = (text: string) => ({ contentType: 'text/html', status: 200, text, truncated: false, url: 'https://example.com/' })
+const html = (title: string) => page(`<html><head><title> ${title} </title></head></html>`)
 
-const html = (title: string): Reply => ({
-  data: `<html><head><title> ${title} </title></head></html>`,
-  headers: { 'Content-Type': 'text/html; charset=utf-8' },
-  status: 200
-})
-
-const redirect = (location: string, status = 302): Reply => ({ headers: { Location: location }, status })
-
-/** Answers requests from a URL -> reply table; anything else is a test failure. */
-function serve(table: Record<string, Reply>) {
-  get.mockImplementation(async ({ url }: { url: string }) => {
-    const reply = table[url]
-
-    if (!reply) {
-      throw new Error(`unexpected request to ${url}`)
-    }
-
-    return { data: '', headers: {}, status: 200, url, ...reply }
-  })
-}
-
-const requested = () => get.mock.calls.map(([options]) => options.url as string)
+/** Rejects the way Capacitor does: a plain Error carrying `code`. */
+const nativeError = (code: string) => Object.assign(new Error(code), { code })
 
 beforeEach(() => {
-  get.mockReset()
+  plugin.fetchPublicText.mockReset()
 })
 
 describe('fetchLinkTitle', () => {
   it('reads the title of a public page', async () => {
-    serve({ 'https://example.com/a': html('Hello   world') })
+    plugin.fetchPublicText.mockResolvedValue(html('Hello   world'))
 
     expect(await fetchLinkTitle('https://example.com/a')).toBe('Hello world')
   })
 
-  it('refuses non-web schemes, private hosts and IPv6 literals without sending a request', async () => {
+  it('refuses non-web schemes, private hosts and IPv6 literals without calling native', async () => {
     const refused = [
       'file:///etc/passwd',
       'javascript:alert(1)',
@@ -56,6 +37,7 @@ describe('fetchLinkTitle', () => {
       'http://10.0.2.2:9119/',
       'http://169.254.169.254/latest/meta-data/',
       'http://100.100.1.1/',
+      'http://100.64.0.1/',
       'http://printer.local/',
       'http://nas/',
       'http://my-pc.tail1234.ts.net/',
@@ -68,83 +50,50 @@ describe('fetchLinkTitle', () => {
       expect(await fetchLinkTitle(url), url).toBe('')
     }
 
-    expect(get).not.toHaveBeenCalled()
+    expect(plugin.fetchPublicText).not.toHaveBeenCalled()
   })
 
-  it('bounds the download: Range header, no automatic redirects, text only', async () => {
-    serve({ 'https://example.com/': html('T') })
+  it('bounds the download natively: 64 KB, three redirects, html only', async () => {
+    plugin.fetchPublicText.mockResolvedValue(html('T'))
 
     await fetchLinkTitle('https://example.com/')
 
-    expect(get).toHaveBeenCalledTimes(1)
-    expect(get.mock.calls[0][0]).toMatchObject({
-      disableRedirects: true,
-      headers: { Accept: 'text/html', Range: 'bytes=0-65535' },
-      responseType: 'text'
+    expect(plugin.fetchPublicText).toHaveBeenCalledTimes(1)
+    expect(plugin.fetchPublicText).toHaveBeenCalledWith({
+      accept: 'text/html',
+      maxBytes: 65536,
+      maxRedirects: 3,
+      url: 'https://example.com/'
     })
   })
 
-  it('ignores responses that are not text/html or are errors', async () => {
-    serve({
-      'https://example.com/bin': { data: '<title>x</title>', headers: { 'content-type': 'application/octet-stream' } },
-      'https://example.com/none': { data: '<title>x</title>', headers: {} },
-      'https://example.com/gone': { ...html('Gone'), status: 404 }
-    })
+  it('trims and collapses whitespace, matches the tag case-insensitively and with attributes', async () => {
+    plugin.fetchPublicText.mockResolvedValue(page('<HTML><TITLE lang="en">\n  A &amp; \n\t B  </TITLE>'))
 
-    expect(await fetchLinkTitle('https://example.com/bin')).toBe('')
+    // Entities are left as the page wrote them, like before the native fetch.
+    expect(await fetchLinkTitle('https://example.com/')).toBe('A &amp; B')
+  })
+
+  it('returns an empty title for an empty body, a missing tag or an empty tag', async () => {
+    plugin.fetchPublicText.mockResolvedValueOnce(page(''))
+    expect(await fetchLinkTitle('https://example.com/empty')).toBe('')
+
+    plugin.fetchPublicText.mockResolvedValueOnce(page('<html><body>no title</body></html>'))
     expect(await fetchLinkTitle('https://example.com/none')).toBe('')
-    expect(await fetchLinkTitle('https://example.com/gone')).toBe('')
+
+    plugin.fetchPublicText.mockResolvedValueOnce(page('<title>   </title>'))
+    expect(await fetchLinkTitle('https://example.com/blank')).toBe('')
   })
 
-  it('follows public -> public redirects, resolving relative Locations', async () => {
-    serve({
-      'https://a.example.com/start': redirect('/next'),
-      'https://a.example.com/next': redirect('https://b.example.org/final', 301),
-      'https://b.example.org/final': html('Final')
-    })
+  it('returns an empty title when native refuses the host (DNS answer not public, redirect into a LAN)', async () => {
+    plugin.fetchPublicText.mockRejectedValue(nativeError('blocked_host'))
 
-    expect(await fetchLinkTitle('https://a.example.com/start')).toBe('Final')
-    expect(requested()).toEqual(['https://a.example.com/start', 'https://a.example.com/next', 'https://b.example.org/final'])
+    expect(await fetchLinkTitle('https://rebind.example.com/')).toBe('')
+    expect(plugin.fetchPublicText).toHaveBeenCalledTimes(1)
   })
 
-  it('aborts on the first redirect into a private network', async () => {
-    for (const target of ['http://192.168.1.1/admin', 'http://127.0.0.1:9119/api/status', 'http://[::1]/', 'file:///etc/passwd', 'http://nas/']) {
-      get.mockReset()
-      serve({ 'https://example.com/r': redirect(target), [target]: html('SECRET') })
-
-      expect(await fetchLinkTitle('https://example.com/r'), target).toBe('')
-      expect(requested(), target).toEqual(['https://example.com/r'])
-    }
-  })
-
-  it('aborts when a later hop turns private', async () => {
-    serve({
-      'https://example.com/1': redirect('https://example.org/2'),
-      'https://example.org/2': redirect('http://10.0.0.5/3'),
-      'http://10.0.0.5/3': html('SECRET')
-    })
-
-    expect(await fetchLinkTitle('https://example.com/1')).toBe('')
-    expect(requested()).toEqual(['https://example.com/1', 'https://example.org/2'])
-  })
-
-  it('gives up after three redirects and on a redirect without Location', async () => {
-    serve({
-      'https://example.com/0': redirect('/1'),
-      'https://example.com/1': redirect('/2'),
-      'https://example.com/2': redirect('/3'),
-      'https://example.com/3': redirect('/4'),
-      'https://example.com/4': html('Too far'),
-      'https://example.com/loc': { status: 302 }
-    })
-
-    expect(await fetchLinkTitle('https://example.com/0')).toBe('')
-    expect(requested()).toHaveLength(4)
-    expect(await fetchLinkTitle('https://example.com/loc')).toBe('')
-  })
-
-  it('returns an empty title when the request fails', async () => {
-    get.mockRejectedValue(new Error('timeout'))
+  it.each(['timeout', 'network', 'invalid_request'])('returns an empty title on a native %s error', async code => {
+    plugin.fetchPublicText.mockRejectedValue(nativeError(code))
 
     expect(await fetchLinkTitle('https://example.com/')).toBe('')
   })

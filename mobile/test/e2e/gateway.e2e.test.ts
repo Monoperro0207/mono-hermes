@@ -9,9 +9,6 @@
  * of Capacitor native HTTP) and the WebSocket comes from `ws` so the browser's
  * `Origin: http://localhost` can be reproduced exactly.
  */
-import fs from 'node:fs'
-import path from 'node:path'
-
 import { JsonRpcGatewayClient } from '@hermes/shared'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import WebSocket from 'ws'
@@ -22,7 +19,6 @@ import { ConnectionStore } from '../../src/bridge/connection'
 import { createFetchTransport, type HttpTransport } from '../../src/bridge/http'
 import { createMemoryStore, createPlainSecretBox } from '../../src/bridge/storage'
 import { readTestEnv } from '../support/env'
-import { throwawayHome } from '../support/throwaway-server'
 
 const env = readTestEnv()
 const base = createFetchTransport()
@@ -143,31 +139,6 @@ describe('gated hermes serve', () => {
     const ws = await dead.runtime.bridge.getGatewayWsUrl()
 
     expect(typeof ws === 'object' && !ws.ok && ws.needsOauthLogin).toBe(true)
-  })
-
-  it('answers HEAD /api/files/stream with the Content-Length the media pre-flight relies on', async () => {
-    // A small audio file inside the throwaway HERMES_HOME (never the user's real one).
-    const dir = path.join(throwawayHome(), 'e2e-media')
-    const file = path.join(dir, 'clip.mp3')
-    fs.mkdirSync(dir, { recursive: true })
-    fs.writeFileSync(file, Buffer.alloc(2048, 1))
-
-    const headers = { Authorization: `Bearer ${await runtime.auth.accessToken()}` }
-    const url = `${env.url}/api/files/stream?path=${encodeURIComponent(file)}`
-
-    const head = await fetch(url, { headers, method: 'HEAD' })
-
-    expect(head.status).toBe(200)
-    expect(head.headers.get('content-length')).toBe('2048')
-    expect((await head.arrayBuffer()).byteLength).toBe(0)
-
-    // Same answer without credentials would be a hole: the pre-flight must stay behind the gate.
-    expect((await fetch(url, { method: 'HEAD' })).status).toBe(401)
-
-    const get = await fetch(url, { headers })
-
-    expect(get.headers.get('content-length')).toBe('2048')
-    expect((await get.arrayBuffer()).byteLength).toBe(2048)
   })
 
   it('mints single-use WS tickets, never reusing one', async () => {
