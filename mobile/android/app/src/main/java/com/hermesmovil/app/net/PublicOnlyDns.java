@@ -2,6 +2,7 @@ package com.hermesmovil.app.net;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import okhttp3.Dns;
@@ -36,7 +37,7 @@ public final class PublicOnlyDns implements Dns {
         InetAddress literal = AddressPolicy.parseLiteral(hostname);
         if (literal != null) {
             if (!policy.test(literal)) throw blocked(hostname);
-            return List.of(literal);
+            return Collections.singletonList(literal);
         }
         List<InetAddress> addresses = delegate.lookup(hostname);
         if (addresses == null || addresses.isEmpty()) throw blocked(hostname);
