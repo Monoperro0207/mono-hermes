@@ -4,19 +4,26 @@
  * Electron registers a custom protocol that proxies remote audio/video through the
  * main process so the bearer never appears in a renderer URL. Android WebView has no
  * such hook and `<audio>/<video>` cannot send an Authorization header, so the shim
- * intercepts the element's `src`, fetches the file natively with the bearer
+ * intercepts the element's `src`, downloads the file natively with the bearer
  * (`GET /api/files/stream?path=`), and plays it from a Blob URL.
  *
  * Trade-off: the whole file is downloaded before playback starts (no Range
- * seeking), which suits TTS replies and short clips. A HEAD request first reads the
- * file size, so anything above MAX_MEDIA_BYTES is refused before any body is
- * downloaded (the size is re-checked after download as a backstop). Finished Blob
- * URLs are kept in a small LRU and revoked once evicted and no longer in use.
+ * seeking), which suits TTS replies and short clips. The native `BoundedHttp` plugin
+ * streams the body to a cache file and aborts at MAX_MEDIA_BYTES while reading (also
+ * when Content-Length already exceeds it), so an oversized file never lands in memory
+ * or on disk. The file is then turned into a Blob without Base64 (one copy in memory)
+ * and the cache file is deleted.
+ *
+ * Finished Blob URLs sit in a strict LRU (see {@link createMediaResolver}); an evicted
+ * entry that an idle element still references is detached and re-downloaded when that
+ * element plays again.
  */
 
-import { type AuthSession } from './auth'
-import { HttpStatusError } from './http'
+import { Capacitor } from '@capacitor/core'
+
 import { pathWithProfileScope } from './api'
+import { type AuthSession } from './auth'
+import { deleteCacheFiles, downloadWithBearer, isTooLarge } from './native-http'
 
 const MEDIA_SCHEME = 'hermes-media://'
 export const MAX_MEDIA_BYTES = 64 * 1024 * 1024
@@ -35,55 +42,86 @@ export function mediaRequestPath(mediaUrl: string): string {
   return pathWithProfileScope(`/api/files/stream?path=${encodeURIComponent(filePath)}`, profile)
 }
 
-function base64ToBlob(base64: string, type: string): Blob {
-  const binary = atob(base64)
-  const bytes = new Uint8Array(binary.length)
-
-  for (let i = 0; i < binary.length; i += 1) {
-    bytes[i] = binary.charCodeAt(i)
-  }
-
-  return new Blob([bytes], { type })
-}
-
-/** Blob URLs kept for replay: bounded by decoded bytes and by entry count (least recently used goes first). */
+/** Blob URLs kept for replay: bounded by bytes and by entry count (least recently used goes first). */
 export const MEDIA_CACHE_MAX_BYTES = 128 * 1024 * 1024
 export const MEDIA_CACHE_MAX_ENTRIES = 24
 
+/** Leftover temp files (crash mid-download) older than this are swept when the shim installs. */
+const STALE_TEMP_FILE_MS = 60 * 60 * 1000
+
 interface CacheEntry {
   promise: Promise<string>
-  /** Decoded size; 0 until the download settles. */
+  /** Blob size; 0 until the download settles. */
   bytes: number
   blobUrl: string | null
 }
 
+/** What the resolver needs to know about an element to decide whether its Blob may be released. */
+export type MediaElementLike = Pick<HTMLMediaElement, 'currentSrc' | 'currentTime' | 'ended' | 'paused' | 'src'>
+
 export interface MediaResolverOptions {
-  /** Live media elements, used to avoid revoking a Blob URL that is still playing. Defaults to the document's audio/video. */
-  mediaElements?: () => Iterable<Pick<HTMLMediaElement, 'currentSrc' | 'src'>>
+  /** Live media elements. Defaults to the document's audio/video. */
+  mediaElements?: () => Iterable<MediaElementLike>
+  /**
+   * Called for every idle element whose Blob is being evicted, before the URL is revoked.
+   * The default parks the element (see {@link resumeParkedMedia}) and clears its `src`.
+   */
+  detach?: (element: MediaElementLike, mediaUrl: string, currentTime: number) => void
 }
 
 const documentMediaElements = (): Iterable<HTMLMediaElement> =>
   typeof document === 'undefined' ? [] : document.querySelectorAll<HTMLMediaElement>('audio,video')
 
-function headerMap(headers: Record<string, unknown> | undefined): Record<string, string> {
-  return Object.fromEntries(Object.entries(headers ?? {}).map(([key, value]) => [key.toLowerCase(), String(value)]))
+interface ParkedMedia {
+  mediaUrl: string
+  currentTime: number
 }
 
-export function createMediaResolver(auth: AuthSession, options: MediaResolverOptions = {}) {
-  const mediaElements = options.mediaElements ?? documentMediaElements
-  const cache = new Map<string, CacheEntry>()
+/** Elements whose Blob was evicted while idle: what they were playing and where they stopped. */
+const parked = new WeakMap<object, ParkedMedia>()
 
-  const inUse = (blobUrl: string): boolean => {
-    for (const element of mediaElements()) {
-      if (element.src === blobUrl || element.currentSrc === blobUrl) {
-        return true
-      }
-    }
+/** Clears the element with the native `removeAttribute` (not the shimmed setters) and remembers how to resume it. */
+function parkAndDetach(element: MediaElementLike, mediaUrl: string, currentTime: number): void {
+  const media = element as HTMLMediaElement
 
-    return false
+  parked.set(media, { currentTime, mediaUrl })
+  media.removeAttribute('src')
+  media.load()
+}
+
+const isPlaying = (element: MediaElementLike): boolean => !element.paused && !element.ended
+
+/** Short stable tag so a temp file name says which media it belongs to. */
+function hashOf(value: string): string {
+  let hash = 5381
+
+  for (let i = 0; i < value.length; i += 1) {
+    hash = ((hash << 5) + hash + value.charCodeAt(i)) >>> 0
   }
 
-  /** Drops least-recently-used entries until both limits hold. Entries still attached to an element stay and are retried on the next eviction. */
+  return hash.toString(16)
+}
+
+let tempSequence = 0
+
+/**
+ * Resolves `hermes-media://` URLs to Blob URLs.
+ *
+ * Cache bound: total Blob bytes <= MEDIA_CACHE_MAX_BYTES and entries <= MEDIA_CACHE_MAX_ENTRIES,
+ * with two exceptions that are both bounded: (a) a file that is playing at that instant (an
+ * element with `!paused && !ended` uses its URL) is never revoked, each such file is <=
+ * MAX_MEDIA_BYTES; (b) the entry that was just added. Every other entry, including one that an
+ * idle/paused/ended element still references, is evicted: the element is detached first and
+ * resumes through a fresh download on its next `play`. Downloads still in flight count as entries
+ * but weigh 0 bytes until they settle. Elements outside the document (`new Audio()`) are not
+ * visible to the default `mediaElements`, so they are treated as idle.
+ */
+export function createMediaResolver(auth: Pick<AuthSession, 'withBearer'>, options: MediaResolverOptions = {}) {
+  const mediaElements = options.mediaElements ?? documentMediaElements
+  const detach = options.detach ?? parkAndDetach
+  const cache = new Map<string, CacheEntry>()
+
+  /** Drops least-recently-used entries until both limits hold; only entries that are playing right now stay. */
   const evict = (keep: string) => {
     let total = 0
 
@@ -96,13 +134,60 @@ export function createMediaResolver(auth: AuthSession, options: MediaResolverOpt
         return
       }
 
-      if (key === keep || !entry.blobUrl || inUse(entry.blobUrl)) {
+      if (key === keep || !entry.blobUrl) {
         continue
+      }
+
+      const users = [...mediaElements()].filter(element => element.src === entry.blobUrl || element.currentSrc === entry.blobUrl)
+
+      if (users.some(isPlaying)) {
+        continue
+      }
+
+      for (const element of users) {
+        try {
+          detach(element, key, element.currentTime)
+        } catch (error) {
+          console.warn('[hermes-mobile] could not detach idle media:', error)
+        }
       }
 
       URL.revokeObjectURL(entry.blobUrl)
       cache.delete(key)
       total -= entry.bytes
+    }
+  }
+
+  /** Downloads to a temp cache file, then loads it as a Blob (no Base64) and removes the file. */
+  const download = async (mediaUrl: string): Promise<{ blobUrl: string; bytes: number }> => {
+    const fileName = `m-${hashOf(mediaUrl)}-${Date.now()}-${(tempSequence += 1)}`
+
+    let result: Awaited<ReturnType<typeof downloadWithBearer>>
+
+    try {
+      result = await downloadWithBearer(auth, mediaRequestPath(mediaUrl), { directory: 'media', fileName, maxBytes: MAX_MEDIA_BYTES })
+    } catch (error) {
+      throw isTooLarge(error) ? new Error('This media file is too large to play on the phone.') : error
+    }
+
+    // Web fallback: there is no file, `uri` already is a Blob URL.
+    if (result.uri.startsWith('blob:')) {
+      return { blobUrl: result.uri, bytes: result.bytes }
+    }
+
+    try {
+      const loaded = await (await fetch(Capacitor.convertFileSrc(result.uri))).blob()
+      const type = result.contentType ?? ''
+      // The local file server often cannot type an extension-less file; the gateway's answer wins then.
+      const blob = type && (!loaded.type || loaded.type === 'application/octet-stream') ? new Blob([loaded], { type }) : loaded
+
+      return { blobUrl: URL.createObjectURL(blob), bytes: blob.size }
+    } finally {
+      try {
+        await deleteCacheFiles({ directory: 'media', names: [fileName] })
+      } catch {
+        // The stale-file sweep at startup is the backstop.
+      }
     }
   }
 
@@ -120,49 +205,10 @@ export function createMediaResolver(auth: AuthSession, options: MediaResolverOpt
     const entry: CacheEntry = { blobUrl: null, bytes: 0, promise: Promise.resolve('') }
 
     entry.promise = (async () => {
-      const { CapacitorHttp } = await import('@capacitor/core')
-      const path = mediaRequestPath(mediaUrl)
-
-      const response = await auth.withBearer(async (token, baseUrl) => {
-        const headers = { Authorization: `Bearer ${token}` }
-        const url = `${baseUrl}${path}`
-
-        // Pre-flight: refuse an oversized file before a single body byte is downloaded.
-        // Any HEAD problem other than an expired token falls through to the GET below,
-        // whose post-download check stays as the backstop.
-        const head = await CapacitorHttp.request({ headers, method: 'HEAD', url }).catch(() => null)
-
-        if (head?.status === 401) {
-          throw new HttpStatusError(401, '')
-        }
-
-        const length = Number(headerMap(head?.headers as Record<string, unknown> | undefined)['content-length'])
-
-        if (head && head.status < 400 && Number.isFinite(length) && length > MAX_MEDIA_BYTES) {
-          throw new Error('This media file is too large to play on the phone.')
-        }
-
-        const result = await CapacitorHttp.request({ headers, method: 'GET', responseType: 'blob', url })
-
-        if (result.status >= 400) {
-          throw new HttpStatusError(result.status, typeof result.data === 'string' ? result.data : '')
-        }
-
-        return result
-      })
-
-      const base64 = String(response.data ?? '')
-
-      // base64 inflates by 4/3; check before decoding.
-      if ((base64.length * 3) / 4 > MAX_MEDIA_BYTES) {
-        throw new Error('This media file is too large to play on the phone.')
-      }
-
-      const blob = base64ToBlob(base64, headerMap(response.headers)['content-type'] ?? 'application/octet-stream')
-      const blobUrl = URL.createObjectURL(blob)
+      const { blobUrl, bytes } = await download(mediaUrl)
 
       entry.blobUrl = blobUrl
-      entry.bytes = blob.size
+      entry.bytes = bytes
       evict(mediaUrl)
 
       return blobUrl
@@ -180,6 +226,63 @@ export function createMediaResolver(auth: AuthSession, options: MediaResolverOpt
   }
 }
 
+/**
+ * `play` listener for elements parked by an eviction: fetch the media again, put the Blob back
+ * with `applyBlob` (the native `src` setter), restore the playback position and resume.
+ * Resolves once the element is playing again (or failed); no-op for any other element.
+ */
+export async function resumeParkedMedia(
+  target: unknown,
+  resolve: (mediaUrl: string) => Promise<string>,
+  applyBlob: (element: HTMLMediaElement, blobUrl: string) => void
+): Promise<void> {
+  const element = target as HTMLMediaElement | null
+  const state = element ? parked.get(element) : undefined
+
+  if (!element || !state) {
+    return
+  }
+
+  parked.delete(element)
+
+  // Something else gave the element a source since the eviction: that wins.
+  if (element.getAttribute('src')) {
+    return
+  }
+
+  // `play` fires while the element has no source; stop that attempt, it is restarted below.
+  element.pause()
+
+  try {
+    const blobUrl = await resolve(state.mediaUrl)
+
+    if (element.getAttribute('src')) {
+      return
+    }
+
+    applyBlob(element, blobUrl)
+
+    const seek = () => {
+      try {
+        element.currentTime = state.currentTime
+      } catch {
+        // Not seekable yet; playing from the start beats failing.
+      }
+    }
+
+    if (element.readyState >= 1) {
+      seek()
+    } else {
+      element.addEventListener('loadedmetadata', seek, { once: true })
+    }
+
+    await element.play().catch(() => undefined)
+  } catch (error) {
+    console.warn('[hermes-mobile] media reload failed:', error)
+    element.dispatchEvent(new Event('error'))
+  }
+}
+
 /** Patch `HTMLMediaElement.src` and `setAttribute('src')` so media URLs resolve before reaching the element. */
 export function installMediaProtocolShim(auth: AuthSession): void {
   const resolve = createMediaResolver(auth)
@@ -192,6 +295,9 @@ export function installMediaProtocolShim(auth: AuthSession): void {
 
   const nativeSet = descriptor.set
   const nativeSetAttribute = Element.prototype.setAttribute
+
+  // Temp files from a download that was cut short by the process dying; best effort.
+  void deleteCacheFiles({ directory: 'media', olderThanMs: STALE_TEMP_FILE_MS }).catch(() => undefined)
 
   const assign = (element: HTMLMediaElement, mediaUrl: string, apply: (value: string) => void) => {
     // Show the protocol URL while loading (callers read `src` back), then swap in the blob.
@@ -233,4 +339,11 @@ export function installMediaProtocolShim(auth: AuthSession): void {
 
     nativeSetAttribute.call(this, name, value)
   }
+
+  // `play` does not bubble, so listen in the capture phase to see every element's.
+  document.addEventListener(
+    'play',
+    event => void resumeParkedMedia(event.target, resolve, (element, blobUrl) => nativeSet.call(element, blobUrl)),
+    true
+  )
 }
