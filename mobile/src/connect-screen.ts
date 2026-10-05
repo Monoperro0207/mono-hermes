@@ -116,7 +116,7 @@ export function createConnectUi(): ConnectUi {
         el('p', { className: 'hm-sub', textContent: 'Unofficial community client. Connect to the Hermes server running on your PC.' }),
         ...(request.reason ? [el('p', { className: 'hm-reason', textContent: request.reason })] : []),
         el('label', { className: 'hm-field' }, [el('span', { textContent: 'Server' }), urlInput]),
-        el('p', { className: 'hm-hint', textContent: 'Tailscale IP (100.x.y.z) or MagicDNS name of the PC, with the port.' }),
+        el('p', { className: 'hm-hint', textContent: "https://<pc>.<tailnet>.ts.net (Tailscale Serve), or the PC's Tailscale IP with the port." }),
         el('label', { className: 'hm-field' }, [el('span', { textContent: 'Username' }), userInput]),
         el('label', { className: 'hm-field' }, [el('span', { textContent: 'Password' }), passInput]),
         consentBlock,

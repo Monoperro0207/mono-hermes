@@ -26,19 +26,31 @@ HARD RULES
    executable (Windows: `%LOCALAPPDATA%\hermes\bin\hermes.exe`; Linux/macOS: `~/.local/bin/hermes`) and tell the user which you chose.
 2. TAILSCALE: run `tailscale status`. Not installed or not logged in -> ask the user to install
    (https://tailscale.com/download) and log in on this PC and on their phone with the same account, then
-   WAIT. Get the IPv4 with `tailscale ip -4` (a 100.x.y.z); call it <IP>.
+   WAIT. Get the IPv4 with `tailscale ip -4` (a 100.x.y.z); call it <IP>. Get this PC's MagicDNS name from
+   `tailscale status --json` (Self.DNSName, without the trailing dot); call it <NAME> (like
+   my-pc.tail1234.ts.net). Default plan is OPTION A (Hermes on 127.0.0.1 behind Tailscale Serve, HTTPS, nothing
+   on the LAN). Use OPTION B (0.0.0.0 + firewall) only if Tailscale Serve cannot be used (no MagicDNS/HTTPS
+   certificates allowed, old Tailscale); say which one you use.
 3. LOGIN: check whether a login exists WITHOUT showing secrets. Config file: `hermes config path`.
    Windows: `Select-String -Path <file> -Pattern 'basic_auth:' -Context 0,1`; macOS/Linux:
    `grep -A1 'basic_auth:' <file>`. Only a `username:` line directly after `basic_auth:` counts (that line is
-   safe to show); also `grep -c password_hash <file>` must be 1+ (print only the count). If missing, tell the
-   user: "In your own terminal run `hermes serve --host 0.0.0.0 --port 9119`, choose [1] Username & password,
-   set your password, wait until it says it is running, stop it with Ctrl+C, and tell me when done." WAIT.
-   Then re-check. You will use the username only for the final summary.
+   safe to show); also `grep -c password_hash <file>` must be 1+ (print only the count). If missing: for
+   OPTION A do step 3b first (with public_url set, a 127.0.0.1 bind also asks for the login), then tell the
+   user: "In your own terminal run `hermes serve --host 127.0.0.1 --port 9119` (Option B: `--host 0.0.0.0`),
+   choose [1] Username & password, set your password, wait until it says it is running, stop it with Ctrl+C,
+   and tell me when done." WAIT. Then re-check. You will use the username only for the final summary.
+3b. OPTION A ONLY - TAILSCALE SERVE + PUBLIC URL: ask the user to turn on MagicDNS and HTTPS Certificates
+   in the Tailscale admin console (DNS page) if `tailscale serve` reports they are off. With approval run
+   `tailscale serve --bg 9119` (persistent; check first with `tailscale serve status`, change nothing if it
+   already proxies to 127.0.0.1:9119). Then set `dashboard.public_url: https://<NAME>` in the config file
+   (edit only that key under `dashboard:`, keep everything else; show the diff, never the secrets).
 4. EXISTING SERVER: run `hermes serve --status`. If a server is already running, do NOT start another one.
-   If it was started without `--host 0.0.0.0`, ask permission to run `hermes serve --stop` (stops Hermes web
+   If it was started with a different --host than the chosen option (Option A: 127.0.0.1, Option B:
+   0.0.0.0), or before public_url was set, ask permission to run `hermes serve --stop` (stops Hermes web
    servers only) so autostart can replace it. Otherwise keep it.
 5. AUTOSTART (idempotent: check first; if an equivalent entry exists, change nothing). Command to run at
-   login: `<hermes path> serve --host 0.0.0.0 --port 9119 --skip-build`.
+   login: `<hermes path> serve --host 127.0.0.1 --port 9119 --skip-build` (Option A) or with
+   `--host 0.0.0.0` (Option B). The samples below show Option B's host; use the chosen one.
    - Windows: check `Get-ScheduledTask -TaskName 'Hermes serve'`. If missing, with approval register a task
      at logon: New-ScheduledTaskAction -Execute <hermes.exe> -Argument 'serve --host 0.0.0.0 --port 9119
      --skip-build'; New-ScheduledTaskTrigger -AtLogOn; New-ScheduledTaskSettingsSet -ExecutionTimeLimit
@@ -54,7 +66,8 @@ HARD RULES
      ~/Library/LaunchAgents/com.example.hermes-serve.plist with Label com.example.hermes-serve,
      ProgramArguments = absolute hermes path, serve, --host, 0.0.0.0, --port, 9119, --skip-build, plus
      RunAtLoad and KeepAlive true (absolute paths, no "~"). Load: `launchctl bootstrap gui/$(id -u) <plist>`.
-6. FIREWALL: port 9119 must be reachable only from Tailscale (100.64.0.0/10). Check existing rules first.
+6. FIREWALL (OPTION B ONLY; Option A needs no rule because nothing listens on the LAN): port 9119 must be
+   reachable only from Tailscale (100.64.0.0/10). Check existing rules first.
    Give the user the exact command to run themselves with admin rights; run it only if you already have
    admin AND the user approves.
    - Windows (admin PowerShell): New-NetFirewallRule -DisplayName "Hermes 9119 (Tailscale only)" -Direction
@@ -63,11 +76,15 @@ HARD RULES
      show the iptables equivalent from docs/SETUP.md).
    - macOS: explain the application firewall cannot filter by source; protection is the login gate plus
      Tailscale; offer the optional pf rules in docs/SETUP.md.
-7. VERIFY: `hermes serve --status` shows the server. `curl http://<IP>:9119/api/status` must show
-   "auth_required": true. `curl -s -o /dev/null -w "%{http_code}" http://<IP>:9119/api/sessions` must print
-   401. On failure, name the likely cause (Troubleshooting in docs/SETUP.md) and stop.
+7. VERIFY: `hermes serve --status` shows the server. Let <URL> be `https://<NAME>` (Option A) or
+   `http://<IP>:9119` (Option B). `curl <URL>/api/status` must show "auth_required": true.
+   `curl -s -o /dev/null -w "%{http_code}" <URL>/api/sessions` must print 401. Then run the read-only
+   exposure check from the repo: `scripts/check-server-exposure.ps1` (Windows) or
+   `scripts/check-server-exposure.sh` (Linux/macOS); exit 1 means the port is likely reachable from the LAN:
+   explain the finding and fix it with the user. On failure, name the likely cause (Troubleshooting in
+   docs/SETUP.md) and stop.
 8. FINISH with this box (fill in the real values):
-   In the Mono Hermes app enter -> Server: http://<IP>:9119 | Username: <username> | Password: the one you
+   In the Mono Hermes app enter -> Server: <URL> | Username: <username> | Password: the one you
    created. The phone needs Tailscale on. To share sessions live, in the Hermes desktop app open Settings ->
    Gateway -> Remote connection, URL http://127.0.0.1:9119, same login.
 ````

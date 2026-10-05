@@ -16,8 +16,8 @@ streaming turns and history are shared live.
 ```
  Android (Mono Hermes)                          your PC
  ┌───────────────────────────────┐   Tailscale   ┌──────────────────────────┐
- │ official desktop renderer     │  100.x.y.z    │ hermes serve --host      │
- │ + window.hermesDesktop bridge │ ────────────▶ │   0.0.0.0 --port 9119    │
+ │ official desktop renderer     │  HTTPS (Serve)│ hermes serve --host      │
+ │ + window.hermesDesktop bridge │ ────────────▶ │   127.0.0.1 --port 9119  │
  └───────────────────────────────┘  REST + WS    │ (also used by desktop)   │
                                                  └──────────────────────────┘
 ```
@@ -40,18 +40,26 @@ streaming turns and history are shared live.
 Needs a PC running [Hermes](https://github.com/NousResearch/hermes-agent) with `hermes serve`,
 [Tailscale](https://tailscale.com/download) on the PC and the Android device (same tailnet), and Android 7.0+.
 
-- **Step by step** (Windows, macOS, Linux; Tailscale, firewall, autostart, troubleshooting): [docs/SETUP.md](docs/SETUP.md)
+- **Step by step** (Windows, macOS, Linux; Tailscale Serve or firewall, autostart, troubleshooting): [docs/SETUP.md](docs/SETUP.md)
 - **Let an AI agent do the PC side** (paste one prompt into Hermes, Claude Code, Codex...): [docs/agent-setup-prompt.md](docs/agent-setup-prompt.md)
 
-Then install the APK from [Releases](../../releases), open **Mono Hermes**, enter `http://<pc-tailscale-ip>:9119`
-plus your Hermes username and password. To share sessions with the desktop app, point it at the same server
+Then install the APK from [Releases](../../releases), open **Mono Hermes**, enter `https://<pc>.<tailnet>.ts.net`
+(recommended, Tailscale Serve) or `http://<pc-tailscale-ip>:9119`, plus your Hermes username and password.
+To share sessions with the desktop app, point it at the same server
 (see [SETUP](docs/SETUP.md#8-share-sessions-with-the-desktop-app)).
 
 ## Security
 
 - **Threat model:** your own server, reached only over your tailnet. Nothing is meant to be exposed to the
-  public internet, and there is no Mono Hermes cloud: the app talks to the one server you enter.
-- **Transport:** the URL is usually plain `http://` inside Tailscale, which encrypts traffic end to end
+  public internet, and there is no Mono Hermes cloud: the app talks to the one server you enter. The
+  recommended setup (Option A in [docs/SETUP.md](docs/SETUP.md)) binds Hermes to `127.0.0.1` and publishes it with
+  Tailscale Serve, so nothing listens on your LAN and no firewall rule is involved. Option B binds `0.0.0.0` and
+  relies on a Tailscale-only firewall rule: a wrong or missing rule exposes the port (behind the Hermes login) to
+  your local network. Verify it with [`scripts/check-server-exposure.ps1`](scripts/check-server-exposure.ps1) or
+  [`.sh`](scripts/check-server-exposure.sh) (read-only) and by trying `http://<PC LAN IP>:9119` from a device on
+  the same Wi-Fi with Tailscale off, which must not load.
+- **Transport:** with Tailscale Serve the URL is `https://<pc>.<tailnet>.ts.net` (a certificate the phone
+  trusts); with Option B it is plain `http://` inside Tailscale, which encrypts traffic end to end
   (WireGuard). Android's network config cannot express IP ranges, so the app enforces the rule itself
   (`mobile/src/bridge/util.ts`): `http://` is accepted silently only for Tailscale (`100.64.0.0/10`,
   `*.ts.net`) and loopback. LAN addresses (`10/8`, `172.16/12`, `192.168/16`, `169.254/16`, `*.local` and
@@ -72,9 +80,15 @@ plus your Hermes username and password. To share sessions with the desktop app, 
 - **No telemetry:** no analytics, crash reporting or third-party servers in the app. Traffic goes to your
   server, plus pages you or the agent link to (image and link-title fetches). The bundled Hermes UI has its own
   opt-in usage-stats setting; its desktop metrics bridge is not implemented here, so it does nothing on Android.
-- **Link titles:** the title fetch only contacts public web hosts: `http(s)` only, never loopback, Tailscale,
-  LAN or IPv6-literal addresses, at most 3 redirects (each one re-checked) and a 64 KB read. Residual risk: a
-  public DNS name that resolves to a private address (DNS rebinding) cannot be detected from the WebView.
+- **Link titles:** the title fetch only contacts public web hosts, in the app's own native HTTP plugin
+  (`BoundedHttp`) instead of the WebView: `http(s)` only, never loopback, Tailscale, LAN or IPv6-literal
+  addresses. The plugin resolves the name itself, refuses it if **any** answer is non-public, and connects only to
+  the addresses it validated, so a public name that resolves to a private address (DNS rebinding) is blocked. No
+  system proxy is used, at most 3 redirects are followed (each one re-validated) and at most 64 KB are read.
+- **Size limits** (enforced while streaming, never trusting `Content-Length` or a `HEAD`): link titles 64 KB;
+  media 64 MB, held as one in-memory copy, with a Blob cache of 128 MB / 24 entries that is strict except for
+  files playing at that moment; saved gateway files 1 GiB (also checked against free space) and saved images
+  32 MB. An oversized download is aborted mid-transfer and never reaches memory or disk beyond the cap.
 - **Reporting a vulnerability:** use a private
   [GitHub security advisory](https://github.com/Monoperro0207/mono-hermes/security/advisories/new); see [SECURITY.md](SECURITY.md).
 
@@ -86,7 +100,9 @@ plus your Hermes username and password. To share sessions with the desktop app, 
 3. **Build provenance** (signed statement that GitHub Actions built this exact file from this repository):
    `gh attestation verify mono-hermes-<version>-release.apk -R Monoperro0207/mono-hermes`
 
-Provenance attestations exist for releases from 0.2.0 on.
+Provenance attestations exist for releases from 0.2.0 on. A release is only published after CI passes on the tag
+(typecheck, unit tests, end-to-end tests against a real `hermes serve`, JVM tests of the native plugin, and an
+Android emulator smoke test).
 
 ## What works and what does not
 
@@ -98,7 +114,7 @@ the microphone permission and a server STT provider), local notifications while 
 host terminal, filesystem and git panels, the in-app browser or preview pane (links open in the system browser),
 HUD, pet overlay, tray, extra windows, Hermes Cloud sign-in, SSH and multiple saved servers (one server only),
 push notifications (a fully killed app is not woken by the server), and audio or video seeking
-(media is downloaded whole, 64 MB cap; the size is checked before downloading, so a larger file is refused without transferring it).
+(media is downloaded whole, 64 MB hard cap enforced while downloading, so a larger file is aborted and refused).
 
 ## Compatibility and updates
 
