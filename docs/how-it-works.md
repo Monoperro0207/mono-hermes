@@ -110,7 +110,8 @@ Rotation (issue #2) is checked twice:
   (`wm size/density`), in seven states (idle, left sidebar or right rail opened in portrait or in
   landscape, soft keyboard up, a live streaming turn, Settings open). After every rotation it applies
   the same checks plus: the viewport follows the rotation, no wide-layout edge overlay stays open,
-  the composer stays above the keyboard, Settings covers the screen, and returning to an orientation
+  the row being typed into stays above the keyboard (with the keyboard up the orientation is read from
+  the screen, since the keyboard shrinks the viewport), Settings covers the screen, and returning to an orientation
   gives the same layout as before. Screenshots + JSON go to `ui-audit/device/rotation-<label>-*`; it
   restores auto-rotate and `wm size/density` and exits 1 on any failure.
 
