@@ -13,8 +13,19 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # The full CI (typecheck, unit tests, JVM tests, e2e against a real gateway, Android emulator smoke)
+  # must pass for this exact tag before anything is signed or published. ci.yml is only run through
+  # `workflow_call`, with read-only permissions and without the signing secrets (secrets are not
+  # inherited unless asked for, and CI needs none).
+  checks:
+    name: CI must pass
+    permissions:
+      contents: read
+    uses: ./.github/workflows/ci.yml
+
   release:
     name: Signed release APK
+    needs: checks
     runs-on: ubuntu-latest
     timeout-minutes: 60
     permissions:

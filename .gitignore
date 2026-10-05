@@ -57,3 +57,6 @@ apk/
 mobile/ui-audit/device/rotation-*.png
 !mobile/ui-audit/device/rotation-before-phone-rail-land-1-r0.png
 !mobile/ui-audit/device/rotation-after-phone-rail-land-1-r0.png
+
+# Device smoke failure screenshots (uploaded by CI on failure)
+mobile/ui-audit/device/smoke-*.png

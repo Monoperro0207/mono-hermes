@@ -4,19 +4,29 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Called by release.yml: a tag only publishes after this whole workflow passed.
+  workflow_call:
 
 permissions:
   contents: read
 
+# Inside a workflow_call the `github` context is the CALLER's: `github.workflow` is "Release" and
+# `github.ref` the tag. Keying on the workflow name keeps a release's CI run in its own group, so it
+# can never be cancelled by (or cancel) a branch or PR run, and the group never equals the caller's own
+# `release-<ref>` group (a reused group would deadlock the call). Tag runs are never cancelled: a
+# superseded in-flight CI of a tag would otherwise leave that release without its checks.
 concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
 
 jobs:
   build:
     name: Typecheck, test, build debug APK
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    outputs:
+      # Artifact holding mono-hermes-<version>-debug.apk, for the android-device job.
+      apk-name: ${{ steps.apk.outputs.name }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -73,6 +83,21 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleDebug --console=plain
 
+      - name: JVM unit tests (native plugin)
+        working-directory: mobile/android
+        run: ./gradlew testDebugUnitTest --console=plain
+
+      - name: JVM test reports (on failure)
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: jvm-test-reports
+          path: |
+            mobile/android/app/build/reports/tests/
+            mobile/android/app/build/test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: Name the APK
         id: apk
         run: |
@@ -127,3 +152,93 @@ jobs:
       - name: Server log (on failure)
         if: failure()
         run: tail -n 80 .cache/hm/serve.log || true
+
+  # Real Android WebView + native stack: installs the debug APK built above on an emulator and runs
+  # ui-audit/device-smoke.mjs against a seeded throwaway gateway (media download + caps, link titles,
+  # DNS guard). The e2e job above does not need this one, and vice versa.
+  android-device:
+    name: Device smoke on an Android emulator
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: true
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+
+      - name: Install the pinned Hermes
+        run: |
+          eval "$(node scripts/upstream-pin.mjs print --env)"
+          bash upstream/scripts/install.sh --commit "$HERMES_PINNED_COMMIT" --non-interactive             --skip-browser --skip-computer-use --hermes-home "$HOME/.hermes"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          echo "HERMES_BIN=$HOME/.local/bin/hermes" >> "$GITHUB_ENV"
+
+      - name: Install dependencies
+        working-directory: mobile
+        run: |
+          npm ci
+          node ../scripts/link-upstream-modules.mjs
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: ${{ needs.build.outputs.apk-name }}
+          path: dist-apk
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      # Seeded throwaway gateway for the emulator (10.0.2.2 is the host's loopback as the guest sees it).
+      # It writes the throwaway credentials and the two media files to mobile/.env.test. A cold start
+      # builds the isolated Hermes runtime first (several minutes), hence the generous wait.
+      - name: Start the throwaway gateway
+        working-directory: mobile
+        env:
+          # the audit tooling looks for `python`, which ubuntu runners only ship as python3
+          PYTHON: python3
+        run: |
+          log="$RUNNER_TEMP/device-server.log"
+          nohup node ui-audit/device-server.mjs 10.0.2.2 > "$log" 2>&1 &
+          for _ in $(seq 1 240); do
+            if grep -q "device gateway ready" "$log"; then echo "gateway ready"; exit 0; fi
+            if ! kill -0 $! 2>/dev/null; then echo "device-server exited early" >&2; tail -n 60 "$log" >&2; exit 1; fi
+            sleep 5
+          done
+          echo "device-server did not become ready within 20 minutes" >&2
+          tail -n 60 "$log" >&2
+          exit 1
+
+      - name: Install the APK and run the smoke
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
+        env:
+          APK_NAME: ${{ needs.build.outputs.apk-name }}
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          working-directory: mobile
+          script: |
+            adb install -r "$GITHUB_WORKSPACE/dist-apk/$APK_NAME.apk"
+            SMOKE_REQUIRE_PUBLIC=0 node ui-audit/device-smoke.mjs
+
+      - name: Upload smoke screenshots and the gateway log (on failure)
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: android-device-smoke
+          path: |
+            mobile/ui-audit/device/smoke-*.png
+            ${{ runner.temp }}/device-server.log
+          if-no-files-found: ignore
+          retention-days: 14

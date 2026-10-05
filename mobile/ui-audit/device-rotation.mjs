@@ -29,10 +29,11 @@
  * Always restores auto-rotate / user_rotation and resets `wm size` / `wm density`.
  * Exit code 1 when any check fails.
  */
-import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+import { adb, connect, launchApp, loadEnv, signIn, sleep } from './lib/device.mjs'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const out = path.join(here, 'device')
@@ -47,20 +48,11 @@ const PROFILES = {
 
 const label = process.argv[2] ?? 'after'
 const profiles = (process.argv[3] ?? Object.keys(PROFILES).join(',')).split(',').filter(Boolean)
-const PKG = 'com.hermesmovil.app'
 const SETTLE = 2500
-const adb = (...args) => execFileSync('adb', args, { maxBuffer: 64 * 1024 * 1024 })
-const sleep = ms => new Promise(r => setTimeout(r, ms))
 
 for (const p of profiles) if (!PROFILES[p]) throw new Error(`unknown profile ${p} (${Object.keys(PROFILES).join(', ')})`)
 
-const env = Object.fromEntries(
-  fs
-    .readFileSync(path.join(here, '..', '.env.test'), 'utf8')
-    .split(/\r?\n/)
-    .filter(l => l.includes('='))
-    .map(l => [l.slice(0, l.indexOf('=')).trim(), l.slice(l.indexOf('=') + 1).trim()])
-)
+const env = loadEnv()
 
 const setting = key => adb('shell', 'settings', 'get', 'system', key).toString().trim()
 const original = { auto: setting('accelerometer_rotation'), user: setting('user_rotation') }
@@ -74,74 +66,6 @@ const imeShown = () => {
   } catch {
     return false
   }
-}
-
-/** Minimal CDP client for the WebView page target (Android WebView exposes no browser target). */
-const connect = async () => {
-  let pid = ''
-  for (let i = 0; i < 30 && !pid; i++) {
-    try {
-      pid = adb('shell', 'pidof', PKG).toString().trim().split(/\s+/)[0]
-    } catch {
-      await sleep(1000)
-    }
-  }
-  adb('forward', 'tcp:9222', `localabstract:webview_devtools_remote_${pid}`)
-  let target
-  for (let i = 0; i < 30 && !target; i++) {
-    try {
-      target = (await (await fetch('http://localhost:9222/json')).json()).find(t => t.type === 'page')
-    } catch {}
-    if (!target) await sleep(1000)
-  }
-  const ws = new WebSocket(target.webSocketDebuggerUrl)
-  await new Promise((resolve, reject) => {
-    ws.onopen = resolve
-    ws.onerror = reject
-  })
-  let id = 0
-  const pending = new Map()
-  ws.onmessage = event => {
-    const msg = JSON.parse(event.data)
-    if (msg.id && pending.has(msg.id)) {
-      pending.get(msg.id)(msg)
-      pending.delete(msg.id)
-    }
-  }
-  const send = (method, params = {}) =>
-    new Promise(resolve => {
-      const n = ++id
-      pending.set(n, resolve)
-      ws.send(JSON.stringify({ id: n, method, params }))
-    })
-  const evaluate = async (fn, ...args) => {
-    const expression = `(${fn.toString()})(...${JSON.stringify(args)})`
-    const res = await send('Runtime.evaluate', { awaitPromise: true, expression, returnByValue: true })
-    if (res.result?.exceptionDetails) throw new Error(res.result.exceptionDetails.text + ' ' + (res.result.exceptionDetails.exception?.description ?? ''))
-    return res.result?.result?.value
-  }
-  const tapAt = async pt => {
-    await send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [pt] })
-    await send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
-  }
-  /** Real touch tap on the first visible element matching `selector` (and aria-label, if given). */
-  const tap = async (selector, ariaLabel) => {
-    const pt = await evaluate(
-      (sel, aria) => {
-        const el = Array.from(document.querySelectorAll(sel)).find(e => e.offsetParent !== null && (!aria || e.getAttribute('aria-label') === aria))
-        if (!el) return null
-        const r = el.getBoundingClientRect()
-        return { x: r.left + r.width / 2, y: r.top + r.height / 2 }
-      },
-      selector,
-      ariaLabel ?? null
-    )
-    if (!pt) return false
-    await tapAt(pt)
-    await sleep(900)
-    return true
-  }
-  return { evaluate, send, tap, close: () => ws.close() }
 }
 
 /** Everything the checks need, measured in the page. */
@@ -238,41 +162,11 @@ async function runProfile(name) {
   adb('shell', 'wm', 'size', size)
   adb('shell', 'wm', 'density', density)
   rotate(0)
-  adb('shell', 'am', 'force-stop', PKG)
-  // On an emulator only: clean app data, so every profile starts from the default layout.
-  if (adb('shell', 'getprop', 'ro.kernel.qemu').toString().trim() === '1') adb('shell', 'pm', 'clear', PKG)
-  adb('shell', 'monkey', '-p', PKG, '1')
-  await sleep(4000)
+  // Force-stop + (emulator only) clean app data, so every profile starts from the default layout.
+  await launchApp()
   const cdp = await connect()
   try {
-    for (let i = 0; i < 40; i++) {
-      const s = await cdp.evaluate(() => (document.querySelector('.hm-connect form') ? 'connect' : document.querySelector('[data-slot=composer-root]') ? 'app' : 'wait'))
-      if (s === 'app') break
-      if (s === 'connect') {
-        await cdp.evaluate(
-          (url, user, pass) => {
-            const form = document.querySelector('.hm-connect form')
-            const set = (n, v) => {
-              const input = form.querySelector(`input[name=${n}]`)
-              Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(input, v)
-              input.dispatchEvent(new Event('input', { bubbles: true }))
-            }
-            set('server', url)
-            set('username', user)
-            set('password', pass)
-            // 10.0.2.2 is a LAN address: plain http:// to it needs the explicit consent checkbox, which only
-            // exists after the first submit was answered with the warning (second pass ticks it).
-            const consent = form.querySelector('input[name=lan-consent]')
-            if (consent && !consent.checked) consent.click()
-            form.requestSubmit()
-          },
-          env.HERMES_TEST_URL.replace('127.0.0.1', '10.0.2.2'),
-          env.HERMES_TEST_USERNAME,
-          env.HERMES_TEST_PASSWORD
-        )
-        await sleep(5000)
-      } else await sleep(1000)
-    }
+    await signIn(cdp, env)
     await sleep(2500)
 
     const blur = () => cdp.evaluate(() => document.activeElement?.blur())
