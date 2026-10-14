@@ -104,6 +104,12 @@ export function createStubs(): StubSurface {
     onBootstrapEvent: noopUnsubscribe,
     repairBootstrap: async () => ({ ok: false }),
     resetBootstrap: async () => ({ ok: false }),
+    // The local install's update hold never applies: the phone starts no backend.
+    updateHold: {
+      quit: async () => ({ ok: false }),
+      recheck: async () => ({ ok: true }),
+      startAnyway: async () => ({ ok: false })
+    },
     setPoolLimits: async limits => ({
       limits: { idleMs: limits.idleMs ?? 10 * 60_000, maxBackends: limits.maxBackends ?? 3 },
       ok: true
@@ -212,12 +218,14 @@ export function createStubs(): StubSurface {
       searchMarketplace: async () => []
     },
     uninstall: {
+      openAppsSettings: async () => undefined,
       run: async () => ({ error: 'Uninstall the app from Android settings.', ok: false }),
       summary: async () => ({
         agent_installed: false,
         code_removal_allowed: false,
         gui_installed: true,
         hermes_home: '',
+        native_removal_instructions: 'Uninstall Mono Hermes from Android settings.',
         packaged_app_paths: [],
         platform: 'android',
         source_built_artifacts: [],
@@ -231,9 +239,7 @@ export function createStubs(): StubSurface {
         ok: false
       }),
       check: async () => ({ reason: 'mobile', supported: false }),
-      getBranch: async () => ({ branch: 'main' }),
-      onProgress: noopUnsubscribe,
-      setBranch: async branch => ({ branch })
+      onProgress: noopUnsubscribe
     }
   }
 

@@ -17,7 +17,7 @@ needed. **Option B** binds Hermes to all interfaces and relies on a firewall rul
    `curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash` (macOS/Linux) or
    `iex (irm https://hermes-agent.nousresearch.com/install.ps1)` (Windows PowerShell).
 3. Check it works: `hermes --version`.
-4. Compatibility: this app is tested with Hermes **0.21.5**. Newer versions usually work; if your server is
+4. Compatibility: this app is tested with Hermes **0.22.0**. Newer versions usually work; if your server is
    newer or older by a minor version, the app shows a dismissible notice. Update the app if it keeps happening.
 
 ## 2. Tailscale

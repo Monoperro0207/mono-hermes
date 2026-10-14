@@ -129,6 +129,7 @@ worth integrating or a break is detected (a weekly workflow watches upstream). H
 
 | Mono Hermes | UI built from Hermes | Also tested against server |
 |---|---|---|
+| 0.3.x | 0.22.0, `e06df9c2eae6901f4c88f464e0ae6e753c0428b8` | 0.21.5, `10c6188de188871f64a88dd95bc6b262adb0c307` |
 | 0.2.x | 0.21.5, `158fd638da1629c8e62caf9ade1515d162def8ab` | 0.21.5, `10c6188de188871f64a88dd95bc6b262adb0c307` |
 | 0.1.x | 0.21.5, `10c6188de188871f64a88dd95bc6b262adb0c307` | n/a |
 
