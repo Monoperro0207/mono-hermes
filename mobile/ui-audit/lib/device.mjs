@@ -65,7 +65,7 @@ export const connect = async () => {
   let target
   for (let i = 0; i < 30 && !target; i++) {
     try {
-      target = (await (await fetch(`http://localhost:${CDP_PORT}/json`)).json()).find(t => t.type === 'page')
+      target = (await (await fetch(`http://localhost:${CDP_PORT}/json`)).json()).find(t => t.type === 'page' && t.url.startsWith('http://localhost/'))
     } catch {}
     if (!target) await sleep(1000)
   }

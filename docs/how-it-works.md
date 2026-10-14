@@ -13,6 +13,7 @@ Capacitor-backed implementation of it **before** importing the untouched
 | `gateway-ws.ts` | Mints a fresh single-use ticket per WebSocket dial. |
 | `platform.ts`, `local-files.ts`, `media.ts` | Browser, clipboard, notifications, mic, keep-awake, downloads/share, file picker, `hermes-media://`. |
 | `native-http.ts` | Typed wrapper around the native `BoundedHttp` plugin (below): capped downloads, public-only fetches, cache cleanup. |
+| `../guest-browser/` | The in-app browser (see [In-app browser](#in-app-browser)): the `<webview>` shim and the `GuestBrowser` plugin wrapper. |
 | `stubs.ts` | Desktop-only surface (local backend, updater, terminal, git, windows, HUD, Cloud). |
 | `connection.ts`, `storage.ts` | The one saved server + tokens sealed with a non-extractable AES-GCM key. |
 
@@ -73,6 +74,43 @@ Public-only mode is used for link titles and for image saves from any host excep
 gateway itself (media, file saves, API) is reached with the bearer and without the public-only rule. JVM unit
 tests (`AddressPolicyTest`, `PublicOnlyDnsTest`, `BoundedFetcherTest`) run with `./gradlew testDebugUnitTest`
 in `mobile/android` and in CI.
+
+## In-app browser
+
+The right-rail Browser pane of the desktop renderer does `document.createElement('webview')`, an Electron-only
+tag. On the device `installGuestBrowser()` (called from `entry.ts` before `@/main` is imported) patches
+`createElement` so that call returns a shim element, and a native Android WebView is laid over the shim's
+on-screen box. Off the device (the UI-audit harness) nothing is patched. The agent's official preview tools
+(open, drive, read, annotate) work unchanged because they only use the pane's `executeJavaScript` and
+`sendInputEvent`.
+
+| File (`mobile/src/guest-browser/`) | Concern |
+|---|---|
+| `install.ts`, `create-element.ts` | The `createElement('webview')` interception, native only. |
+| `shim.ts` | `<hermes-guest-webview>`: the Electron webview methods the pane uses (`loadURL`, `executeJavaScript`, `sendInputEvent`, history, `getURL`, ...) and its events (`did-navigate`, `did-fail-load`, `console-message`, `ipc-message`, ...). DevTools, `inspectElement` and `context-menu` are absent, as the pane expects. |
+| `layout.ts`, `layout-math.ts` | One shared loop keeps each native view on its shim's rect and shows it only when the shim is visible: no hidden or inert pane around it, app in the foreground, no sash drag, and nothing drawn over it (a 3x3 `elementFromPoint` sample). The native view floats above the web layer, so anything that should cover it must hide it instead. |
+| `policy.ts`, `events.ts` | The renderer-side URL policy (early refusal only) and the Android to Chromium event and error-code mapping (Android's `-3` is a TLS-auth error and must never look like `ERR_ABORTED`). |
+| `plugin.ts` | Typed access to the native `GuestBrowser` plugin. |
+
+Native side, `mobile/android/app/src/main/java/com/hermesmovil/app/guest/`:
+
+| File | Concern |
+|---|---|
+| `GuestBrowserPlugin.java` | Capacitor bridge. Keeps up to 4 live guests, each added next to the bridge WebView and positioned in CSS px times the display density; the least recently visible is destroyed beyond that and rebuilt from its URL when shown again (its page state is lost). |
+| `GuestWebView.java` | One hardened WebView: no `addJavascriptInterface`, no file or content access, mixed content never allowed, Safe Browsing on, permissions denied, TLS errors cancelled, downloads and file choosers refused, JS dialogs suppressed, third-party cookies off. A user-initiated `_blank`/`window.open` never opens a window: its target is sent to the pane, which opens it in the system browser. A crashed renderer is destroyed and reported, not retried. |
+| `GuestUrlPolicy.java` | The authoritative URL policy, checked on explicit loads, every navigation and redirect, and popup targets: `http(s)` and `about:blank` only, no credentials, and plain `http` only for loopback, tailnet (`100.64/10`, `*.ts.net`) and private-network hosts (the same buckets as `classifyHost` in `util.ts`). IPv4 shorthand (`2130706433`, `0x7f.1`) is normalised first, as Chromium does. |
+| `GuestInput.java` | Electron-style mouse and key events become real `MotionEvent`s and `KeyEvent`s (hover, trusted clicks, typing, wheel). |
+
+`executeJavaScript` has to await promises but must not expose an interface to the page, so the script is run
+through an indirect `eval`, its settled value is parked on a non-enumerable window property under a random
+per-call key, and native polls that key with `evaluateJavascript`. If the page's CSP forbids `eval`, the code runs
+directly instead, and only synchronous results come back. Android back steps the visible guest back before it
+walks the app's own history.
+
+Limits: Chromium's network stack resolves names inside the guest, so `PublicOnlyDns` does not apply and DNS
+rebinding through a public name to a private address is **not** mitigated there (the page was opened on purpose,
+and plain `http` to public hosts is refused, but an `https` page can still reach a private address its DNS
+points to). Subresource requests are not individually filtered. JVM tests: `GuestUrlPolicyTest`.
 
 ## Versions
 

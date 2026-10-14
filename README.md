@@ -85,6 +85,14 @@ To share sessions with the desktop app, point it at the same server
   addresses. The plugin resolves the name itself, refuses it if **any** answer is non-public, and connects only to
   the addresses it validated, so a public name that resolves to a private address (DNS rebinding) is blocked. No
   system proxy is used, at most 3 redirects are followed (each one re-validated) and at most 64 KB are read.
+- **In-app browser:** each page runs in a separate, hardened Android WebView with no bridge to the app (no
+  JavaScript interface at all). Only `http` and `https` pages load, redirects and popups included; `file:`,
+  `content:`, `intent:`, `javascript:`, `data:`, `blob:` and every other scheme is refused. Plain `http` works only
+  for localhost, Tailscale and private-network hosts; public sites need `https`. Certificate errors are never
+  bypassed, mixed content is blocked, and permission prompts (camera, microphone, location), downloads and file
+  pickers are denied. Third-party cookies are off. Limit: Chromium does its own DNS inside the page, so a public
+  name that resolves to a private address is not caught for pages you open there (see
+  [docs/how-it-works.md](docs/how-it-works.md#in-app-browser)).
 - **Size limits** (enforced while streaming, never trusting `Content-Length` or a `HEAD`): link titles 64 KB;
   media 64 MB, held as one in-memory copy, with a Blob cache of 128 MB / 24 entries that is strict except for
   files playing at that moment; saved gateway files 1 GiB and saved images 32 MB, whether the image comes from
@@ -110,11 +118,13 @@ Android emulator smoke test).
 
 **Works:** chat and streaming, sessions and history, tool cards, approvals and clarify prompts, settings,
 capabilities, artifacts, scheduled jobs, messaging pages, attachments (picker and camera), voice input (needs
-the microphone permission and a server STT provider), local notifications while the app is alive, light and dark themes.
+the microphone permission and a server STT provider), local notifications while the app is alive, light and dark
+themes, and the in-app browser (the right-rail Browser pane, including the agent's preview tools: open, click,
+type, scroll, read and annotate). It is a real Android WebView laid over the pane, with its own policy
+(see Security); `target=_blank` links and popups open in the system browser.
 
 **Does not** (desktop-only features, hidden or inert): local backend and updater (the PC owns the backend),
-host terminal, filesystem and git panels, the in-app browser or preview pane (links open in the system browser),
-HUD, pet overlay, tray, extra windows, Hermes Cloud sign-in, SSH and multiple saved servers (one server only),
+host terminal, filesystem and git panels, browser DevTools and the page context menu, HUD, pet overlay, tray, extra windows, Hermes Cloud sign-in, SSH and multiple saved servers (one server only),
 push notifications (a fully killed app is not woken by the server), and audio or video seeking
 (media is downloaded whole, 64 MB hard cap enforced while downloading, so a larger file is aborted and refused).
 
