@@ -18,6 +18,7 @@ import type {
 
 import { createApi } from './api'
 import { AuthSession, NeedsLoginError, probeServer } from './auth'
+import { reportBackgroundWork } from './background-connection'
 import { ConnectionStore } from './connection'
 import { getGatewayWsUrl } from './gateway-ws'
 import { type HttpTransport } from './http'
@@ -372,7 +373,10 @@ export function buildBridge(options: BridgeOptions): BridgeRuntime {
     saveImageFromUrl: url => saveImageFromUrl(url, auth),
     savePastedText: async text => registerFile(new Blob([text], { type: 'text/plain' }), `pasted-${Date.now()}.txt`),
     selectPaths: options => pickFiles(options),
-    setActiveWork: work => setActiveWork(work.count),
+    setActiveWork: work => {
+      setActiveWork(work.count)
+      reportBackgroundWork(work.count)
+    },
     setKeepAwake: mode => setKeepAwake(mode),
     testConnectionConfig: async payload => {
       const result = await probe(payload.remoteUrl ?? (await store.getConnection())?.baseUrl ?? '')

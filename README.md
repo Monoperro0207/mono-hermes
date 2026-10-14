@@ -75,8 +75,9 @@ To share sessions with the desktop app, point it at the same server
   running inside the app. Android backup and device transfer of app data are disabled. Moving the tokens to
   Keystore-backed storage is a planned hardening.
 - **Permissions:** `INTERNET` (reach your server), `RECORD_AUDIO` and `MODIFY_AUDIO_SETTINGS` (voice input,
-  asked at first use), `POST_NOTIFICATIONS` (local "turn finished" notifications). The keep-awake setting adds
-  the normal `WAKE_LOCK`.
+  asked at first use), `POST_NOTIFICATIONS` (local "turn finished" notifications), `FOREGROUND_SERVICE` and
+  `FOREGROUND_SERVICE_DATA_SYNC` (keep the connection to your server while you are in another app, see
+  [how it works](docs/how-it-works.md#background-connection)). The keep-awake setting adds the normal `WAKE_LOCK`.
 - **No telemetry:** no analytics, crash reporting or third-party servers in the app. Traffic goes to your
   server, plus pages you or the agent link to (image and link-title fetches). The bundled Hermes UI has its own
   opt-in usage-stats setting; its desktop metrics bridge is not implemented here, so it does nothing on Android.
@@ -118,7 +119,8 @@ Android emulator smoke test).
 
 **Works:** chat and streaming, sessions and history, tool cards, approvals and clarify prompts, settings,
 capabilities, artifacts, scheduled jobs, messaging pages, attachments (picker and camera), voice input (needs
-the microphone permission and a server STT provider), local notifications while the app is alive, light and dark
+the microphone permission and a server STT provider), local notifications while the app is alive, the connection
+staying open while you switch apps (during a turn and for 5 minutes after leaving), light and dark
 themes, and the in-app browser (the right-rail Browser pane, including the agent's preview tools: open, click,
 type, scroll, read and annotate). It is a real Android WebView laid over the pane, with its own policy
 (see Security); `target=_blank` links and popups open in the system browser.

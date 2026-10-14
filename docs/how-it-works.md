@@ -112,6 +112,25 @@ rebinding through a public name to a private address is **not** mitigated there 
 and plain `http` to public hosts is refused, but an `https` page can still reach a private address its DNS
 points to). Subresource requests are not individually filtered. JVM tests: `GuestUrlPolicyTest`.
 
+## Background connection
+
+Android 15 and later cut the network of an app a few seconds after it leaves the screen (the `APP_BACKGROUND`
+firewall chain; `adb shell dumpsys netpolicy` shows `blocked=APP_BACKGROUND` for the app's UID). Without help, every
+app switch killed the gateway WebSocket (close code 1006 about 5 s after leaving): a reply stopped streaming, the
+"turn finished" notification never came, and coming back meant a full reconnect (ticket, WebSocket, session replay).
+
+`ConnectionService` (`android/.../background/`) is a `dataSync` foreground service, which exempts the process. It
+runs only while the app is not visible:
+
+- `MainActivity` starts it on the way out (`onUserLeaveHint` for Home/Recents, `onStop` for everything else,
+  including the file picker; the hardware back button asks for it from JS before minimising) and stops it in
+  `onStart`. Starting it after leaving is not allowed, so JavaScript never decides when it starts.
+- The bridge reports whether a turn is in flight (`setActiveWork` -> `BackgroundConnection.setWorking`, transitions
+  only). While one is, the service stays up; once none is, it stops 5 minutes later (`GRACE_MS`), so the result can
+  still be read live. After that Android may cut the network again and the next return reconnects as before.
+- Its notification is silent and low priority; Android defers it for about 10 s, so short app switches never show
+  it. Android 15 caps `dataSync` services at 6 hours a day; `onTimeout` stops it.
+
 ## Versions
 
 - App version: `mobile/package.json` `version` (Android versionName; versionCode = major*10000 + minor*100 + patch).
