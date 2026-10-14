@@ -118,7 +118,8 @@ Android emulator smoke test).
 ## What works and what does not
 
 **Works:** chat and streaming, sessions and history, tool cards, approvals and clarify prompts, settings,
-capabilities, artifacts, scheduled jobs, messaging pages, attachments (picker and camera), voice input (needs
+capabilities, artifacts, scheduled jobs, messaging pages, attachments (picker and camera; photos are shrunk to
+2560 px before upload, see [how it works](docs/how-it-works.md#photo-uploads)), voice input (needs
 the microphone permission and a server STT provider), local notifications while the app is alive, the connection
 staying open while you switch apps (during a turn and for 5 minutes after leaving), light and dark
 themes, and the in-app browser (the right-rail Browser pane, including the agent's preview tools: open, click,

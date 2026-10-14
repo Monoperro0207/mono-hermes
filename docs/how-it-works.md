@@ -131,6 +131,18 @@ runs only while the app is not visible:
 - Its notification is silent and low priority; Android defers it for about 10 s, so short app switches never show
   it. Android 15 caps `dataSync` services at 6 hours a day; `onTimeout` stops it.
 
+## Photo uploads
+
+In remote mode the renderer reads a picked image with `readFileDataUrl` and sends it base64-encoded in one
+`image.attach_bytes` call, which must finish within the gateway client's 30 s request timeout; the read is capped
+at 16 MB. Phone photos (5-25 MB) failed both ways: refused above the cap ("too large to upload to the remote
+gateway"), or timing out over Tailscale on mobile data. `src/bridge/image-upload.ts` shrinks them first: at most
+2560 px on the long edge, re-encoded in the source format (JPEG, PNG or WebP; the gateway names the stored file
+after the picked one and trusts its extension), quality 0.85. Images under 1.5 MB within that edge, other formats
+(GIF, SVG, HEIC, BMP), sources over 64 MB and anything that fails to decode go unchanged. Re-encoding applies the
+EXIF orientation and drops the metadata, GPS location included. Attaching a photo as a file (Add files) keeps the
+original bytes.
+
 ## Versions
 
 - App version: `mobile/package.json` `version` (Android versionName; versionCode = major*10000 + minor*100 + patch).

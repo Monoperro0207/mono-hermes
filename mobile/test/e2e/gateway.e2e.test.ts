@@ -181,6 +181,42 @@ describe('gated hermes serve', () => {
     }
   })
 
+  it('attaches a multi-megabyte photo through image.attach_bytes, like the composer does', async () => {
+    const minted = await runtime.bridge.getGatewayWsUrl()
+    const wsUrl = typeof minted === 'string' ? minted : minted.ok ? minted.wsUrl : ''
+
+    const gateway = new JsonRpcGatewayClient({
+      closedErrorMessage: 'closed',
+      connectErrorMessage: 'connect failed',
+      createRequestId: next => next,
+      notConnectedErrorMessage: 'not connected',
+      requestTimeoutMs: 60_000,
+      socketFactory: url => new WebSocket(url, { headers: { Origin: 'http://localhost' } }) as unknown as globalThis.WebSocket
+    })
+
+    // A camera-sized JPEG: valid magic bytes, 6 MB of payload.
+    const photo = Buffer.alloc(6 * 1024 * 1024, 0x5a)
+    photo.set([0xff, 0xd8, 0xff, 0xe0], 0)
+
+    try {
+      await gateway.connect(wsUrl)
+
+      const created = await gateway.request<{ session_id?: string }>('session.create', {})
+      expect(created?.session_id).toBeTruthy()
+
+      const attached = await gateway.request<{ attached?: boolean; message?: string }>('image.attach_bytes', {
+        content_base64: photo.toString('base64'),
+        filename: 'IMG_20261014_101500.jpg',
+        session_id: created!.session_id
+      })
+
+      expect(attached?.message ?? '').toBe('')
+      expect(attached?.attached).toBe(true)
+    } finally {
+      gateway.close()
+    }
+  })
+
   it('refuses a reused ticket', async () => {
     const minted = await runtime.bridge.getGatewayWsUrl()
     const wsUrl = typeof minted === 'string' ? minted : minted.ok ? minted.wsUrl : ''
