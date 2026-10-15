@@ -75,8 +75,9 @@ To share sessions with the desktop app, point it at the same server
   running inside the app. Android backup and device transfer of app data are disabled. Moving the tokens to
   Keystore-backed storage is a planned hardening.
 - **Permissions:** `INTERNET` (reach your server), `RECORD_AUDIO` and `MODIFY_AUDIO_SETTINGS` (voice input,
-  asked at first use), `POST_NOTIFICATIONS` (local "turn finished" notifications). The keep-awake setting adds
-  the normal `WAKE_LOCK`.
+  asked at first use), `POST_NOTIFICATIONS` (local "turn finished" notifications), `FOREGROUND_SERVICE` and
+  `FOREGROUND_SERVICE_DATA_SYNC` (keep the connection to your server while you are in another app, see
+  [how it works](docs/how-it-works.md#background-connection)). The keep-awake setting adds the normal `WAKE_LOCK`.
 - **No telemetry:** no analytics, crash reporting or third-party servers in the app. Traffic goes to your
   server, plus pages you or the agent link to (image and link-title fetches). The bundled Hermes UI has its own
   opt-in usage-stats setting; its desktop metrics bridge is not implemented here, so it does nothing on Android.
@@ -85,6 +86,14 @@ To share sessions with the desktop app, point it at the same server
   addresses. The plugin resolves the name itself, refuses it if **any** answer is non-public, and connects only to
   the addresses it validated, so a public name that resolves to a private address (DNS rebinding) is blocked. No
   system proxy is used, at most 3 redirects are followed (each one re-validated) and at most 64 KB are read.
+- **In-app browser:** each page runs in a separate, hardened Android WebView with no bridge to the app (no
+  JavaScript interface at all). Only `http` and `https` pages load, redirects and popups included; `file:`,
+  `content:`, `intent:`, `javascript:`, `data:`, `blob:` and every other scheme is refused. Plain `http` works only
+  for localhost, Tailscale and private-network hosts; public sites need `https`. Certificate errors are never
+  bypassed, mixed content is blocked, and permission prompts (camera, microphone, location), downloads and file
+  pickers are denied. Third-party cookies are off. Limit: Chromium does its own DNS inside the page, so a public
+  name that resolves to a private address is not caught for pages you open there (see
+  [docs/how-it-works.md](docs/how-it-works.md#in-app-browser)).
 - **Size limits** (enforced while streaming, never trusting `Content-Length` or a `HEAD`): link titles 64 KB;
   media 64 MB, held as one in-memory copy, with a Blob cache of 128 MB / 24 entries that is strict except for
   files playing at that moment; saved gateway files 1 GiB and saved images 32 MB, whether the image comes from
@@ -109,12 +118,16 @@ Android emulator smoke test).
 ## What works and what does not
 
 **Works:** chat and streaming, sessions and history, tool cards, approvals and clarify prompts, settings,
-capabilities, artifacts, scheduled jobs, messaging pages, attachments (picker and camera), voice input (needs
-the microphone permission and a server STT provider), local notifications while the app is alive, light and dark themes.
+capabilities, artifacts, scheduled jobs, messaging pages, attachments (picker and camera; photos are shrunk to
+2560 px before upload, see [how it works](docs/how-it-works.md#photo-uploads)), voice input (needs
+the microphone permission and a server STT provider), local notifications while the app is alive, the connection
+staying open while you switch apps (during a turn and for 5 minutes after leaving), light and dark
+themes, and the in-app browser (the right-rail Browser pane, including the agent's preview tools: open, click,
+type, scroll, read and annotate). It is a real Android WebView laid over the pane, with its own policy
+(see Security); `target=_blank` links and popups open in the system browser.
 
 **Does not** (desktop-only features, hidden or inert): local backend and updater (the PC owns the backend),
-host terminal, filesystem and git panels, the in-app browser or preview pane (links open in the system browser),
-HUD, pet overlay, tray, extra windows, Hermes Cloud sign-in, SSH and multiple saved servers (one server only),
+host terminal, filesystem and git panels, browser DevTools and the page context menu, HUD, pet overlay, tray, extra windows, Hermes Cloud sign-in, SSH and multiple saved servers (one server only),
 push notifications (a fully killed app is not woken by the server), and audio or video seeking
 (media is downloaded whole, 64 MB hard cap enforced while downloading, so a larger file is aborted and refused).
 
@@ -129,6 +142,7 @@ worth integrating or a break is detected (a weekly workflow watches upstream). H
 
 | Mono Hermes | UI built from Hermes | Also tested against server |
 |---|---|---|
+| 0.3.x | 0.22.0, `e06df9c2eae6901f4c88f464e0ae6e753c0428b8` | 0.21.5, `10c6188de188871f64a88dd95bc6b262adb0c307` |
 | 0.2.x | 0.21.5, `158fd638da1629c8e62caf9ade1515d162def8ab` | 0.21.5, `10c6188de188871f64a88dd95bc6b262adb0c307` |
 | 0.1.x | 0.21.5, `10c6188de188871f64a88dd95bc6b262adb0c307` | n/a |
 

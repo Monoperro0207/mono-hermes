@@ -13,6 +13,7 @@ Capacitor-backed implementation of it **before** importing the untouched
 | `gateway-ws.ts` | Mints a fresh single-use ticket per WebSocket dial. |
 | `platform.ts`, `local-files.ts`, `media.ts` | Browser, clipboard, notifications, mic, keep-awake, downloads/share, file picker, `hermes-media://`. |
 | `native-http.ts` | Typed wrapper around the native `BoundedHttp` plugin (below): capped downloads, public-only fetches, cache cleanup. |
+| `../guest-browser/` | The in-app browser (see [In-app browser](#in-app-browser)): the `<webview>` shim and the `GuestBrowser` plugin wrapper. |
 | `stubs.ts` | Desktop-only surface (local backend, updater, terminal, git, windows, HUD, Cloud). |
 | `connection.ts`, `storage.ts` | The one saved server + tokens sealed with a non-extractable AES-GCM key. |
 
@@ -73,6 +74,74 @@ Public-only mode is used for link titles and for image saves from any host excep
 gateway itself (media, file saves, API) is reached with the bearer and without the public-only rule. JVM unit
 tests (`AddressPolicyTest`, `PublicOnlyDnsTest`, `BoundedFetcherTest`) run with `./gradlew testDebugUnitTest`
 in `mobile/android` and in CI.
+
+## In-app browser
+
+The right-rail Browser pane of the desktop renderer does `document.createElement('webview')`, an Electron-only
+tag. On the device `installGuestBrowser()` (called from `entry.ts` before `@/main` is imported) patches
+`createElement` so that call returns a shim element, and a native Android WebView is laid over the shim's
+on-screen box. Off the device (the UI-audit harness) nothing is patched. The agent's official preview tools
+(open, drive, read, annotate) work unchanged because they only use the pane's `executeJavaScript` and
+`sendInputEvent`.
+
+| File (`mobile/src/guest-browser/`) | Concern |
+|---|---|
+| `install.ts`, `create-element.ts` | The `createElement('webview')` interception, native only. |
+| `shim.ts` | `<hermes-guest-webview>`: the Electron webview methods the pane uses (`loadURL`, `executeJavaScript`, `sendInputEvent`, history, `getURL`, ...) and its events (`did-navigate`, `did-fail-load`, `console-message`, `ipc-message`, ...). DevTools, `inspectElement` and `context-menu` are absent, as the pane expects. |
+| `layout.ts`, `layout-math.ts` | One shared loop keeps each native view on its shim's rect and shows it only when the shim is visible: no hidden or inert pane around it, app in the foreground, no sash drag, and nothing drawn over it (a 3x3 `elementFromPoint` sample). The native view floats above the web layer, so anything that should cover it must hide it instead. |
+| `policy.ts`, `events.ts` | The renderer-side URL policy (early refusal only) and the Android to Chromium event and error-code mapping (Android's `-3` is a TLS-auth error and must never look like `ERR_ABORTED`). |
+| `plugin.ts` | Typed access to the native `GuestBrowser` plugin. |
+
+Native side, `mobile/android/app/src/main/java/com/hermesmovil/app/guest/`:
+
+| File | Concern |
+|---|---|
+| `GuestBrowserPlugin.java` | Capacitor bridge. Keeps up to 4 live guests, each added next to the bridge WebView and positioned in CSS px times the display density; the least recently visible is destroyed beyond that and rebuilt from its URL when shown again (its page state is lost). |
+| `GuestWebView.java` | One hardened WebView: no `addJavascriptInterface`, no file or content access, mixed content never allowed, Safe Browsing on, permissions denied, TLS errors cancelled, downloads and file choosers refused, JS dialogs suppressed, third-party cookies off. A user-initiated `_blank`/`window.open` never opens a window: its target is sent to the pane, which opens it in the system browser. A crashed renderer is destroyed and reported, not retried. |
+| `GuestUrlPolicy.java` | The authoritative URL policy, checked on explicit loads, every navigation and redirect, and popup targets: `http(s)` and `about:blank` only, no credentials, and plain `http` only for loopback, tailnet (`100.64/10`, `*.ts.net`) and private-network hosts (the same buckets as `classifyHost` in `util.ts`). IPv4 shorthand (`2130706433`, `0x7f.1`) is normalised first, as Chromium does. |
+| `GuestInput.java` | Electron-style mouse and key events become real `MotionEvent`s and `KeyEvent`s (hover, trusted clicks, typing, wheel). |
+
+`executeJavaScript` has to await promises but must not expose an interface to the page, so the script is run
+through an indirect `eval`, its settled value is parked on a non-enumerable window property under a random
+per-call key, and native polls that key with `evaluateJavascript`. If the page's CSP forbids `eval`, the code runs
+directly instead, and only synchronous results come back. Android back steps the visible guest back before it
+walks the app's own history.
+
+Limits: Chromium's network stack resolves names inside the guest, so `PublicOnlyDns` does not apply and DNS
+rebinding through a public name to a private address is **not** mitigated there (the page was opened on purpose,
+and plain `http` to public hosts is refused, but an `https` page can still reach a private address its DNS
+points to). Subresource requests are not individually filtered. JVM tests: `GuestUrlPolicyTest`.
+
+## Background connection
+
+Android 15 and later cut the network of an app a few seconds after it leaves the screen (the `APP_BACKGROUND`
+firewall chain; `adb shell dumpsys netpolicy` shows `blocked=APP_BACKGROUND` for the app's UID). Without help, every
+app switch killed the gateway WebSocket (close code 1006 about 5 s after leaving): a reply stopped streaming, the
+"turn finished" notification never came, and coming back meant a full reconnect (ticket, WebSocket, session replay).
+
+`ConnectionService` (`android/.../background/`) is a `dataSync` foreground service, which exempts the process. It
+runs only while the app is not visible:
+
+- `MainActivity` starts it on the way out (`onUserLeaveHint` for Home/Recents, `onStop` for everything else,
+  including the file picker; the hardware back button asks for it from JS before minimising) and stops it in
+  `onStart`. Starting it after leaving is not allowed, so JavaScript never decides when it starts.
+- The bridge reports whether a turn is in flight (`setActiveWork` -> `BackgroundConnection.setWorking`, transitions
+  only). While one is, the service stays up; once none is, it stops 5 minutes later (`GRACE_MS`), so the result can
+  still be read live. After that Android may cut the network again and the next return reconnects as before.
+- Its notification is silent and low priority; Android defers it for about 10 s, so short app switches never show
+  it. Android 15 caps `dataSync` services at 6 hours a day; `onTimeout` stops it.
+
+## Photo uploads
+
+In remote mode the renderer reads a picked image with `readFileDataUrl` and sends it base64-encoded in one
+`image.attach_bytes` call, which must finish within the gateway client's 30 s request timeout; the read is capped
+at 16 MB. Phone photos (5-25 MB) failed both ways: refused above the cap ("too large to upload to the remote
+gateway"), or timing out over Tailscale on mobile data. `src/bridge/image-upload.ts` shrinks them first: at most
+2560 px on the long edge, re-encoded in the source format (JPEG, PNG or WebP; the gateway names the stored file
+after the picked one and trusts its extension), quality 0.85. Images under 1.5 MB within that edge, other formats
+(GIF, SVG, HEIC, BMP), sources over 64 MB and anything that fails to decode go unchanged. Re-encoding applies the
+EXIF orientation and drops the metadata, GPS location included. Attaching a photo as a file (Add files) keeps the
+original bytes.
 
 ## Versions
 

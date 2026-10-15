@@ -80,9 +80,18 @@ body {
   display: none !important;
 }
 
-/* The in-app Browser pane is an Electron <webview>; Android WebView has no such element. */
+/* The in-app Browser pane builds an Electron <webview>. On the device it gets the guest shim (a native
+   WebView laid over this box, src/guest-browser); anywhere else (the UI-audit harness) the bare tag
+   stays hidden. */
 webview {
   display: none !important;
+}
+
+hermes-guest-webview {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
 }
 
 /* ------------------------------------------------------------------------------------------

@@ -12,6 +12,8 @@
 
 import type { HermesReadFileTextResult, HermesSelectPathsOptions } from '@/global'
 
+import { prepareImageForUpload } from './image-upload'
+
 export const MOBILE_FILE_PREFIX = 'mobile-file://'
 
 const MAX_REMEMBERED = 64
@@ -65,18 +67,25 @@ export function readAsDataUrl(blob: Blob): Promise<string> {
   })
 }
 
-export async function readDataUrl(path: string, maxBytes?: number): Promise<string> {
+/**
+ * `shrinkImages`: the renderer's image path (`readFileDataUrl`: composer thumbnail and the
+ * `image.attach_bytes` upload) gets photos shrunk for upload (see image-upload.ts), and the size cap
+ * applies to what is actually sent. The file-attach path reads the original bytes.
+ */
+export async function readDataUrl(path: string, maxBytes?: number, { shrinkImages = false } = {}): Promise<string> {
   if (!isMobileFilePath(path)) {
     throw new Error('Only files chosen on this phone can be read here.')
   }
 
   const file = resolveFile(path)
+  const payload = shrinkImages ? await prepareImageForUpload(file) : file
 
-  if (maxBytes && file.size > maxBytes) {
-    throw new Error(`File is too large (${Math.round(file.size / 1024 / 1024)} MB).`)
+  if (maxBytes && payload.size > maxBytes) {
+    // Electron's wording: the renderer turns it into "too large to upload to the remote gateway (max N MB)".
+    throw new Error(`file is too large (${payload.size} bytes; limit ${maxBytes} bytes)`)
   }
 
-  return readAsDataUrl(file)
+  return readAsDataUrl(payload)
 }
 
 const TEXT_PREVIEW_MAX_BYTES = 512 * 1024

@@ -27,6 +27,7 @@ import { installCompatNotice } from './compat-notice'
 import { installNoAutofocusKeyboard, installTouchComposer } from './composer-touch'
 import { createConnectUi } from './connect-screen'
 import { installDesktopOnlyPanes } from './desktop-only-panes'
+import { installGuestBrowser } from './guest-browser/install'
 import { wireNativeLifecycle } from './lifecycle'
 
 function showFatal(message: string) {
@@ -79,6 +80,8 @@ async function start() {
 
   if (native) {
     installMediaProtocolShim(runtime.auth)
+    // The preview pane's Browser: before `@/main`, which builds `<webview>` lazily but must find the shim.
+    installGuestBrowser()
     await wireNativeLifecycle(runtime)
   }
 

@@ -20,7 +20,7 @@ HARD RULES
 - WAIT means: stop, tell the user exactly what to do, continue only after they confirm.
 
 1. DETECT: OS (Windows/macOS/Linux) and shell. Run `hermes --version` and print it. Not installed -> point
-   to https://github.com/NousResearch/hermes-agent#readme and WAIT. The app is tested with Hermes 0.21.5;
+   to https://github.com/NousResearch/hermes-agent#readme and WAIT. The app is tested with Hermes 0.22.0;
    newer usually works (the app shows a notice if the versions differ). Get the binary path for later with
    `Get-Command hermes -All` / `command -v hermes`; if several match (shims, .cmd wrappers), prefer the real
    executable (Windows: `%LOCALAPPDATA%\hermes\bin\hermes.exe`; Linux/macOS: `~/.local/bin/hermes`) and tell the user which you chose.

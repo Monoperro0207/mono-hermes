@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/NousResearch/hermes-agent",
-  "commit": "158fd638da1629c8e62caf9ade1515d162def8ab",
-  "backendVersion": "0.21.5",
+  "commit": "e06df9c2eae6901f4c88f464e0ae6e753c0428b8",
+  "backendVersion": "0.22.0",
   "note": "The Hermes release this app's UI is frozen on. Written by scripts/update-upstream.* ; verified against the upstream/ submodule by scripts/upstream-pin.mjs check."
 }

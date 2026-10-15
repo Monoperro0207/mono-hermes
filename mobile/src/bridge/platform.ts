@@ -605,7 +605,7 @@ export async function fetchLinkTitle(url: string): Promise<string> {
 
 export function createLocalFileReaders(maxBytes: () => number) {
   return {
-    readFileDataUrl: (path: string) => readDataUrl(path, maxBytes()),
+    readFileDataUrl: (path: string) => readDataUrl(path, maxBytes(), { shrinkImages: true }),
     readFileDataUrlForAttach: (path: string) => readDataUrl(path),
     readFileText: (path: string) => {
       if (!isMobileFilePath(path)) {
