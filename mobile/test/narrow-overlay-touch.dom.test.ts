@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 
-import { closeNarrowOverlay, installNarrowOverlayTouch } from '../src/narrow-overlay-touch'
+import { CLICK_SWALLOW_MS, closeNarrowOverlay, installNarrowOverlayTouch } from '../src/narrow-overlay-touch'
 
 const touch = (target: Element, type: string) =>
   target.dispatchEvent(new Event(type, { bubbles: true, cancelable: true }))
@@ -48,6 +48,15 @@ describe('narrow overlay touch wiring', () => {
     touch(outside, 'pointerdown')
     outside.click()
     touch(outside, 'pointerdown')
+    outside.click()
+
+    expect(outsideClicks).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not swallow the trailing click once the swallow window has passed', () => {
+    const now = vi.spyOn(window.performance, 'now').mockReturnValue(1000)
+    touch(outside, 'pointerdown')
+    now.mockReturnValue(1000 + CLICK_SWALLOW_MS + 1)
     outside.click()
 
     expect(outsideClicks).toHaveBeenCalledTimes(1)
