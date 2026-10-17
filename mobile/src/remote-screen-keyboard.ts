@@ -13,14 +13,17 @@
  * keyCode 229 and commit whole words through composition and autocorrect.
  *
  * A key bar adds what phone keyboards lack: Esc, Tab, a sticky Ctrl and arrows.
+ * Control is read from upstream's lease state (remote-screen-control.ts), not from its markup.
  * Input sent while watching is dropped by noVNC (viewOnly) and by the gateway's lease filter, so
  * the button only appears in control as a UX cue, never as the security boundary.
  */
 
+import type { ScreenControl } from './remote-screen-control'
+
 const SCREEN_HOST = '[data-remote-screen]'
 const NARROW_OVERLAY = '[data-narrow-overlay]'
-/** screen-pane.tsx rings the screen in red only while this viewer holds the lease (`iHold`). */
-const IN_CONTROL_RING = 'ring-red-500'
+/** A kept-alive pane that is not shown stays mounted at full size, only invisible, inert and aria-hidden. */
+const HIDDEN_PANE = '[inert], [aria-hidden="true"]'
 /** Kept in the textarea so Backspace on an "empty" field still produces an input event. */
 export const SENTINEL = ' '
 /** Past this many characters the textarea is reset between compositions. */
@@ -126,7 +129,7 @@ function styled<K extends keyof HTMLElementTagNameMap>(doc: Document, tag: K, cs
 }
 
 /** The visible screen host whose viewer holds control, if any. */
-function activeScreen(doc: Document): { canvas: HTMLCanvasElement; host: HTMLElement } | null {
+function activeScreen(doc: Document, control: ScreenControl): { canvas: HTMLCanvasElement; host: HTMLElement } | null {
   if (doc.querySelector(NARROW_OVERLAY)) {
     return null
   }
@@ -135,7 +138,7 @@ function activeScreen(doc: Document): { canvas: HTMLCanvasElement; host: HTMLEle
     const canvas = host.querySelector('canvas')
     const rect = host.getBoundingClientRect()
 
-    if (canvas && rect.width > 0 && rect.height > 0 && host.parentElement?.className.includes(IN_CONTROL_RING)) {
+    if (canvas && rect.width > 0 && rect.height > 0 && !host.closest(HIDDEN_PANE) && control.inControl(host)) {
       return { canvas, host }
     }
   }
@@ -143,7 +146,7 @@ function activeScreen(doc: Document): { canvas: HTMLCanvasElement; host: HTMLEle
   return null
 }
 
-export function installRemoteScreenKeyboard(doc: Document = document, win: Window = window): () => void {
+export function installRemoteScreenKeyboard(control: ScreenControl, doc: Document = document, win: Window = window): () => void {
   const root = styled(doc, 'div', 'position:fixed;inset:0;pointer-events:none;z-index:45')
   root.dataset.remoteScreenKeyboard = ''
 
@@ -272,7 +275,7 @@ export function installRemoteScreenKeyboard(doc: Document = document, win: Windo
   })
 
   const layout = () => {
-    screen = activeScreen(doc)
+    screen = activeScreen(doc, control)
     const keyboardOpen = doc.activeElement === input
 
     if (!screen) {
@@ -332,10 +335,16 @@ export function installRemoteScreenKeyboard(doc: Document = document, win: Windo
     }
   }
 
-  // The screen pane mounts, re-attaches and changes control state by re-rendering: watch the DOM
-  // (class flips included) rather than polling.
+  // Pane mount / visibility / overlay changes come from the DOM; who holds control comes from the
+  // subscription (the lease can flip without any markup change).
   const observer = new MutationObserver(schedule)
-  observer.observe(doc.body, { attributeFilter: ['class'], attributes: true, childList: true, subtree: true })
+  observer.observe(doc.body, {
+    attributeFilter: ['aria-hidden', 'class', 'inert'],
+    attributes: true,
+    childList: true,
+    subtree: true
+  })
+  const unsubscribe = control.subscribe(schedule)
   win.addEventListener('resize', schedule)
   win.visualViewport?.addEventListener('resize', schedule)
   win.visualViewport?.addEventListener('scroll', schedule)
@@ -343,6 +352,7 @@ export function installRemoteScreenKeyboard(doc: Document = document, win: Windo
 
   return () => {
     observer.disconnect()
+    unsubscribe()
     win.removeEventListener('resize', schedule)
     win.visualViewport?.removeEventListener('resize', schedule)
     win.visualViewport?.removeEventListener('scroll', schedule)

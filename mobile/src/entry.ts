@@ -30,6 +30,7 @@ import { installDesktopOnlyPanes } from './desktop-only-panes'
 import { installGuestBrowser } from './guest-browser/install'
 import { wireNativeLifecycle } from './lifecycle'
 import { installNarrowOverlayTouch } from './narrow-overlay-touch'
+import { upstreamScreenControl } from './remote-screen-control'
 import { installRemoteScreenKeyboard } from './remote-screen-keyboard'
 
 function showFatal(message: string) {
@@ -99,7 +100,7 @@ async function start() {
   installTouchComposer()
   installNoAutofocusKeyboard()
   installNarrowOverlayTouch()
-  installRemoteScreenKeyboard()
+  installRemoteScreenKeyboard(await upstreamScreenControl())
   installCompatNotice(store, transport)
 }
 
