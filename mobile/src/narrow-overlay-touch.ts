@@ -45,15 +45,17 @@ function hasVisibleLayerAbove(doc: Document): boolean {
   )
 }
 
-/** Closes the revealed overlay through the renderer's Escape handler. False when none is open. */
+/**
+ * Closes the revealed overlay through the renderer's Escape handler. True only when that handler took the
+ * Escape (it calls preventDefault as it closes). An overlay that is mounted but not the top Escape layer
+ * ignores it, and reporting it closed anyway would leave hardware Back doing nothing.
+ */
 export function closeNarrowOverlay(doc: Document = document, win: Window = window): boolean {
   if (!doc.querySelector(OVERLAY)) {
     return false
   }
 
-  win.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, cancelable: true, key: 'Escape' }))
-
-  return true
+  return !win.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, cancelable: true, key: 'Escape' }))
 }
 
 export function installNarrowOverlayTouch(doc: Document = document, win: Window = window): () => void {

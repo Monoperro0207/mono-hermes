@@ -20,7 +20,8 @@ describe('narrow overlay touch wiring', () => {
     outside.addEventListener('click', outsideClicks)
     // The renderer's own Escape handler (narrow-overlays.tsx) unmounts the overlay.
     escape = vi.fn<(event: KeyboardEvent) => void>(event => {
-      if (event.key === 'Escape') {
+      if (event.key === 'Escape' && !event.defaultPrevented) {
+        event.preventDefault()
         document.querySelector('[data-narrow-overlay]')?.remove()
       }
     })
@@ -87,5 +88,12 @@ describe('narrow overlay touch wiring', () => {
   it('closeNarrowOverlay reports whether there was an overlay to close (hardware Back)', () => {
     expect(closeNarrowOverlay(document, window)).toBe(true)
     expect(closeNarrowOverlay(document, window)).toBe(false)
+  })
+
+  it('closeNarrowOverlay reports false when the renderer ignores the Escape, so Back falls through', () => {
+    window.removeEventListener('keydown', escape)
+
+    expect(closeNarrowOverlay(document, window)).toBe(false)
+    expect(document.querySelector('[data-narrow-overlay]')).not.toBeNull()
   })
 })
