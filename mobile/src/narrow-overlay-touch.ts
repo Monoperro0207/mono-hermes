@@ -38,6 +38,13 @@ export function shouldDismissOnTap(ctx: OverlayTapContext): boolean {
   return ctx.coarsePointer && ctx.overlayOpen && !ctx.insideOverlay && !ctx.layerAbove
 }
 
+/** A mounted-but-hidden menu or dialog must not disable tap-outside for good: only rendered ones count. */
+function hasVisibleLayerAbove(doc: Document): boolean {
+  return [...doc.querySelectorAll(LAYER_ABOVE)].some(
+    el => el.getAttribute('aria-hidden') !== 'true' && el.getClientRects().length > 0
+  )
+}
+
 /** Closes the revealed overlay through the renderer's Escape handler. False when none is open. */
 export function closeNarrowOverlay(doc: Document = document, win: Window = window): boolean {
   if (!doc.querySelector(OVERLAY)) {
@@ -59,11 +66,14 @@ export function installNarrowOverlayTouch(doc: Document = document, win: Window 
     const ctx: OverlayTapContext = {
       coarsePointer: coarse.matches,
       insideOverlay: Boolean(target?.closest(OVERLAY_PARTS)),
-      layerAbove: Boolean(doc.querySelector(LAYER_ABOVE)),
+      layerAbove: hasVisibleLayerAbove(doc),
       overlayOpen: Boolean(doc.querySelector(OVERLAY))
     }
 
     if (!shouldDismissOnTap(ctx)) {
+      // A new ordinary tap ends any pending swallow: only the consumed tap's own click is eaten.
+      swallowClickUntil = 0
+
       return
     }
 
@@ -83,11 +93,18 @@ export function installNarrowOverlayTouch(doc: Document = document, win: Window 
     event.stopImmediatePropagation()
   }
 
+  // A consumed tap that turns into a scroll or is cancelled never produces its click.
+  const onPointerCancel = () => {
+    swallowClickUntil = 0
+  }
+
   doc.addEventListener('pointerdown', onPointerDown, true)
+  doc.addEventListener('pointercancel', onPointerCancel, true)
   doc.addEventListener('click', onClick, true)
 
   return () => {
     doc.removeEventListener('pointerdown', onPointerDown, true)
+    doc.removeEventListener('pointercancel', onPointerCancel, true)
     doc.removeEventListener('click', onClick, true)
   }
 }
