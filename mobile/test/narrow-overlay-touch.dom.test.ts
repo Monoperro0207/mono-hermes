@@ -96,4 +96,14 @@ describe('narrow overlay touch wiring', () => {
     expect(closeNarrowOverlay(document, window)).toBe(false)
     expect(document.querySelector('[data-narrow-overlay]')).not.toBeNull()
   })
+
+  it('lets an outside tap through when the renderer ignores the Escape', () => {
+    window.removeEventListener('keydown', escape)
+    const down = new Event('pointerdown', { bubbles: true, cancelable: true })
+    outside.dispatchEvent(down)
+    outside.click()
+
+    expect(down.defaultPrevented).toBe(false)
+    expect(outsideClicks).toHaveBeenCalledTimes(1)
+  })
 })

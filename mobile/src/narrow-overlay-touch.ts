@@ -72,7 +72,8 @@ export function installNarrowOverlayTouch(doc: Document = document, win: Window 
       overlayOpen: Boolean(doc.querySelector(OVERLAY))
     }
 
-    if (!shouldDismissOnTap(ctx)) {
+    // Only a tap that actually closed the overlay is consumed; one the renderer ignored reaches its target.
+    if (!shouldDismissOnTap(ctx) || !closeNarrowOverlay(doc, win)) {
       // A new ordinary tap ends any pending swallow: only the consumed tap's own click is eaten.
       swallowClickUntil = 0
 
@@ -82,7 +83,6 @@ export function installNarrowOverlayTouch(doc: Document = document, win: Window 
     event.preventDefault()
     event.stopImmediatePropagation()
     swallowClickUntil = win.performance.now() + CLICK_SWALLOW_MS
-    closeNarrowOverlay(doc, win)
   }
 
   const onClick = (event: MouseEvent) => {
