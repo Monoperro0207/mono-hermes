@@ -30,6 +30,7 @@ import { installDesktopOnlyPanes } from './desktop-only-panes'
 import { installGuestBrowser } from './guest-browser/install'
 import { wireNativeLifecycle } from './lifecycle'
 import { installNarrowOverlayTouch } from './narrow-overlay-touch'
+import { installRemoteScreenKeyboard } from './remote-screen-keyboard'
 
 function showFatal(message: string) {
   document.body.innerHTML = ''
@@ -98,6 +99,7 @@ async function start() {
   installTouchComposer()
   installNoAutofocusKeyboard()
   installNarrowOverlayTouch()
+  installRemoteScreenKeyboard()
   installCompatNotice(store, transport)
 }
 
