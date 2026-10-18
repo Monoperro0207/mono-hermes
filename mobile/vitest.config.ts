@@ -13,6 +13,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.join(desktop, 'src'),
+      '@hermes/plugin-sdk': path.join(desktop, 'src/sdk/index.ts'),
       '@hermes/shared': shared
     }
   },

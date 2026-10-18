@@ -22,6 +22,7 @@ import {
   createPreferencesStore,
   createSecretBox
 } from './bridge/storage'
+import { errorMessage } from './bridge/util'
 import { buildInfo } from './build-info'
 import { installCompatNotice } from './compat-notice'
 import { installNoAutofocusKeyboard, installTouchComposer } from './composer-touch'
@@ -29,6 +30,9 @@ import { createConnectUi } from './connect-screen'
 import { installDesktopOnlyPanes } from './desktop-only-panes'
 import { installGuestBrowser } from './guest-browser/install'
 import { wireNativeLifecycle } from './lifecycle'
+import { installNarrowOverlayTouch } from './narrow-overlay-touch'
+import { upstreamScreenControl } from './remote-screen-control'
+import { installRemoteScreenKeyboard } from './remote-screen-keyboard'
 
 function showFatal(message: string) {
   document.body.innerHTML = ''
@@ -96,6 +100,13 @@ async function start() {
   await import('./mobile.css')
   installTouchComposer()
   installNoAutofocusKeyboard()
+  installNarrowOverlayTouch()
+  // Reading upstream's screen state must never cost the rest of startup, only the keyboard button.
+  try {
+    installRemoteScreenKeyboard(await upstreamScreenControl())
+  } catch (error) {
+    console.warn('[hermes-mobile] remote screen keyboard unavailable:', errorMessage(error))
+  }
   installCompatNotice(store, transport)
 }
 

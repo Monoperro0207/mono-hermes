@@ -4,8 +4,9 @@
  * - App resume  -> `onPowerResume`: the renderer re-validates the gateway and
  *   re-dials its WebSocket (the OS freezes sockets while the app is backgrounded,
  *   exactly like a laptop waking from sleep).
- * - Hardware back -> step the visible in-app browser back first, then walk the renderer's router history, then minimise the app
- *   instead of killing it (the gateway keeps running; killing loses the live view).
+ * - Hardware back -> close the narrow side overlay (sessions / bots) if it is revealed, then step the visible in-app
+ *   browser back, then walk the renderer's router history, then minimise the app instead of killing it (the gateway
+ *   keeps running; killing loses the live view).
  * - Leaving the app -> MainActivity keeps the network for the turn in flight plus a short grace
  *   window (ConnectionService), so most returns find the socket still open and skip the redial.
  */
@@ -13,6 +14,7 @@
 import { holdConnection } from './bridge/background-connection'
 import type { BridgeRuntime } from './bridge/install'
 import { goBackOnVisibleGuest } from './guest-browser/layout'
+import { closeNarrowOverlay } from './narrow-overlay-touch'
 
 export async function wireNativeLifecycle(runtime: BridgeRuntime): Promise<void> {
   const { App } = await import('@capacitor/app')
@@ -25,7 +27,8 @@ export async function wireNativeLifecycle(runtime: BridgeRuntime): Promise<void>
   })
 
   await App.addListener('backButton', ({ canGoBack }) => {
-    if (goBackOnVisibleGuest()) {
+    // The overlay sits above everything else, so Back dismisses it first.
+    if (closeNarrowOverlay() || goBackOnVisibleGuest()) {
       return
     }
 
