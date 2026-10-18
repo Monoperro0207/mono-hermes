@@ -38,7 +38,7 @@ streaming turns and history are shared live.
 | Unfolded (Bot Screen) |
 |---|
 | <img src="docs/screenshots/inner-bot-screen.jpg" width="560" alt="A bot's live remote desktop on the unfolded phone, with Take over"> |
-| <sub>Watch a bot's desktop live and press Take over to drive it; a keyboard button then lets you type into it.</sub> |
+| <sub>Watch a bot's desktop live and press Take over to drive it; a keyboard button then lets you type into it. Needs a Hermes server on **Linux** with TigerVNC and Xfce (the app offers to install them); servers on Windows or macOS have no Bot Screen. On Hermes Cloud it comes only with bots of 8 GB of memory or more.</sub> |
 
 ## Quick setup
 
